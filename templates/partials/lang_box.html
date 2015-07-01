@@ -1,0 +1,23 @@
+{% load i18n %}
+<p id="wersje-jezykowe">
+ <span class="aktywny" title="wersja polska">
+ 	{% ifnotequal request.META.HTTP_HOST 'http://www.24gole.pl' %}
+        <a href="http://www.24gole.pl">
+    {% endifnotequal %}<img src="/static/images/flags/gif/pl.gif" alt="polska flaga"/>&nbsp;Polski
+     {% ifnotequal request.META.HTTP_HOST 'http://www.24gole.pl' %}</a>{% endifnotequal %} |
+
+     {% ifnotequal request.META.HTTP_HOST 'http://www.24goals.com' %}
+         <a href="http://www.24goals.com">
+     {% endifnotequal %}<img src="/static/images/flags/gif/gb.gif" alt="english flag"/>&nbsp;English
+     {% ifnotequal request.META.HTTP_HOST 'http://www.24goals.com' %}</a>{% endifnotequal %}
+     {# <form action="/i18n/setlang/" method="post"> #}
+	{# 	<legend>Wybierz jńôzyk:</legend> #}
+	{# <select name="language"> #}
+	{# {% for lang in LANGUAGES %} #}
+	{# <option value="{{ lang.0 }}">{% trans lang.1 %}</option> #}
+	{# {% endfor %} #}
+	{# </select> #}
+	{# <input type="submit" value="{% trans "Change" %}" style="font-size: 10px;"/> #}
+	{# </form> #}
+	</span>
+</p>

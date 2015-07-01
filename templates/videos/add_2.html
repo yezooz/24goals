@@ -1,0 +1,63 @@
+{% extends layout_lang %}{% load i18n common modules %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dodaj film na stronie (Krok 2)' %}
+{% endblock title %}
+
+{% block path %}{% trans 'Dodajesz nowy film - krok 2/2' %}{% endblock %}
+
+{% block top_left %}{% video_categories cat_name %}{% endblock %}
+{% block content %}
+
+    <div id="kontent-tresc">
+        {% if request.user.is_authenticated %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Dodajesz nowy film - krok 2/2' %}</h2>
+
+                <h2>{{ video.name }}</h2>
+
+                <p class="small">
+                    <span class="autor"><a
+                            href="/{% trans 'Uzytkownik URL' %}/{{ video.user|lower }}/">{{ video.user }}</a></span>
+                    <span class="{% trans 'punkty' %}">({{ video.user.get_profile.points }} {% trans 'pkt' %}.)</span>
+                    <span class="data">{{ video.published_at|date:"Y-m-d"}} {{ video.published_at|date:"H:i"}}</span>
+                    {# <span class="komentarze"><img src="/static/images/ikona_komentarz.gif" alt="{% trans 'Komentarze' %}: " width="11" height="11" /> #}
+                    {# 				<a href="/{% trans 'film' %}/{{video.id}}/{{video.url}}/" title="{% trans 'Szczegoly' %}"> #}
+                    {# 					<span style="color: red;">{% trans 'Komentarze' %}: {{video.get_comments_count}}</span> #}
+                    {# 				</a> #}
+                    {# 			</span> #}
+                </p>
+                {{ video.content|safe }}
+
+                <form action="{{ path_info }}" method="post">
+                    <div class="alignRight">
+                        <input class="button" name="edit" type="submit" value="&laquo; {% trans 'Powrot do edycji' %}"/>
+                        <input class="button" name="save" type="submit" value="{% trans 'DODAJ' %} &raquo;"/>
+                    </div>
+                </form>
+            </div>
+
+            <div class="boks center komunikat">
+                <strong>{% trans 'Jezeli popelniles/as blad mozesz powrocic do edycji' %}.<br/>{% trans 'Uwazasz, ze wszystko jest ok ? Kliknij DODAJ' %}
+                </strong>
+            </div>
+
+        {% else %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Strona dodawania nowego filmu' %}</h2>
+
+                <div class="boks center komunikat">
+                    {% blocktrans %}Tylko zarejestrowani uzytkownicy moga umieszczac nowe tresci w serwisie.<br/>
+                        Jezeli masz juz konto to wystarczy, ze sie zalogujesz.<br/>
+                        Mozesz sie rowniez w kazdej chwili <a href="/rejestracja/">zalozyc nowe konto</a> - zajmie Ci to
+                        mniej niz 30 sekund!{% endblocktrans %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

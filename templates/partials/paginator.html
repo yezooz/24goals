@@ -1,0 +1,40 @@
+{% load i18n %}
+{% spaceless %}
+
+    {% if is_paginated %}
+    <div class="paginator">
+        {% if has_previous %}<span class="prev"><a href="{{ base_url }}{% trans 'strona-' %}{{ previous }}/"
+                                                   title="{% trans 'Poprzednia strona' %}">&laquo; {% trans 'Poprzednie' %}</a></span>{% else %}
+            <span class="prev-na">&laquo; {% trans 'Poprzednie' %}</span>{% endif %}
+
+        {% if not in_leading_range %}
+            {% for num in pages_outside_trailing_range %}
+                <span class="page"><a
+                        href="{{ base_url }}{% trans 'strona-' %}{{ page_no }}/{{ num }}/">{{ num }}</a></span>
+            {% endfor %}
+            ...
+        {% endif %}
+
+        {% for num in page_numbers %}
+        {% ifequal num page %}
+        <span class="curr" title="{% trans 'Biezaca strona' %}">{{ num }}</span>
+        {% else %}
+        <span class="page"><a href="{{ base_url }}{% trans 'strona-' %}{{ num }}/"
+                              title="{% trans 'Strona' %} {{ num }}">{{ num }}</a></span>
+        {% endifequal %}
+        {% endfor %}
+
+        {% if not in_trailing_range %}
+            ...
+            {% for num in pages_outside_leading_range reversed %}
+                <span class="page"><a href="{{ base_url }}{% trans 'strona-' %}{{ num }}/">{{ num }}</a></span>
+            {% endfor %}
+        {% endif %}
+
+        {% if has_next %}<span class="next"><a href="{{ base_url }}{% trans 'strona-' %}{{ next }}/"
+                                               title="Next Page">{% trans 'Nastepne' %} &raquo;</a></span>{% else %}
+            <span class="next-na">{% trans 'Nastepne' %} &raquo;</span>{% endif %}
+    </div>
+    {% endif %}
+
+{% endspaceless %}

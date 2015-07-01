@@ -1,0 +1,48 @@
+{% extends layout_lang %}{% load common %}
+
+{% block title %}
+    24goals.com - Rules
+{% endblock %}
+
+{% block path %}
+    Rules
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">Rules</h1>
+            <br/>
+
+            <h2>Points awarded for each match</h2>
+            <em>In the Prediction Game you compete against other players in the world by predicting the correct scores
+                for the football matches in the top leagues of the world.<br/>
+                .</em>
+            <ul style="padding-left: 15px; padding-top: 5px;">
+                <li>&raquo;&nbsp; <strong>+6 points</strong> - exact score</strong></li>
+                <li>&raquo;&nbsp; <strong>+4 points</strong> - predicting the winner and predicting the number of goals
+                    scored by winner</strong></li>
+                <li>&raquo;&nbsp; <strong>+3 points</strong> - predicting the winner</strong></li>
+                <li>&raquo;&nbsp; <strong>+1 point</strong> - correct goals scored by one of the teams</strong></li>
+                <li>&raquo;&nbsp; <strong>-1 point</strong> - wrong result, wrong number of goals for both
+                    teams</strong></li>
+            </ul>
+            <br/>
+
+            <h2>Rules on copyrights</h2>
+            <em>24goals.com is not responsible for content added by users and respects the intellectual property of
+                others. It's our policy to respond expeditiously to claims of copyright and other intellectual property
+                infringement. Please don't share coprighted materials!</em>
+
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+{% endblock content %}

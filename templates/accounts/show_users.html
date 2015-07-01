@@ -1,0 +1,79 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Lista uzytkownikow' %}
+    {% if letter %}
+        {% trans 'na litere' %} {{ letter|upper }}
+    {% endif %}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    {% if letter %}
+        <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Lista uzytkownikow' %}</a> /
+        <a href="/{% trans 'Uzytkownicy URL' %}/{{ letter }}/">{{ letter|upper }}</a>
+    {% else %}
+        <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Lista uzytkownikow' %}</a>
+    {% endif %}
+{% endblock path %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+    <div class="modul">
+
+        <h2>{% trans 'Lista uzytkownikow wg. identyfikatora' %}</h2>
+        <br/>
+
+        <p style="font-size: 18px; text-align: center;">
+            {% for l in alphabet %}
+            {% ifequal l letter %}
+            <span style="font-size: 20px;">{{ l|upper }}</span>
+            {% else %}
+            <span><a href="/uzytkownicy/{{ l }}/">{{ l|upper }}</a></span>
+            {% endifequal %}
+            {% endfor %}
+        </p>
+
+        {% if users %}
+            {% for user in users %}
+                <span style="border: grey solid 1px; padding: 10px 10px 10px 10px; margin-right: 10px; margin-bottom: 10px; float: left; text-align: center;">
+
+			<dl style="float: left;">
+                <dt><img class="avatar floatLeft" src="/static/images/avatars/avatar_{{ user.id }}.jpg" height="80"
+                         width="80"/></dt>
+            </dl>
+			<dl style="clear: both;">
+                <dt><strong><a href="/{% trans 'Uzytkownik URL' %}/{{ user|lower }}/">{{ user }}</a></strong></dt>
+                <dt>({{ user.points }} {% trans 'pkt' %}.)</dt>
+            </dl>
+			</span>
+
+            {% endfor %}
+        {% else %}
+            <br/>
+            <h1 align="center">{% trans 'Brak uzytkownikow na litere' %} {{ letter|upper }}</h1>
+        {% endif %}
+
+        <br style="clear:both;"/>
+
+        <p style="font-size: 18px; text-align: center;">
+            {% for l in alphabet %}
+            {% ifequal l letter %}
+            <span style="font-size: 20px;">{{ l|upper }}</span>
+            {% else %}
+            <span><a href="/{% trans 'Uzytkownicy URL' %}/{{ l }}/">{{ l|upper }}</a></span>
+            {% endifequal %}
+            {% endfor %}
+        </p>
+    </div>
+
+</div>
+<div id="kontent-kolumna1">
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

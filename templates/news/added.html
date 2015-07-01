@@ -1,0 +1,23 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul meczSzczegol">
+
+            <h1>
+                {% trans 'Artykul zostal wyslany do moderacji i pojawi sie na stronie (o ile bedzie poprawny) najszybciej jak to bedzie mozliwe.' %}<br/><br/>
+                <a href="/news/">&laquo; {% trans 'powrot do listy wiadomosci' %}</a>
+                <br>
+            </h1>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

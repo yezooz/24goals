@@ -1,0 +1,29 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block path %}
+    {% trans 'rejestracja' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+
+            {% if account %}
+                <h2>{% trans 'Aktywacja powiodla sie! Mozesz sie teraz zalogowac i brac czynny udzial w zyciu serwisu.' %}</h2>
+            {% else %}
+                <h2>{% trans 'Niestety, ale kod, ktory podales nie jest prawidlowy. Kody wyslane po rejestracji sa wazne tylko' %} {{ expiration_days }} {% trans 'dni' %}.</h2>
+            {% endif %}
+
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+
+    </div>
+{% endblock content %}

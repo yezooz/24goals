@@ -1,0 +1,60 @@
+{% extends layout_lang %}{% load i18n lang common modules flash %}
+
+{% block top_left %}{% video_categories cat_name %}{% endblock %}
+{% block content %}
+    <div id="kontent-tresc">
+        {% flash %}
+            <div><strong>{{ msg }}</strong></div>
+        {% endflash %}
+
+        <div class="modul">
+            <h2 class="tytul">{% trans 'Filmy' %}</h2>
+
+            <div>
+                <form method="post" action="">
+                    <span>{% trans 'Szukaj' %}:</span>
+                    <input type="text" name="search_query" value="{{ search_query }}"/>
+                    <input type="submit" value="{% trans 'Znajdz' %}"/>
+                </form>
+                {% if search_query %}
+                    <h2>{% trans 'Znaleziono' %}: {{ vids_count }} {% trans 'filmow' %}</h2>
+                {% endif %}
+                <br/>
+            </div>
+
+            {% if videos %}
+                {% for v in videos %}
+                    <a href="/{% trans 'film' %}/{{ v.id }}/{{ v.url }}/">
+                        {% if v.content|yt_screen %}
+                            <div style="padding-left: 15px; width: 190px; height: 150px; float: left;">
+                            <img src="{{ v.content|yt_screen }}">
+                        {% else %}
+                            <div style="padding-left: 15px; width: 190px; height: 150px; float: left;">
+                            <img src="/static/images/no-preview-{% lang 'en' 'pl' %}.gif"/>
+                        {% endif %}
+                        <br/>
+                        {{ v.name }}</a>
+                    <br/>
+                    <span class="username">
+				<a href="/{% trans 'Uzytkownik URL' %}/{{ v.user|lower }}/">{{ v.user }}</a>
+				<a href="/{% trans 'Uzytkownik URL' %}/{{ v.user|lower }}/{% trans 'Aktywnosc URL' %}/"><span
+                        class="activity_points">{{ v.user.get_profile.activity_points }}</span></a>
+			</span>
+                    </div>
+                {% endfor %}
+                <br style="clear:both;"/>
+                <span style="text-align: center">{% digg_paginator %}</span>
+            {% else %}
+                <br/>
+                <span style="text-align: center"><h2>{% trans 'Nie ma jeszcze filmow w tej kategorii' %}</h2><h2><a
+                        href="/{% trans 'filmy' %}/{% trans 'dodaj' %}/{{ cat_name }}/">{% trans 'Badz pierwszy' %} &raquo;</a>
+                </h2></span>
+            {% endif %}
+    </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+
+    </div>
+{% endblock content %}

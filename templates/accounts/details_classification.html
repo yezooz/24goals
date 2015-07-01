@@ -1,0 +1,79 @@
+{% extends layout_lang %}{% load i18n lang common modules flash pick timezones %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/ui.tabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tabele_tabs > ul").tabs();
+        });
+    </script>
+{% endblock %}
+
+{% block title %}
+    {% trans '24gole' %} -
+{% endblock %}
+
+{% block description %}
+
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Uzytkownicy' %}</a> / <a href="/">{{ show_user }}</a> /
+    {% trans 'Klasyfikacja' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="kolumna1">
+            {% with tables.0 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.1 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.3 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.5 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.4 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.6 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.9 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.8 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.12 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+
+            {% with tables.11 as table %}
+                {% include "accounts/details_classification_module.html" %}
+            {% endwith %}
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% user_mini_box show_user %}
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock %}

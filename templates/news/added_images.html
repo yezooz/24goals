@@ -1,0 +1,35 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans 'Dziekujemy za dodanie zdjecia do tej wiadomosci' %}
+{% endblock title %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul meczSzczegol">
+
+            <h1 class="tytul">
+                <span class="floatLeft">{{ news.caption }}</span>
+                <span class="data floatRight">{% trans 'data dodania' %}: <strong
+                        class="black">{{ news.created_at }}</strong></span>
+                <br class="clear"/>
+            </h1>
+
+            <h1>
+                {% trans 'Linki zostaly wyslane do moderacji i pojawia sie na stronie najszybciej jak to bedzie mozliwe.' %}<br/><br/>
+                <a href="/news/{{ news.id }}/add_photos/"> {% trans 'dodaj kolejne linki do zdjec' %}</a><br/>
+                <a href="/news/">&laquo; {% trans 'powrot do listy wiadomosci' %}</a>
+                <br>
+            </h1>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% load i18n common %}
+{% if request.user.is_authenticated %}
+    <div id="uzytkownik">
+        <img class="avatar floatRight" src="/static/images/avatars/avatar_{{ account.user_id }}.jpg"
+             alt="{{ account.username }} avatar" width="80" height="80"/>
+        <dl>
+            <dt>{{ account.username }}&nbsp;<span class="activity_points">{{ account.activity_points }}</span></dt>
+            <dd>{{ account.favourite_team_name_pl }}</dd>
+            <dd><span>{% trans 'liczba punktow' %}:</span> {{ account.points }}</dd>
+            {# <dd><span><a href="/uzytkownik/wiadomosci/">moje wiadomości &raquo;</a></span></dd> #}
+            <dd><span><a href="/dashboard/">{% trans 'edycja danych' %} &raquo;</a></span></dd>
+            <dd><span><a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ account.username|lower }}/{% trans 'Aktywnosc URL' %}/">{% trans 'moja aktywnosc' %} &raquo;</a></span>
+            </dd>
+        </dl>
+    </div>
+{% else %}
+    <div id="uzytkownik">
+        {# <p><a tabindex="1" href="przypomnij_haslo.html"><strong>Przypomnij hasło</strong></a></p> #}
+        <p><a tabindex="1" href="/{% trans 'Rejestracja URL' %}/"><strong>{% trans 'Zarejestruj sie' %}</strong></a></p>
+    </div>
+{% endif %}

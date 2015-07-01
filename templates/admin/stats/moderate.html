@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>24gole.pl</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css"/>
+    <meta name="robots" content="NONE,NOARCHIVE"/>
+</head>
+
+<body class="dashboard">
+<div style="margin-left: 20px; margin-top: 20px; width: 180px; float: left;">
+    <h3>MODERUJ</h3>
+
+    <p>
+        <a href="/admin/main/comments/" class="changelink">Moderuj komentarze {% if comms_to_mod %}(
+            <span style="color: red; font-weight: bold;">{{ comms_to_mod }}</span>){% else %}(0){% endif %}</a>
+    </p>
+
+    <p>
+        <a href="/admin/main/news/" class="changelink">Moderuj newsy {% if news_to_mod %}(
+            <span style="color: red; font-weight: bold;">{{ news_to_mod }}</span>){% else %}(0){% endif %}</a>
+    </p>
+
+    <p>
+        <a href="/admin/main/videos/" class="changelink">Moderuj filmy {% if vids_to_mod %}(
+            <span style="color: red; font-weight: bold;">{{ vids_to_mod }}</span>){% else %}(0){% endif %}</a>
+    </p>
+
+    <p>
+        <a href="/admin/main/images/" class="changelink">Moderuj zdjęcia {% if imgs_to_mod %}(
+            <span style="color: red; font-weight: bold;">{{ imgs_to_mod }}</span>){% else %}(0){% endif %}</a>
+    </p>
+</div>
+<div style="margin-left: 20px; margin-top: 20px; width: 180px; float: left;">
+    <h3>UŻYTKOWNICY</h3>
+    <b>W sumie:</b> <b>{{ user_count }}</b><br/>
+    Wrzesień: {{ u09 }}<br/>
+    Październik: {{ u10 }}<br/>
+    Listopad: {{ u11 }}<br/>
+    Grudzień: {{ u12 }}<br/>
+    Styczeń: {{ u01 }}<br/>
+    <b>Luty: {{ u02 }}</b><br/>
+    <b>Ostatnie 7 dni:</b> <b>{{ week_users }}</b><br/>
+    <b>Dziś</b> <b>{{ today_users|length }}:</b><br/>
+    <ul>
+        {% for usr in today_users %}
+        <li>{% ifequal usr.user.is_active 1 %}<strong>{{ usr }}</strong>{% else %}{{ usr }}{% endifequal %} <img
+                src="/static/images/flags/gif/{{ usr.country_code|lower }}.gif"/> ({{ usr.country_code|lower }})
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div style="margin-left: 20px; margin-top: 20px; width: 200px; float: left;">
+    <h3>ONLINE ({{ online.keys|length }})</h3>
+    {% for k in online.keys %}
+        {{ k }}<br/>
+    {% endfor %}
+</div>
+<br clear="both"/>
+
+<p style="font-size: 12pt; margin-left: 20px;">
+    <a href="/admin/"><< powrót do panelu</a><br/>
+    <a href="http://www.24gole.pl/"><< 24gole</a><br/>
+    <a href="http://www.24goals.com/"><< 24goals</a><br/>
+</p>
+</body>
+</html>

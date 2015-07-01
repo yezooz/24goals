@@ -1,0 +1,24 @@
+{% load i18n %}
+<table border="1" cellspacing="0" cellpadding="10" style="width: 100%; line-height: 10pt;">
+    <tbody>
+    {% for u in users %}
+        <tr class="{% cycle wiersz1,wiersz2 %}" style="font-size: 92%;">
+            <td class="username">{{ forloop.counter }}. <a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ u.1|lower }}/">{{ u.1 }}</a>&nbsp;&nbsp;
+                <a href="/{% trans 'Uzytkownik URL' %}/{{ u.1|lower }}/aktywnosc/"><span
+                        class="activity_points">{{ u.4 }}</span></a>
+                {# <img src="/static/images/flags/gif/{{u.3|lower}}.gif" alt="flag {{u.3}}" /> #}
+                <br/><span style="font-size: 10px;">{{ u.0 }} {% trans 'pkt' %}.</span>
+                {% ifnotequal u.2 None %}
+                    | {{ u.2 }}
+                {% endifnotequal %}
+            </td>
+        </tr>
+    {% endfor %}
+    <tr style="line-height: 3pt; font-size: 100%;">
+        <td>
+            <p class="wiecej"><a href="/{% trans 'Typer URL' %}/">{% trans 'wiecej' %} &raquo;</a></p>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,34 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dziekujemy za dodanie filmiku z tego meczu' %}
+{% endblock title %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul meczSzczegol">
+
+            <h1 class="tytul">
+                <span class="floatLeft">{{ match.home_team.name_pl }} - {{ match.away_team.name_pl }}</span>
+                <span class="data floatRight">{% trans 'data spotkania' %}: <strong
+                        class="black">{{ match.match_date }}</strong></span>
+                <br class="clear"/>
+            </h1>
+
+            <h1>
+                {% trans 'Link zostal wyslany do moderacji i pojawi sie na stronie najszybciej jak to bedzie mozliwe' %}.<br/><br/>
+                <a href="/{% trans 'Mecz URL' %}/{{ match.id }}/add_videos/"> {% trans 'dodaj kolejny link do filmu' %} &raquo;</a><br/>
+                <a href="/{% trans 'Mecze URL' %}/">&laquo; {% trans 'powrot do strony wynikow' %}</a>
+            </h1>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

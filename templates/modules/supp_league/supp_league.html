@@ -1,0 +1,18 @@
+{% load i18n lang %}
+<table border="1" cellspacing="0" cellpadding="10" style="width: 170px; font-size: 92%; line-height: 8pt;">
+    <tbody>
+    {% for t in teams %}
+        <tr class="{% cycle wiersz1,wiersz2 %}">
+            <td>{{ t.0 }}. <a
+                    href="/{% trans 'Kibice URL' %}/{% lang t.1.name_en_url t.1.name_pl_url %}/">{% lang t.1.name_en t.1.name_pl %}</a><span
+                    style="font-size: 10px;">&nbsp;{{ t.2 }} {% trans 'pkt' %}.</span>
+            </td>
+        </tr>
+    {% endfor %}
+    <tr style="line-height: 3pt; font-size: 100%;">
+        <td>
+            <p class="wiecej"><a href="/{% trans 'liga-kibicow' %}/">{% trans 'wiecej' %} &raquo;</a></p>
+        </td>
+    </tr>
+    </tbody>
+</table>

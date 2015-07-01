@@ -1,0 +1,56 @@
+{% load timezones i18n lang %}
+
+<table border="1" cellspacing="0" cellpadding="10" style="width: 100%;">
+    <tbody>
+    {% for m in matches %}
+    <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ m.id }}">
+        <td class="druzyna1" {% ifequal m.status "f" %}style="width: 145px;"
+            {% else %}style="width: 110px;"{% endifequal %}>
+            <a href="/{% trans 'Druzyna URL' %}/{% lang m.home_team.name_en_url m.home_team.name_pl_url %}/">{% lang m.home_team.name_en m.home_team.name_pl %}</a>
+        </td>
+        <td class="wynik">
+            {% ifnotequal m.home_score -1 %}{{ m.home_score }} - {{ m.away_score }}
+                {% else %}v{% endifnotequal %}
+        </td>
+        <td class="druzyna2" {% ifequal m.status "f" %}style="width: 145px;"
+            {% else %}style="width: 110px;"{% endifequal %}>
+            <a href="/{% trans 'Druzyna URL' %}/{% lang m.away_team.name_en_url m.away_team.name_pl_url %}/">{{ m.away_team.name_en }}</a>
+        </td>
+        {% ifnotequal m.status "f" %}
+            <td {% ifequal m.status "o" %}style="text-align: center; font-size: 11px;"{% endifequal %}>
+                {% ifequal m.status "d" %}
+                    {% ifequal m.minute "-1" %}
+                        {% trans 'dogrywka' %}
+                        {% else %}
+                        {% ifequal m.minute "-2" %}
+                            {% trans '2. polowa' %}
+                            {% else %}
+                            {% ifequal m.minute "-3" %}
+                                {% trans 'przerwa' %}
+                                {% else %}
+                                {% ifequal m.minute "-4" %}
+                                    {% trans '1. polowa' %}
+                                    {% else %}
+                                    {{ m.minute }}''
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                    {% endifequal %}
+                {% endifequal %}
+                {% ifequal m.status "o" %}
+                    {{ m.match_date }}
+                    {% timezone m.match_date m.match_time 1 %}
+                    {{ match_time_zone|time:"H:i" }}
+                {% endifequal %}
+            </td>
+        {% endifnotequal %}
+        <td class="opcje">
+            <a href="/{% trans 'Mecz URL' %}/{{ m.home_team.name_pl_url }}/{{ m.away_team.name_pl_url }}/{{ m.id }}/"
+               title="{% trans 'Szczegoly meczu' %}">
+                <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11" height="11"/>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

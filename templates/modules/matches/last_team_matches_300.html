@@ -1,0 +1,102 @@
+{% load ifwon if timezones i18n lang %}
+
+<div class="modul">
+    <div id="last_matches_{{ team_id }}">
+        <ul>
+            <li><a href="#home_overall_{{ team_id }}" title="{% trans 'Tabela ligowa' %}">{% blocktrans %}Ostatnie
+                {{ limit }}{% endblocktrans %}</a></li>
+            <li><a href="#home_home_{{ team_id }}" title="{% trans 'Tabela ligowa' %}">{% blocktrans %}Ostatnie
+                {{ limit }} (dom){% endblocktrans %}</a></li>
+            <li><a href="#home_away_{{ team_id }}" title="{% trans 'Tabela ligowa' %}">{% blocktrans %}Ostatnie
+                {{ limit }} (wyjazd){% endblocktrans %}</a></li>
+        </ul>
+
+        <div id="home_overall_{{ team_id }}">
+            <table border="1" cellspacing="0" cellpadding="10" style="font-size: 12px; width: 100%;">
+                <tbody>
+                {% for m in home10_1 %}
+                <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ m.id }}">
+                    <td class="druzyna1">
+                        <a href="/{% trans 'Druzyna URL' %}/{% lang m.home_team.name_en_url m.home_team.name_pl_url %}/">{% ifhomewon m.home_score m.away_score %}<strong>{% lang m.home_team.name_en m.home_team.name_pl %}</strong>{% else %}{% lang m.home_team.name_en m.home_team.name_pl %}{% endifhomewon %}
+                        </a>
+                    </td>
+                    <td class="wynik">
+                        {% ifnotequal m.home_score -1 %}{{ m.home_score }} - {{ m.away_score }}
+                            {% else %}v{% endifnotequal %}
+                    </td>
+                    <td class="druzyna2">
+                        <a href="/{% trans 'Druzyna URL' %}/{% lang m.away_team.name_en_url m.away_team.name_pl_url %}/">
+                            {% ifawaywon m.home_score m.away_score %}<strong>{{ m.away_team.name_en }}</strong>
+                                {% else %}{{ m.away_team.name_en }}{% endifawaywon %}</a>
+                    </td>
+                    <td class="opcje">
+                        <a href="/{% trans 'Mecz URL' %}/{{ m.home_team.name_pl_url }}/{{ m.away_team.name_pl_url }}/{{ m.id }}/"
+                           title="{% trans 'Szczegoly meczu' %}">
+                            <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11"
+                                 height="11"/>
+                        </a>
+                    </td>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="home_home_{{ team_id }}">
+            <table border="1" cellspacing="0" cellpadding="10" style="font-size: 12px; width: 300px;">
+                {% for m in home10_2 %}
+                <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ m.id }}">
+                    <td class="druzyna1">
+                        <a href="/{% trans 'Druzyna URL' %}/{% lang m.home_team.name_en_url m.home_team.name_pl_url %}/">{% ifhomewon m.home_score m.away_score %}<strong>{% lang m.home_team.name_en m.home_team.name_pl %}</strong>{% else %}{% lang m.home_team.name_en m.home_team.name_pl %}{% endifhomewon %}
+                        </a>
+                    </td>
+                    <td class="wynik">
+                        {% ifnotequal m.home_score -1 %}{{ m.home_score }} - {{ m.away_score }}
+                            {% else %}v{% endifnotequal %}
+                    </td>
+                    <td class="druzyna2">
+                        <a href="/{% trans 'Druzyna URL' %}/{% lang m.away_team.name_en_url m.away_team.name_pl_url %}/">
+                            {% ifawaywon m.home_score m.away_score %}<strong>{{ m.away_team.name_en }}</strong>
+                                {% else %}{{ m.away_team.name_en }}{% endifawaywon %}</a>
+                    </td>
+                    <td class="opcje">
+                        <a href="/{% trans 'Mecz URL' %}/{{ m.home_team.name_pl_url }}/{{ m.away_team.name_pl_url }}/{{ m.id }}/"
+                           title="{% trans 'Szczegoly meczu' %}">
+                            <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11"
+                                 height="11"/>
+                        </a>
+                    </td>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+
+        <div id="home_away_{{ team_id }}">
+            <table border="1" cellspacing="0" cellpadding="10" style="font-size: 12px; width: 300px;">
+                {% for m in home10_3 %}
+                <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ m.id }}">
+                    <td class="druzyna1">
+                        <a href="/{% trans 'Druzyna URL' %}/{% lang m.home_team.name_en_url m.home_team.name_pl_url %}/">{% ifhomewon m.home_score m.away_score %}<strong>{% lang m.home_team.name_en m.home_team.name_pl %}</strong>{% else %}{% lang m.home_team.name_en m.home_team.name_pl %}{% endifhomewon %}
+                        </a>
+                    </td>
+                    <td class="wynik">
+                        {% ifnotequal m.home_score -1 %}{{ m.home_score }} - {{ m.away_score }}
+                            {% else %}v{% endifnotequal %}
+                    </td>
+                    <td class="druzyna2">
+                        <a href="/{% trans 'Druzyna URL' %}/{% lang m.away_team.name_en_url m.away_team.name_pl_url %}/">
+                            {% ifawaywon m.home_score m.away_score %}<strong>{{ m.away_team.name_en }}</strong>
+                                {% else %}{{ m.away_team.name_en }}{% endifawaywon %}</a>
+                    </td>
+                    <td class="opcje">
+                        <a href="/{% trans 'Mecz URL' %}/{{ m.home_team.name_pl_url }}/{{ m.away_team.name_pl_url }}/{{ m.id }}/"
+                           title="{% trans 'Szczegoly meczu' %}">
+                            <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11"
+                                 height="11"/>
+                        </a>
+                    </td>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

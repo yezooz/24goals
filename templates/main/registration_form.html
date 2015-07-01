@@ -1,0 +1,93 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block path %}
+    {% trans 'Rejestracja' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">{% trans 'Rejestracja' %}</h1>
+            <br/>
+
+            <h2>{% trans 'Co zyskujesz bedac zarejestrowanym ?' %}</h2>
+            <ul style="padding-left: 15px; padding-top: 5px;">
+                <li>&raquo;&nbsp;{% trans 'mozliwosc <strong>dodawania newsow' %}.</strong></li>
+                <li>&raquo;&nbsp;{% trans 'mozliwosc <strong>komentowania</strong> newsow i meczow oraz umieszczania <strong>analiz</strong> przed spotkaniami' %}.</li>
+                <li>&raquo;&nbsp;{% trans 'mozliwosc umieszczania <strong>zdjec</strong> i <strong>filmow' %}.</strong></li>
+                <li>&raquo;&nbsp;{% trans 'mozliwosc <strong>typowania</strong> meczow i konkurowania z fanami pilki z calego swiata' %}.</li>
+                <li>&raquo;&nbsp;{% trans 'szanse na <strong>nagrody</strong>. Szczegoly juz wkrotce' %}.</li>
+            </ul>
+        </div>
+        <div class="modul">
+
+            <form method="post" action="">
+                <fieldset>
+                    <p>
+                        <label for="id_username">{% trans 'Uzytkownik' %}:</label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <em style="color: red;">{{ form.username.errors|join:", "}}</em>
+                        {% endif %}
+
+                    </p>
+
+                    <p>
+                        <label for="id_email">{% trans 'Adres E-Mail' %}:</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <em style="color: red;">{{ form.email.errors|join:", "}}</em>
+                        {% endif %}
+
+                    </p>
+
+                    <p>
+                        <label for="id_password1">{% trans 'Haslo' %}:</label>
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                            <em style="color: red;">{{ form.password1.errors|join:", "}}</em>
+                        {% endif %}
+
+                    </p>
+
+                    <p>
+                        <label for="id_password2">{% trans 'Haslo (ponownie)' %}:</label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <em style="color: red;">{{ form.password2.errors|join:", "}}</em>
+                        {% endif %}
+
+                    </p>
+
+                    <p>
+                        <label for="country_id">{% trans 'Panstwo' %}:</label>
+                        {{ form.country }}
+
+                        {% if form.country_id.errors %}
+                            <em style="color: red;">{{ form.country_id.errors|join:", "}}</em>
+                        {% endif %}
+                    </p>
+
+                    <p>
+                        <label for="favourite_team_id">{% trans 'Twoja ulubiona druzyna' %}:</label>
+                        {{ form.team }}
+
+                        {% if form.favourite_team_id.errors %}
+                            <em style="color: red;">{{ form.favourite_team_id.errors|join:", "}}</em>
+                        {% endif %}
+                    </p>
+                </fieldset>
+                <div class="alignRight">
+                    <input type="hidden" name="change_pass" value="1">
+                    <input class="button" type="submit" value="{% trans 'Zarejestruj nowego uzytkownika' %}"/>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

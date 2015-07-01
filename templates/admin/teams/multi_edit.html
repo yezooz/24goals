@@ -1,0 +1,90 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            <form action="" method="post">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th width="10">&nbsp;</th>
+                        <th width="100">name_espn</th>
+                        <th width="100">name_live</th>
+                        <th width="100">name_en</th>
+                        <th width="100">name_pl</th>
+                        <th width="100">curr_league</th>
+                        <th width="200">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for team in teams %}
+                        <tr style="background-color: beige;">
+                            <td>{{ forloop.counter }}</td>
+                            <td><input type="text" name="name_espn_{{ team.id }}" value="{{ team.name_espn }}"></td>
+                            <td><input type="text" name="name_live_{{ team.id }}" value="{{ team.name_live }}"></td>
+                            <td><input type="text" name="name_en_{{ team.id }}" value="{{ team.name_en }}"></td>
+                            <td><input type="text" name="name_pl_{{ team.id }}" value="{{ team.name_pl }}"></td>
+                            <td>
+                                <select name="curr_lid_{{ team.id }}">
+                                    <option value="0">---</option>
+                                    {% for l in leagues %}
+                                        <option value="{{ l.id }}"
+                                                {% ifequal l.id team.current_league_id %}selected="selected"{% endifequal %}>{{ l.name_pl }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <span style="padding: 5px 5px 5px 5px; border: 1px grey solid; background-color: #CCCCCC"><a
+                                        href="/admin/main/players/multi_edit/{{ team.id }}">Edit players</a></span>
+
+                                <!-- <span style="padding: 5px 5px 5px 5px; border: 1px grey solid; background-color: #CCCCCC"><a href="/admin/main/players/transfers/{{team.id}}">Transfers</a></span> -->
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="6">
+                            <span style="float: left;"><input type="submit" value="EDIT"></span>
+                            <span style="float: right; padding: 5px 5px 5px 5px; border: 1px grey solid; background-color: #CCCCCC"><a
+                                    href="/admin/main/teams/add">ADD NEW</a></span>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+

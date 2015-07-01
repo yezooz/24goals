@@ -1,0 +1,99 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a href="../../../">{% trans "Home" %}</a> &rsaquo; <a
+            href="../">Videos</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            <form action="" method="post">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Edycja filmu</th>
+                    </tr>
+                    </thead>
+                    <tbody style="background-color: beige;">
+                    <tr>
+                        <td>
+                            Tytuł:<br/>
+                            <input type="text" name="name" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ video.name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea name="content" cols="85" rows="10">{{ video.content }}</textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ video.content|safe }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Język:<br/>
+                            <select name="lang">
+                                <option value="en" {% ifequal video.lang 'en' %}selected="selected"{% endifequal %}>
+                                    Angielski
+                                </option>
+                                <option value="pl" {% ifequal video.lang 'pl' %}selected="selected"{% endifequal %}>
+                                    Polski
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Kategoria<br/>
+                            <select name="cat_id">
+                                <option value="">---</option>
+                                {% for vid_cat in vid_cats %}
+                                    <option value="{{ vid_cat.id }}"
+                                            {% ifequal vid_cat.id video.cat_id %}selected="selected"{% endifequal %}>{{ vid_cat.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Data:<br/>
+                            <input type="text" name="published_at" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ video.published_at }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Obejrzano:<br/>
+                            <input type="text" name="view_count" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ video.view_count }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="EDIT">
+            </form>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            <h3>{{ home_team.name_pl }} - {{ away_team.name_pl }}</h3><br/>
+
+            <form action="" method="post">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th width="50">&nbsp;</th>
+                        <th width="10">HOME</th>
+                        <th width="10">AWAY</th>
+                        <th width="600">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+                    <tr style="background-color: beige;">
+                        <td>Shots</td>
+                        <td><input type="text" name="shots_home" value="{{ stats.0.shots }}" size="3"></td>
+                        <td><input type="text" name="shots_away" value="{{ stats.1.shots }}" size="3"></td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Shots on Goal</td>
+                        <td><input type="text" name="shots_on_goal_home" value="{{ stats.0.shots_on_goal }}" size="3">
+                        </td>
+                        <td><input type="text" name="shots_on_goal_away" value="{{ stats.1.shots_on_goal }}" size="3">
+                        </td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Fouls</td>
+                        <td><input type="text" name="fouls_home" value="{{ stats.0.fouls }}" size="3"></td>
+                        <td><input type="text" name="fouls_away" value="{{ stats.1.fouls }}" size="3"></td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Corners</td>
+                        <td><input type="text" name="corners_home" value="{{ stats.0.corners }}" size="3"></td>
+                        <td><input type="text" name="corners_away" value="{{ stats.1.corners }}" size="3"></td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>OFFsides</td>
+                        <td><input type="text" name="offsides_home" value="{{ stats.0.offsides }}" size="3"></td>
+                        <td><input type="text" name="offsides_away" value="{{ stats.1.offsides }}" size="3"></td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Possession (%)</td>
+                        <td><input type="text" name="possession_home" value="{{ stats.0.possession }}" size="3"></td>
+                        <td><input type="text" name="possession_away" value="{{ stats.1.possession }}" size="3"></td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Yellow Cards</td>
+                        <td><input type="text" name="yellow_cards_home" value="{{ stats.0.yellow_cards }}" size="3">
+                        </td>
+                        <td><input type="text" name="yellow_cards_away" value="{{ stats.1.yellow_cards }}" size="3">
+                        </td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Red Cards</td>
+                        <td><input type="text" name="red_cards_home" value="{{ stats.0.red_cards }}" size="3"></td>
+                        <td><input type="text" name="red_cards_away" value="{{ stats.1.red_cards }}" size="3"></td>
+                    </tr>
+                    <tr style="background-color: beige;">
+                        <td>Saves</td>
+                        <td><input type="text" name="saves_home" value="{{ stats.0.saves }}" size="3"></td>
+                        <td><input type="text" name="saves_away" value="{{ stats.1.saves }}" size="3"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="5">
+                            <span style="float: left;"><input type="submit" value="EDIT"></span>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+

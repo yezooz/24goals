@@ -1,0 +1,57 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} -
+    {% blocktrans with match.home_team.name_en as home_team_name_en and match.away_team.name_en as away_team_name_en and match.match_date as match_date %}
+        Dodaj zdjecia z meczu pomiedzy {{ home_team_name_en }}, a {{ away_team_name_en }} ({{ match_date }})
+    {% endblocktrans %}
+{% endblock title %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Mecze URL' %}/">{% trans 'Mecze' %}</a> /
+    <a href="/{% trans 'Mecz' %}/{% lang match.home_team.name_en_url match.home_team.name_pl_url %}/{% lang match.home_team.name_en_url match.home_team.name_pl_url %}/{{ match.id }}/">{% lang match.home_team.name_en match.home_team.name_pl %}
+        - {% lang match.away_team.name_en match.away_team.name_pl %}</a> / {% trans 'Dodaj zdjecia' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+
+            <h1 class="tytul">
+                <span class="floatLeft">{% lang match.home_team.name_en match.home_team.name_pl %} - {% lang match.away_team.name_en match.away_team.name_pl %}</span>
+                <span class="data floatRight">{% trans 'data spotkania' %}: <strong
+                        class="black">{{ match.match_date }}</strong></span>
+                <br class="clear"/>
+            </h1>
+            <br style="clear:both;"/>
+
+            {% ifequal step "step_1" %}
+                <p style="font-size: 18px;">
+                    {% blocktrans %}Obecnie zdjecia mozna przesylac tylko jako linki z serwisow
+                        <a href="http://www.flickr.com/">Flickr</a>, <a href="http://www.fotka.pl/">Fotka</a>,
+                        itp.:{% endblocktrans %}
+                <form action="" method="post">
+                    <input type="hidden" name="how" value="url">
+                    <input class="button" type="submit" value="{% trans 'Dodaj linki &raquo;' %}"/>
+                </form>
+                </p>
+                <br style="clear:both;"/>
+                <br style="clear:both;"/>
+
+            {% endifequal %}
+
+            <h2>
+                <a href="/{% trans 'Mecz URL' %}/{{ match.id }}/">&laquo; {% trans 'powrot do strony meczu' %}</a>
+            </h2>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

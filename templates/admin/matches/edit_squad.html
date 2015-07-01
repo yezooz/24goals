@@ -1,0 +1,132 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            <h3>{{ match.home_team.name_pl }} - {{ match.away_team.name_pl }}</h3><br/>
+
+            <form action="" method="post">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            {% for m in match_squad %}
+                                {% ifchanged m.side %}
+                                    <hr/>{% endifchanged %}
+
+                                {% ifequal m.side "h" %}
+                                    <p style="float: left; clear: right; font-size: 10pt;">{{ m.player.last_name }}
+                                        {% ifequal m.started_as_sub 1 %}(ławka){% endifequal %},</p>
+                                {% endifequal %}
+                                {% ifequal m.side "a" %}
+                                    <p style="float: right; clear: left; font-size: 10pt;">{{ m.player.last_name }}
+                                        {% ifequal m.started_as_sub 1 %}(ławka){% endifequal %},</p>
+                                {% endifequal %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th width="50">&nbsp;</th>
+                                    <th width="10">&nbsp;</th>
+                                    <th width="50">&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for h in home_squad %}
+                                    <tr>
+                                        <td>
+                                            {{ h.last_name }}, {{ h.first_name }}
+                                        </td>
+                                        <td>
+                                            {{ h.position|upper }}
+                                        </td>
+                                        <td>
+                                            <select name="home_{{ h.id }}">
+                                                <option value="">---</option>
+                                                <option value="1">Zagra</option>
+                                                <option value="2">Ławka</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </td>
+                        <td>
+
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th width="50">&nbsp;</th>
+                                    <th width="10">&nbsp;</th>
+                                    <th width="50">&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for a in away_squad %}
+                                    <tr>
+                                        <td>
+                                            {{ a.last_name }}, {{ a.first_name }}
+                                        </td>
+                                        <td>
+                                            {{ a.position|upper }}
+                                        </td>
+                                        <td>
+                                            <select name="away_{{ a.id }}">
+                                                <option value="">---</option>
+                                                <option value="1">Zagra</option>
+                                                <option value="2">Ławka</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+            </form>
+
+            </td></tr>
+            <tr>
+                <td colspan="2"><span style="float: left;"><input type="submit" value="EDIT"></span></td>
+            </tr>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}
+

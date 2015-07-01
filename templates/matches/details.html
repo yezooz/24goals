@@ -1,0 +1,462 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/ui.tabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#komentarze_tabs > ul").tabs();
+            $("#staty_tabs > ul").tabs();
+            $("#tabele_tabs > ul").tabs();
+            $("#last_matches_{{match.home_team.id}} > ul").tabs();
+            $("#last_matches_{{match.away_team.id}} > ul").tabs();
+        });
+    </script>
+{% endblock %}
+
+{% block title %}
+    {% ifnotequal match.status "o" %}
+        {% trans '24gole.pl' %} - {% trans 'Mecz' %}: {% lang match.home_team.name_en match.home_team.name_pl %}
+        {{ match.home_score }}:{{ match.away_score }} {% lang match.away_team.name_en match.away_team.name_pl %} (
+        {{ match.match_date }} {{ match.match_time|time:"H:i"}})
+        {% else %}
+        {% trans '24gole.pl' %} - {% trans 'Mecz' %}: {% lang match.home_team.name_en match.home_team.name_pl %} -
+        {% lang match.away_team.name_en match.away_team.name_pl %} ({{ match.match_date }}
+        {{ match.match_time|time:"H:i"}})
+    {% endifnotequal %}
+{% endblock %}
+
+{% block description %}
+    {% blocktrans with match.home_team.name_en as home_team_name_en and match.away_team.name_en as away_team_name_en and match.match_date as match_date and match.home_score as home_score and match.away_score as away_score %}
+        Mecz pilki noznej pomiedzy {{ home_team_name_en }}, a {{ away_team_name_en }} z dnia {{ match_date }} zakonczyl
+        sie wynikiem {{ home_score }}:{{ away_score }}. Dodaj komentarze i analizy do tego spotkania. Obejrzyj zdjecia i
+        filmiki.{% endblocktrans %}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Mecze URL' %}/">{% trans 'Mecze' %}</a> /
+    {% lang match.home_team.name_en match.home_team.name_pl %} -
+    {% lang match.away_team.name_en match.away_team.name_pl %}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+    <div class="modul meczSzczegol">
+
+        {% flash %}
+            <div><strong>{{ msg }}</strong></div>
+        {% endflash %}
+
+        <h1 class="tytul">
+            <span class="floatLeft">{% lang match.home_team.name_en match.home_team.name_pl %} - {% lang match.away_team.name_en match.away_team.name_pl %}</span>
+            <span class="data floatRight">{% trans 'data spotkania' %}: <strong
+                    class="black">{{ match.match_date }}</strong></span>
+            <br class="clear"/>
+        </h1>
+
+        <table border="1" cellspacing="0" cellpadding="5">
+            <tr>
+                <th colspan="3">
+                    <table>
+                        <tr>
+                            <th class="druzyna1"><a
+                                    href="/{% trans 'Druzyna URL' %}/{% lang match.home_team.name_en_url match.home_team.name_pl_url %}/">{% lang match.home_team.name_pl match.home_team.name_en %}</a>
+                            </th>
+                            <th class="wynik">-</th>
+                            <th class="druzyna2"><a
+                                    href="/{% trans 'Druzyna URL' %}/{% lang match.away_team.name_en_url match.away_team.name_pl_url %}/">{% lang match.away_team.name_en match.away_team.name_pl %}</a>
+                            </th>
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+            <tr>
+                <th class="logo" rowspan="2" style="float: right;"><img class="foto"
+                                                                        src="/static/images/logos/team_{{ match.home_team.id }}.gif"
+                                                                        alt="Logo: {% lang match.home_team.name_en match.home_team.name_pl %}"/>
+                </th>
+                {% ifnotequal match.home_score -1 %}
+                    {% ifnotequal match.away_score -1 %}
+                        <th class="rezultat">
+                            {{ match.home_score }} - {{ match.away_score }}
+                        </th>
+                    {% endifnotequal %}
+                {% endifnotequal %}
+                <th class="logo" rowspan="2" style="text-align: left;"><img class="foto"
+                                                                            src="/static/images/logos/team_{{ match.away_team.id }}.gif"
+                                                                            alt="Logo: {% lang match.away_team.name_en match.away_team.name_pl %}"/>
+                </th>
+            </tr>
+        </table>
+
+        {% block bramki %}
+
+        <h2 class="srodtytul">{% trans 'Bramki' %}</h2>
+        <table border="1" cellspacing="0" cellpadding="5">
+            {% for d in match.details.all %}
+            {% ifequal d.action "g" %}
+            <tr>
+                {% ifequal d.side "left" %}
+                <td class="druzyna1">{{ d.player_name }}
+                    {% ifequal d.action_info "o" %}{% trans '(sam.)' %}{% endifequal %} ({{ d.minute }} min.)
+                </td>
+                {% ifequal d.action_info "p" %}
+                <td class="wynik"><img src="/static/images/ikona_gol_karny.gif" alt="{% trans 'Bramka' %}"
+                                       title="{% trans 'Bramka' %}"/></td>
+                {% else %}
+                <td class="wynik"><img src="/static/images/ikona_gol.gif" alt="{% trans 'Bramka' %}"
+                                       title="{% trans 'Bramka' %}"/></td>
+                {% endifequal %}
+                <td class="druzyna2">&nbsp;</td>
+                {% endifequal %}
+
+                {% ifequal d.side "right" %}
+                    <td class="druzyna1">&nbsp;</td>
+                    {% ifequal d.action_info "p" %}
+                        <td class="wynik"><img src="/static/images/ikona_gol_karny.gif" alt="{% trans 'Bramka' %}"
+                                               title="{% trans 'Bramka' %}"/></td>
+                        {% else %}
+                        <td class="wynik"><img src="/static/images/ikona_gol.gif" alt="{% trans 'Bramka' %}"
+                                               title="{% trans 'Bramka' %}"/></td>
+                        <td class="druzyna2">{{ d.player_name }}
+                            {% ifequal d.action_info "o" %}{% trans '(sam.)' %}{% endifequal %} ({{ d.minute }} min.)
+                        </td>
+                    {% endifequal %}
+                {% endifequal %}
+            </tr>
+            {% endifequal %}
+            {% endfor %}
+        </table>
+        {% endblock bramki %}
+
+        {% block kartki %}
+        <h2 class="srodtytul">{% trans 'Kartki' %}</h2>
+        <table border="1" cellspacing="0" cellpadding="5">
+            {% for d in match.details.all %}
+            {% ifnotequal d.action "g" %}
+            <tr>
+                {% ifequal d.side "left" %}
+                <td class="druzyna1">{{ d.minute }}' {{ d.player_name }}</td>
+                <td class="wynik">
+                    {% ifequal d.action "r" %}
+                        <img src="/static/images/ikona_kartka_czerwona.gif" alt="{% trans 'Czerwona kartka' %}"
+                             title="{% trans 'Czerwona kartka' %}"/>
+                    {% endifequal %}
+                    {% ifequal d.action "y" %}
+                        <img src="/static/images/ikona_kartka_zolta.gif" alt="{% trans 'Zolta kartka' %}"
+                             title="Źółta kartka"/>
+                    {% endifequal %}
+                </td>
+                {% else %}
+                <td class="druzyna1"></td>
+                {% endifequal %}
+                {% ifequal d.side "right" %}
+                    <td class="wynik">
+                        {% ifequal d.action "r" %}
+                            <img src="/static/images/ikona_kartka_czerwona.gif" alt="{% trans 'Czerwona kartka' %}"
+                                 title="{% trans 'Czerwona kartka' %}"/>
+                        {% endifequal %}
+                        {% ifequal d.action "y" %}
+                            <img src="/static/images/ikona_kartka_zolta.gif" alt="{% trans 'Zolta kartka' %}"
+                                 title="Źółta kartka"/>
+                        {% endifequal %}
+                    </td>
+                    <td class="druzyna2">{{ d.minute }}' {{ d.player_name }}</td>
+                    {% else %}
+                    <td class="druzyna2"></td>
+                {% endifequal %}
+            </tr>
+            {% endifnotequal %}
+            {% endfor %}
+        </table>
+        {% endblock kartki %}
+
+        {% block after_match %}
+
+            <div class="modul">
+            <div id="staty_tabs">
+                <ul>
+                    <li><a href="#statystyki" title="{% trans 'Statystyki' %}">{% trans 'Statystyki' %}</a></li>
+                    <li><a href="#sklady" title="{% trans 'Sklady' %}">{% trans 'Sklady' %}</a></li>
+                </ul>
+                <div class="boks">
+                    <div id="statystyki">
+                        <table border="3" cellspacing="0" cellpadding="5">
+                            {% load show_stats %}
+                            {% show_stats match.stats.all %}
+                            {% if home_shots %}
+                                <tr>
+                                    <td class="druzyna1">{{ home_shots }}</td>
+                                    <td class="wynik">{% trans 'Strzaly' %}</td>
+                                    <td class="druzyna2">{{ away_shots }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="druzyna1">{{ home_shots_on_goal }}</td>
+                                    <td class="wynik">{% trans 'Strzaly na bramke' %}</td>
+                                    <td class="druzyna2">{{ away_shots_on_goal }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="druzyna1">{{ home_fouls }}</td>
+                                    <td class="wynik">{% trans 'Faule' %}</td>
+                                    <td class="druzyna2">{{ away_fouls }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="druzyna1">{{ home_corners }}</td>
+                                    <td class="wynik">{% trans 'Rogi' %}</td>
+                                    <td class="druzyna2">{{ away_corners }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="druzyna1">{{ home_offsides }}</td>
+                                    <td class="wynik">{% trans 'Spalone' %}</td>
+                                    <td class="druzyna2">{{ away_offsides }}</td>
+                                </tr>
+                                <tr>
+                                    {% ifnotequal home_possession 0 %}
+                                        <td class="druzyna1">{{ home_possession }} %</td>
+                                        <td class="wynik">{% trans 'Posiadanie pilki' %}</td>
+                                        <td class="druzyna2">{{ away_possession }} %</td>
+                                    {% endifnotequal %}
+                                </tr>
+                                <tr>
+                                    <td class="druzyna1">{{ home_yellow_cards }}</td>
+                                    <td class="wynik"><img src="/static/images/ikona_kartka_zolta.gif"
+                                                           alt="{% trans 'Zolta kartka' %}"
+                                                           title="{% trans 'Zolta kartka' %}"/></td>
+                                    <td class="druzyna2">{{ away_yellow_cards }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="druzyna1">{{ home_red_cards }}</td>
+                                    <td class="wynik"><img src="/static/images/ikona_kartka_czerwona.gif"
+                                                           alt="{% trans 'Czerwona kartka' %}"
+                                                           title="{% trans 'Czerwona kartka' %}"/></td>
+                                    <td class="druzyna2">{{ away_red_cards }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td><br/>
+
+                                        <h2>{% trans 'brak statystyk' %}</h2></td>
+                                </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+
+                    <div id="sklady">
+                        <table border="1" cellspacing="0" cellpadding="5">
+                            {% comment %}
+
+                                {% load show_squad %}
+                                {% show_squad squads %}
+                                {% if squad_lines %}
+                                    <tr>
+                                        <td colspan="3"><strong>Skład główny</strong></td>
+                                    </tr>
+                                    {% for sl in squad_lines %}
+                                        <tr>
+                                            <td class="druzyna1">{{ sl.home.espn_name }}</td>
+                                            <td class="wynik">&nbsp;-&nbsp;</td>
+                                            <td class="druzyna2">{{ sl.away.espn_name }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    <tr>
+                                        <td colspan="3"><strong>Ławka rezerwowych</strong></td>
+                                    </tr>
+                                    {% for sl in subs_line %}
+                                        <tr>
+                                            <td class="druzyna1">{{ sl.home.espn_name }}</td>
+                                            <td class="wynik">&nbsp;-&nbsp;</td>
+                                            <td class="druzyna2">{{ sl.away.espn_name }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                {% else %}
+                                    <tr>
+                                        <td><br/>
+
+                                            <h2>brak składów</h2></td>
+                                    </tr>
+                                {% endif %}
+
+                            {% endcomment %}
+                            <tr>
+                                <td><br/>
+
+                                    <h2>{% trans 'brak skladow' %}</h2></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        {% endblock after_match %}
+
+        {% block before_match %}{% endblock %}
+        </div>
+
+        {% comment %}
+            {% block narzedzia %}
+                <div class="narzedzia">
+                    <a class="dodajKomentarz" href="#zakladka-komentarze" title="Dodaj komentarz">Dodaj komentarz</a>
+                    <a class="druk" href="javascript:print();" title="Drukuj">Drukuj</a>
+                </div>
+            {% endblock narzedzia %}
+        {% endcomment %}
+
+        {% block komentarze %}
+
+        <div class="modul">
+            <div id="komentarze_tabs">
+                <ul>
+                    <li><a href="#komentarze" title="{% trans 'Komentarze' %}">{% trans 'Komentarze' %}
+                        ({{ match.get_comments_count }})</a></li>
+                    <li><a href="#analizy" title="{% trans 'Analizy' %}">{% trans 'Analizy' %}
+                        ({{ match.get_analysis_count }})</a></li>
+                    <li><a href="#zdjecia" title="{% trans 'Zdjecia' %}">{% trans 'Zdjecia' %}
+                        ({{ match.get_images_count }})</a></li>
+                    <li><a href="#filmy" title="Filmy">{% trans 'Filmy' %} ({{ match.get_videos_count }})</a></li>
+                </ul>
+                <div class="boks">
+                    <div id="komentarze">
+                        {% for c in match.get_all_comments %}
+                        <p class="small" {% ifnotequal c.root_id c.id %} style="padding-left: 50px;" {% else %}
+                           style="padding-left: 10px;" {% endifnotequal %}>
+                            {% if c.user %}
+                                <span class="autor">
+						<a href="/{% trans 'Uzytkownik URL' %}/{{ c.user|lower }}/">{{ c.user }}</a>
+					</span>
+                                <span class="{% trans 'punkty' %}">({{ c.user.get_profile.points }} {% trans 'pkt' %})</span>
+                            {% else %}
+                                <span class="autor">
+						{{ c.username }}
+					</span>
+                            {% endif %}
+                            <span class="data" name="date">{{ c.published_at }}</span>
+                            <span>{% if request.user.is_staff %}&nbsp;&nbsp;&nbsp;
+                                <a href="/admin/main/comments/{{ c.id }}/accept/"
+                                   style="color: red;">MODERUJ!</a>{% endif %}</span>
+                            <br/>
+			<span>{{ c.content|safe }}
+                {% ifequal c.root_id c.id %}
+                    &nbsp;&nbsp;&nbsp;<a onClick="response_to({{ match.id }}, {{ c.id }}, '{{ c.username }}')"
+                                         style="font-size: 9px; cursor: pointer;">{% trans 'odpowiedz!' %}</a>
+                {% endifequal %}
+			</span></p>
+                        {% endfor %}
+
+                        <form action="/{% trans 'Mecze URL' %}/send/" method="post">
+                            <p>
+                                <label for="response_to_{{ match.id }}"
+                                       id="response_to_label_{{ match.id }}">{% trans 'Napisz komentarz' %}:</label>
+                                <input type="hidden" name="response_to_{{ match.id }}" value=""
+                                       id="response_to_{{ match.id }}">
+                                <textarea id="komentarz_{{ match.id }}" name="comment_content_{{ match.id }}" rows="3"
+                                          cols="10"></textarea>
+                            </p>
+                            {% if not user.is_authenticated %}
+                                <div class="alignLeft">
+                                    <em>{% trans 'Podpis' %}:</em> <input type="text" name="username_{{ match.id }}">
+                                </div>
+                            {% endif %}
+                            <div class="alignRight">
+                                <input class="button" name="add_comment_{{ match.id }}" type="submit"
+                                       value="{% trans 'Wyslij' %}"/>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="analizy">
+                        {% if request.user.is_authenticated %}
+                            {% for a in match.get_all_analysis %}
+                                <p class="small" style="padding-left: 10px;">
+                                    <span class="autor"><a
+                                            href="/{% trans 'Uzytkownik URL' %}/{{ a.user|lower }}/">{{ a.user }}</a></span>
+                                    <span class="{% trans 'punkty' %}">({{ a.user.get_profile.points }} {% trans 'pkt' %})</span>
+                                    <span class="data" name="date">{{ a.published_at }}</span>
+                                    <span>{% if request.user.is_staff %}&nbsp;&nbsp;&nbsp;
+                                        <a href="/admin/main/comments/{{ a.id }}/accept/"
+                                           style="color: red;">MODERUJ!</a>{% endif %}</span>
+                                    <br/>
+                                    <span>{{ a.content|safe }}</span></p>
+                            {% endfor %}
+                            <p class="komunikat informacja">
+                                {% trans 'Analizy mozna dodawac tylko do meczow, ktore sie jeszcze nie rozpoczely' %}.
+                            </p>
+                        {% else %}
+                            <p class="komunikat informacja">
+                                {% trans 'Aby dodac analize tego meczu lub zobaczyc te napisane przez innych musisz sie zalogowac. Jesli nie masz jeszcze konta' %}
+                                <a href="/{% trans 'Rejestracja URL' %}/"
+                                   title="{% trans 'Formularz rejestracji' %}">{% trans 'zarejestruj sie' %}</a>.
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div id="zdjecia">
+                        {% for i in match.get_images %}
+                            <p class="small" style="padding-left: 10px; float: left;">
+                                <span><a href="{{ i.link }}" target="_blank"><img src="{{ i.link }}"
+                                                                                  max-width="620"/></a></span><br/>
+                                <span class="autor"><a
+                                        href="/{% trans 'Uzytkownik URL' %}/{{ i.user|lower }}/">{{ i.user }}</a></span>
+                                <span class="{% trans 'punkty' %}">({{ i.user.get_profile.points }} {% trans 'pkt' %})</span>
+                                <span class="data" name="date">{{ i.created_at|date:"Y-m-d h:i"}}</span>
+                            </p>
+                        {% endfor %}
+                        <br class="clear"/>
+
+                        {% if request.user.is_authenticated %}
+                            <p class="komunikat informacja">
+                                {% trans 'Jezeli posiadasz zdjecia zwiazane z tym spotkaniem i chcialbys je umiescic w serwisie' %}
+                                <a href="/{% trans 'mecz URL' %}/{{ match.id }}/add_photos">{% trans 'kliknij tutaj' %}</a>
+                            </p>
+                        {% else %}
+                            <p class="komunikat informacja">
+                                {% trans 'Aby dodac zdjecia musisz sie zalogowac. Jesli nie masz jeszcze konta' %} <a
+                                    href="/{% trans 'Rejestracja URL' %}/"
+                                    title="{% trans 'Formularz rejestracji' %}">{% trans 'zarejestruj sie' %}</a>.
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <div id="filmy">
+                        <div>
+                            {% for v in match.get_videos %}
+                                <p class="small" style="padding-left: 10px;">
+                                <span>{{ v.content|safe }}</span><br/>
+                                <span style="font-size: 24px;">{{ v.name }}</span><br/>
+                                <span class="autor"><a
+                                        href="/{% trans 'Uzytkownik URL' %}/{{ v.user|lower }}/">{{ v.user }}</a></span>
+                                <span class="{% trans 'punkty' %}">({{ v.user.get_profile.points }} {% trans 'pkt' %})</span>
+                                <span class="data" name="date">{{ v.created_at|date:"Y-m-d h:i"}}</span>
+                                <br/>
+                            {% endfor %}
+                            <br class="clear"/>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                            <p class="komunikat informacja">
+                                {% trans 'Jezeli chcialbys umiescic filmy zwiazane z tym spotkaniem w serwisie' %} <a
+                                    href="/{% trans 'mecz URL' %}/{{ match.id }}/add_videos/">{% trans 'kliknij tutaj' %}</a>.
+                            </p>
+                        {% else %}
+                            <p class="komunikat informacja">
+                                {% trans 'Aby dodac filmy musisz sie zalogowac. Jesli nie masz jeszcze konta' %} <a
+                                    href="/{% trans 'Rejestracja URL' %}/"
+                                    title="{% trans 'Formularz rejestracji' %}">{% trans 'zarejestruj sie' %}</a>.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock komentarze %}
+
+</div>
+<div id="kontent-kolumna1">
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

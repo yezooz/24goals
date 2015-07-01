@@ -1,0 +1,39 @@
+{% load i18n %}
+<table border="1" cellspacing="0" cellpadding="10" style="width: 100%; line-height: 10pt;">
+    <tbody>
+    {% if users %}
+        {% for u in users %}
+            <tr class="{% cycle wiersz1,wiersz2 %}" style="font-size: 92%;">
+                <td class="username">{{ forloop.counter }}. <a
+                        href="/{% trans 'Uzytkownik URL' %}/{{ u.1|lower }}/">{{ u.1 }}</a>&nbsp;&nbsp;
+                    <a href="/{% trans 'Uzytkownik URL' %}/{{ u.1|lower }}/aktywnosc/"><span
+                            class="activity_points">{{ u.4 }}</span></a>
+                    <br/><span style="font-size: 10px;">{{ u.0 }} {% trans 'pkt' %}.
+                        {% ifnotequal u.2 None %}
+                            | {{ u.2 }}
+                        {% endifnotequal %}</span>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr style="line-height: 0.8; font-size: 100%;">
+            <td>
+                <p>
+				<span style="background: url(/static/img/admin/icon_addlink.gif) no-repeat 0px 50%; padding-left: 15px; float: left;">
+					 <a href="/{% trans 'Rejestracja URL' %}/">{% trans 'zarejestruj sie' %} &raquo;</a>
+				</span>
+				<span style="float: right">
+					<a href="/{% trans 'liga-kibicow' %}/">{% trans 'wiecej' %} &raquo;</a>
+				</span>
+                </p>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td>
+                <p style="background: url(/static/img/admin/icon_addlink.gif) no-repeat 0px 50%; padding-left: 15px;">
+                    <a href="/{% trans 'Rejestracja URL' %}/">{% trans 'zostan kibicem' %} &raquo;</a>
+                </p>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>

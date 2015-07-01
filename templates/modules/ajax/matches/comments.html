@@ -1,0 +1,27 @@
+{% load i18n %}
+{% if comments %}
+{% for c in comments %}
+<p class="small" {% ifnotequal c.root_id c.id %} style="padding-left: 50px;" {% else %}
+   style="padding-left: 10px;" {% endifnotequal %}>
+    {% if c.user %}
+        <span class="autor">
+					<a href="/{% trans 'Uzytkownik URL' %}/{{ c.user|lower }}/">{{ c.user }}</a>
+				</span>
+        <span class="{% trans 'punkty' %}">({{ c.user.get_profile.points }} {% trans 'pkt' %})</span>
+    {% else %}
+        <span class="autor">
+					{{ c.username }}
+				</span>
+    {% endif %}
+    <span class="data" name="date">{{ c.created_at }}</span>
+    <span>{% if request.user.is_staff %}&nbsp;&nbsp;&nbsp;
+        <a href="/admin/main/comments/{{ c.id }}/accept/" style="color: red;">MODERUJ!</a>{% endif %}</span>
+    <br/>
+	<span>{{ c.content|safe }}
+        {% ifequal c.root_id c.id %}
+            &nbsp;&nbsp;&nbsp;<a onClick="response_to({{ match_id }}, {{ c.id }}, '{{ c.username }}')"
+                                 style="font-size: 9px; cursor: pointer;">{% trans 'odpowiedz!' %}</a>
+        {% endifequal %}
+	</span></p>
+{% endfor %}
+{% endif %}

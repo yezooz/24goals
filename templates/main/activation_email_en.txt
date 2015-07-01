@@ -1,0 +1,9 @@
+
+Thank you for registering at the {{ site_url }}. Before we can activate your account one last step must be taken to complete your registration.
+
+Please note - you must complete this last step to become a registered member. You will only need to visit this url once to activate your account.
+
+To complete your registration, please visit this url: 
+{{ site_url }}register/activate/{{ activation_key }}/
+
+If you haven't registered and someone used your email adres don't bother. You'll not receive any additional messages and account become suspended after {{ expiration_days }} days.

@@ -1,0 +1,75 @@
+{% extends layout_lang %}{% load i18n lang common modules flash pick timezones %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/ui.tabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tabele_tabs > ul").tabs();
+        });
+    </script>
+{% endblock %}
+
+{% block title %}
+    {% trans '24gole' %} - {% trans 'Liga' %} {% lang league.name_en league.name_pl %} (
+    {% lang league.country.name_en league.country.name_pl %}) - {% trans 'Wyniki, terminarze, wiadomosci' %}
+{% endblock %}
+
+{% block description %}
+    {% trans 'Najnowsze wiadomosci o lidze' %} {% lang league.name_en league.name_pl %} (
+    {% lang league.country.name_en league.country.name_pl %})
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    {% trans 'Druzyny' %} / {% lang league.country.name_en league.country.name_pl %} /
+    {% lang league.name_en league.name_pl %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul"
+                style="background:url(/static/images/flags/gif/{{ league.country_code|lower }}.gif) no-repeat 6px 50%; padding-left: 30px;">{% trans 'Tabela ligowa' %}
+                - {% lang league.name_en league.name_pl %}</h1>
+            {{ league_table }}
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="modul">
+            <h1 class="tytul">{% trans 'Najlepsi kibice' %}</h1>
+            {{ top_users }}
+        </div>
+        {{ league_tables }}
+
+        <div class="adBlok"></div>
+    </div>
+
+    <div id="kontent-uzytkownik">
+        <div class="kolumna1">
+            <div class="modul">
+                <h1 class="tytul">{% trans 'Mecze' %}</h1>
+                {{ results }}
+            </div>
+            <div class="modul">
+                <h1 class="tytul">{% trans 'Wyniki Na Zywo / Terminarz' %}</h1>
+                {{ live_fixtures }}
+            </div>
+        </div>
+        <div class="kolumna2">
+            <div class="modul">
+                <h1 class="tytul">{% trans 'Najnowsze wiadomosci' %} - {% lang league.name_en league.name_pl %}</h1>
+                {{ league_news }}
+            </div>
+            {# <div class="modul"> #}
+            {# 			<h1 class="tytul">{% trans 'Najpopularniejsze w ostatnim tygodniu' %} - {% lang league.name_en league.name_pl %}</h1> #}
+            {# 			{{league_news_most_popular}} #}
+            {# 		</div> #}
+        </div>
+    </div>
+
+    </div>
+{% endblock content %}

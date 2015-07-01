@@ -1,0 +1,3301 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-12 23:12+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings_en.py:127 settings_production_en.py:126
+msgid "English"
+msgstr "English"
+
+#: settings_pl.py:127 settings_production_pl.py:126
+msgid "Polish"
+msgstr "Polish"
+
+#: libs/djangologging/templates/logging.html:6
+msgid "Request Log"
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:14
+msgid "Level"
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:15
+msgid "Timestamp"
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:16
+msgid "Message"
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:85
+#: libs/djangologging/templates/logging.html:96
+msgid "Show"
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:87
+#: libs/djangologging/templates/logging.html:93
+msgid "Hide"
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:125
+msgid "No log messages matching filter."
+msgstr ""
+
+#: libs/djangologging/templates/logging.html:133
+#: templates/admin/comments/index.html:20 templates/admin/core/filters.html:4
+#: templates/admin/countries/multi_edit.html:20
+#: templates/admin/images/index.html:20
+#: templates/admin/languages/multi_edit.html:20
+#: templates/admin/leagues/multi_edit.html:20
+#: templates/admin/matches/edit_squad.html:20
+#: templates/admin/matches/edit_stats.html:20
+#: templates/admin/matches/index.html:20
+#: templates/admin/matches/index_filters.html:4
+#: templates/admin/matches/multi_add.html:20
+#: templates/admin/matches/multi_edit.html:20
+#: templates/admin/news/index.html:21
+#: templates/admin/players/multi_add.html:20
+#: templates/admin/players/multi_edit.html:20
+#: templates/admin/players/transfers.html:20
+#: templates/admin/seasons/multi_edit.html:20
+#: templates/admin/stats/index.html:20 templates/admin/teams/multi_add.html:20
+#: templates/admin/teams/multi_edit.html:20
+#: templates/admin/videos/index.html:20
+msgid "Filter"
+msgstr "Filter"
+
+#: libs/djangologging/templates/logging.html:144
+msgid "No filter (show all)"
+msgstr ""
+
+#: main/helpers/league_tables.py:32 templates/index.html:55
+#: templates/index.html.py:56 templates/index.html:256
+#: templates/index_.html:55 templates/index_.html.py:56
+#: templates/index_.html:262 templates/accounts/details.html:40
+#: templates/accounts/details.html.py:46 templates/accounts/details.html:52
+#: templates/accounts/details_activity.html:20
+#: templates/accounts/details_classification_module.html:47
+#: templates/accounts/details_compare.html:100
+#: templates/accounts/details_picks.html:64
+#: templates/accounts/details_picks.html:70
+#: templates/accounts/details_picks.html:76
+#: templates/accounts/details_stats.html:44
+#: templates/accounts/my_profile.html:11 templates/accounts/show_users.html:47
+#: templates/fans/show_supporters.html:49 templates/matches/details.html:283
+#: templates/matches/details.html.py:322 templates/matches/details.html:343
+#: templates/matches/details.html.py:367
+#: templates/matches/details_before.html:60
+#: templates/matches/details_before.html:99
+#: templates/matches/details_before.html:128
+#: templates/matches/details_before.html:152 templates/matches/index.html:289
+#: templates/matches/index_with_table.html:285 templates/messages/list.html:6
+#: templates/messages/list.html.py:63 templates/modules/menu.html:148
+#: templates/modules/menu.html.py:149 templates/modules/menu.html:150
+#: templates/modules/menu.html.py:151 templates/modules/menu.html:161
+#: templates/modules/menu.html.py:164 templates/modules/menu.html:165
+#: templates/modules/menu.html.py:166 templates/modules/menu.html:167
+#: templates/modules/menu.html.py:176 templates/modules/videos.html:15
+#: templates/modules/videos.html.py:16 templates/modules/who_online.html:6
+#: templates/modules/ajax/matches/comments.html:7
+#: templates/modules/news/most_popular_news.html:7
+#: templates/modules/news/promoted_news.html:7
+#: templates/modules/news/promoted_news.html:8
+#: templates/modules/news/related_news.html:7
+#: templates/modules/users/finest_supporters.html:6
+#: templates/modules/users/finest_supporters.html:7
+#: templates/modules/users/finest_supporters_league.html:7
+#: templates/modules/users/finest_supporters_league.html:8
+#: templates/modules/users/finest_supporters_team.html:7
+#: templates/modules/users/finest_supporters_team.html:9
+#: templates/modules/users/mini_box.html:12
+#: templates/modules/users/mini_box.html:13
+#: templates/modules/users/mini_box.html:14
+#: templates/modules/users/top_users.html:6
+#: templates/modules/users/top_users.html:7 templates/news/add_2.html:18
+#: templates/news/add_3.html:21 templates/news/details.html:39
+#: templates/news/details.html.py:40 templates/news/details.html:95
+#: templates/news/details.html.py:134 templates/news/details.html:154
+#: templates/news/index.html:85 templates/news/index.html.py:86
+#: templates/partials/layout_en.html:48 templates/partials/layout_pl.html:45
+#: templates/partials/user_box.html:11 templates/picks/index.html:133
+#: templates/teams/news.html:27 templates/videos/add_2.html:19
+#: templates/videos/details.html:22 templates/videos/details.html.py:23
+#: templates/videos/index.html:38 templates/videos/index.html.py:39
+msgid "Uzytkownik URL"
+msgstr "user"
+
+#: main/helpers/league_tables.py:32 main/templatetags/pick.py:29
+#: main/templatetags/pick.py:31 templates/index.html:57
+#: templates/index.html.py:257 templates/index_.html:57
+#: templates/index_.html.py:263 templates/accounts/details.html:108
+#: templates/accounts/details.html:111 templates/accounts/details.html:113
+#: templates/accounts/details_activity.html:74
+#: templates/accounts/details_activity.html:77
+#: templates/accounts/details_activity.html:79
+#: templates/accounts/details_activity.html:93
+#: templates/accounts/details_activity.html:96
+#: templates/accounts/details_activity.html:98
+#: templates/accounts/details_activity.html:113
+#: templates/accounts/details_activity.html:116
+#: templates/accounts/details_activity.html:118
+#: templates/accounts/details_activity.html:133
+#: templates/accounts/details_activity.html:136
+#: templates/accounts/details_activity.html:138
+#: templates/accounts/details_classification_module.html:10
+#: templates/accounts/details_picks.html:132
+#: templates/accounts/details_picks.html:135
+#: templates/accounts/details_picks.html:137
+#: templates/accounts/show_users.html:48 templates/matches/details.html:285
+#: templates/matches/details.html.py:323 templates/matches/details.html:344
+#: templates/matches/details.html.py:368
+#: templates/matches/details_before.html:62
+#: templates/matches/details_before.html:100
+#: templates/matches/details_before.html:129
+#: templates/matches/details_before.html:153 templates/matches/index.html:290
+#: templates/matches/index_with_table.html:286
+#: templates/modules/ajax/matches/comments.html:9
+#: templates/modules/news/promoted_news.html:9
+#: templates/modules/supp_league/supp_league.html:6
+#: templates/modules/users/finest_supporters.html:9
+#: templates/modules/users/finest_supporters_league.html:9
+#: templates/modules/users/finest_supporters_team.html:8
+#: templates/modules/users/top_users.html:9 templates/news/add_2.html:19
+#: templates/news/add_3.html:22 templates/news/details.html:42
+#: templates/news/details.html.py:97 templates/news/details.html:135
+#: templates/news/details.html.py:155 templates/news/index.html:87
+#: templates/partials/block-2.html:5 templates/picks/index.html:94
+#: templates/teams/news.html:28 templates/videos/add_2.html:20
+msgid "pkt"
+msgstr "pts"
+
+#: main/helpers/league_tables.py:48 main/helpers/league_tables.py:56
+#: templates/fans/show_supporters.html:12 templates/fans/show_tables.html:33
+#: templates/fans/show_tables.html.py:34 templates/fans/show_tables.html:35
+#: templates/modules/supp_league/supp_league.html:12
+#: templates/modules/users/finest_supporters_league.html:23
+#: templates/modules/users/finest_supporters_team.html:20
+msgid "liga-kibicow"
+msgstr "supporters-league"
+
+#: main/helpers/league_tables.py:48 templates/fans/show_supporters.html:12
+#: templates/fans/show_tables.html:12 templates/fans/show_tables.html.py:21
+#: templates/partials/right-column.html:7
+msgid "Liga Kibicow"
+msgstr "Supporters League"
+
+#: main/helpers/league_tables.py:56 templates/accounts/details.html:42
+#: templates/accounts/details.html.py:44
+#: templates/accounts/details_compare.html:102
+#: templates/accounts/details_compare.html:104
+#: templates/accounts/details_picks.html:66
+#: templates/accounts/details_picks.html:68
+#: templates/accounts/details_stats.html:46
+#: templates/accounts/details_stats.html:48 templates/matches/index.html:106
+#: templates/matches/index_with_table.html:106
+msgid "wszystkie"
+msgstr "all"
+
+#: main/helpers/league_tables.py:62 main/views/picks.py:44
+#: main/views/picks.py:46 main/views/picks.py:54 main/views/picks.py:56
+#: templates/modules/users/finest_supporters.html:18
+#: templates/modules/users/top_users.html:18 templates/picks/index.html:22
+#: templates/teams/tables.html:15
+msgid "Typer URL"
+msgstr "predictions"
+
+#: main/views/about.py:20 main/views/about.py:40
+msgid "/kontakt"
+msgstr "/contact"
+
+#: main/views/about.py:38
+msgid "Dziekujemy wiadomosc zostala przeslana"
+msgstr "Thank you. Your message has been sent."
+
+#: main/views/accounts.py:57 main/views/news.py:251
+msgid "JPEG, PNG, GIF only."
+msgstr "JPEG, PNG and GIF files only"
+
+#: main/views/accounts.py:62 main/views/news.py:245
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: main/views/accounts.py:66
+msgid "Upload a valid image. This one is too big in size."
+msgstr "Upload smaller than 800x600. Thois one is too big in size."
+
+#: main/views/accounts.py:117
+msgid "Zaktualizowano profil"
+msgstr "Profile updated"
+
+#: main/views/accounts.py:133
+msgid "Sa"
+msgstr "Sa"
+
+#: main/views/accounts.py:133
+msgid "Su"
+msgstr "Su"
+
+#: main/views/accounts.py:133
+msgid "Mo"
+msgstr "Mo"
+
+#: main/views/accounts.py:133
+msgid "Tu"
+msgstr "Tu"
+
+#: main/views/accounts.py:133
+msgid "We"
+msgstr "We"
+
+#: main/views/accounts.py:133
+msgid "Th"
+msgstr "Th"
+
+#: main/views/accounts.py:133
+msgid "Fr"
+msgstr "Fr"
+
+#: main/views/accounts.py:134
+msgid "January"
+msgstr "January"
+
+#: main/views/accounts.py:134
+msgid "February"
+msgstr "February"
+
+#: main/views/accounts.py:134
+msgid "March"
+msgstr "March"
+
+#: main/views/accounts.py:134
+msgid "April"
+msgstr "April"
+
+#: main/views/accounts.py:134
+msgid "May"
+msgstr "May"
+
+#: main/views/accounts.py:134
+msgid "June"
+msgstr "June"
+
+#: main/views/accounts.py:134
+msgid "July"
+msgstr "July"
+
+#: main/views/accounts.py:134
+msgid "August"
+msgstr "August"
+
+#: main/views/accounts.py:134
+msgid "September"
+msgstr "September"
+
+#: main/views/accounts.py:134
+msgid "October"
+msgstr "October"
+
+#: main/views/accounts.py:134
+msgid "November"
+msgstr "November"
+
+#: main/views/accounts.py:134
+msgid "December"
+msgstr "December"
+
+#: main/views/accounts.py:619
+msgid "Repeat your password"
+msgstr "Repeat your password"
+
+#: main/views/accounts.py:626
+msgid "Passwords are not the same"
+msgstr "Passwords are not the same"
+
+#: main/views/accounts.py:632
+msgid "Someone is already using this username. Please pick an other."
+msgstr "Someone is already using this username. Please pick an other."
+
+#: main/views/main.py:90
+msgid "Wylogowano."
+msgstr "Signed out successfully."
+
+#: main/views/main.py:101
+msgid "Logowanie powiodlo sie."
+msgstr "Signed in successfully."
+
+#: main/views/main.py:104
+msgid "Konto nieaktywne."
+msgstr "Account disabled. Activate it first."
+
+#: main/views/main.py:107
+msgid "Dane nieprawidlowe."
+msgstr "Login/Password combination is not correct."
+
+#: main/views/main.py:151
+msgid ""
+"Usernames can only contain letters, numbers and underscores and cannot begin "
+"with number."
+msgstr ""
+"Usernames can only contain letters, numbers and underscores and cannot begin "
+"with number."
+
+#: main/views/main.py:153
+msgid "Username can't be shorter than 4 characters."
+msgstr "Username can't be shorter than 4 characters."
+
+#: main/views/main.py:158
+msgid "This username is already taken. Please choose another."
+msgstr "This username is already taken. Please choose another."
+
+#: main/views/main.py:170 main/views/main.py:171
+msgid "Some else registered with this email address. Please choose another."
+msgstr "Some else registered with this email address. Please choose another."
+
+#: main/views/main.py:176
+msgid "You must type the same password each time"
+msgstr "You must type the same password each time"
+
+#: main/views/matches.py:310 main/views/news.py:451
+msgid "Brak autora komentarza"
+msgstr "No comment's author"
+
+#: main/views/matches.py:319 main/views/news.py:434
+msgid "Komentarz za krotki"
+msgstr "Comment is too short"
+
+#: main/views/matches.py:323 main/views/news.py:438
+msgid "Komentarz zawiera niedozwolone wyrazy"
+msgstr "Comment contains forbidden words"
+
+#: main/views/matches.py:353 main/views/news.py:479 main/views/news.py:485
+msgid "Dodano komentarz"
+msgstr "Comment added"
+
+#: main/views/matches.py:376
+msgid "Za krotka analiza meczu"
+msgstr "Analysis is too short"
+
+#: main/views/matches.py:380
+msgid "Analiza zawiera niedozwolone wyrazy"
+msgstr "Analysis contains forbidden words"
+
+#: main/views/matches.py:393
+msgid "Dodano analize meczu"
+msgstr "Analysis has been sent for moderation and will be available ASAP"
+
+#: main/views/matches.py:419 templates/index.html:284
+#: templates/index_.html:290 templates/matches/add_images.html:12
+#: templates/matches/added_images.html:25
+#: templates/matches/added_video.html:25 templates/matches/details.html:29
+#: templates/matches/details.html.py:301
+#: templates/matches/details_before.html:78
+#: templates/matches/details_before.html:107 templates/matches/index.html:73
+#: templates/matches/index.html.py:75 templates/matches/index.html:77
+#: templates/matches/index.html.py:79 templates/matches/index.html:83
+#: templates/matches/index.html.py:111 templates/matches/index.html:141
+#: templates/matches/index_with_table.html:78
+#: templates/matches/index_with_table.html:80
+#: templates/matches/index_with_table.html:82
+#: templates/matches/index_with_table.html:84
+#: templates/matches/index_with_table.html:88
+#: templates/matches/index_with_table.html:110
+#: templates/matches/index_with_table.html:136 templates/modules/menu.html:62
+#: templates/modules/menu.html.py:67 templates/modules/menu.html:68
+#: templates/modules/menu.html.py:69 templates/modules/menu.html:70
+#: templates/modules/menu.html.py:71 templates/modules/menu.html:72
+#: templates/modules/menu.html.py:73 templates/modules/menu.html:77
+#: templates/modules/menu.html.py:78 templates/modules/menu.html:79
+#: templates/modules/menu.html.py:80 templates/modules/menu.html:81
+#: templates/modules/menu.html.py:82 templates/modules/menu.html:83
+#: templates/modules/menu.html.py:89 templates/modules/menu.html:90
+#: templates/modules/menu.html.py:91 templates/modules/menu.html:92
+#: templates/modules/menu.html.py:93 templates/modules/menu.html:94
+#: templates/modules/menu.html.py:95 templates/modules/menu.html:99
+#: templates/modules/menu.html.py:100 templates/modules/menu.html:101
+#: templates/modules/menu.html.py:102 templates/modules/menu.html:103
+#: templates/modules/menu.html.py:104 templates/modules/menu.html:105
+#: templates/modules/menu.html.py:115 templates/teams/tables.html:10
+msgid "Mecze URL"
+msgstr "matches"
+
+#: main/views/messages.py:54
+msgid "Oznaczono wiadomosc jako spam"
+msgstr "Marked as spam"
+
+#: main/views/messages.py:59
+msgid "Oznaczono wiadomosc jako nie spam"
+msgstr "Marked as not spam"
+
+#: main/views/messages.py:65
+msgid "Usunieto wiadomosc"
+msgstr "Message deleted"
+
+#: main/views/messages.py:70
+msgid "Przywrocono wiadomosc"
+msgstr "Message reverted"
+
+#: main/views/news.py:27 main/views/videos.py:20
+msgid "szukaj"
+msgstr "search"
+
+#: main/views/news.py:122 main/views/news.py:135
+#: templates/videos/add_1.html:29
+msgid "Wybierz z listy"
+msgstr "List of leagues"
+
+#: main/views/news.py:255
+msgid "Image too big"
+msgstr "Image too big"
+
+#: main/views/news.py:259
+#, python-format
+msgid "Max width is %s"
+msgstr "Max width is %s"
+
+#: main/views/news.py:261
+#, python-format
+msgid "Max height is %s"
+msgstr "Max height is %s"
+
+#: main/views/picks.py:44 main/views/picks.py:46
+msgid "miesiac"
+msgstr "month"
+
+#: main/views/picks.py:56
+msgid "tydzien"
+msgstr "week"
+
+#: main/views/picks.py:91
+msgid "tydz."
+msgstr "week"
+
+#: main/views/teams.py:23 main/views/teams.py:25 templates/teams/news.html:12
+msgid "Druzyny URL"
+msgstr "teams"
+
+#: main/views/videos.py:20 main/views/videos.py:22 main/views/videos.py:91
+#: main/views/videos.py:182 templates/modules/menu.html:118
+#: templates/modules/video_categories.html:6
+#: templates/partials/right-column.html:4 templates/videos/details.html:7
+#: templates/videos/details.html.py:16 templates/videos/index.html:47
+msgid "filmy"
+msgstr "videos"
+
+#: main/views/videos.py:91 templates/partials/right-column.html:4
+#: templates/videos/index.html:47
+msgid "dodaj"
+msgstr "add it"
+
+#: main/views/videos.py:182
+msgid "dodano"
+msgstr "added"
+
+#: templates/404.html:4 templates/500.html:4
+msgid "logo24gole_pl_beta.png"
+msgstr "logo24gole_en_beta.png"
+
+#: templates/404.html:5
+msgid "Podana strona nie istnieje"
+msgstr "Page not found"
+
+#: templates/404.html:6
+msgid "powrot do strony glownej"
+msgstr "return to home page"
+
+#: templates/500.html:5
+msgid "Chwilowy blad serwera"
+msgstr "Temporary server error"
+
+#: templates/500.html:6
+msgid "sprobuj za kilka chwil ponownie odswiezyc strone"
+msgstr "please wait few minutes and try to refresh"
+
+#: templates/index.html:57 templates/index.html.py:257
+#: templates/index_.html:57 templates/index_.html.py:263
+#: templates/accounts/details_classification_module.html:10
+#: templates/accounts/details_classification_module.html:14
+#: templates/accounts/details_classification_module.html:15
+#: templates/accounts/details_classification_module.html:57
+#: templates/accounts/details_classification_module.html:61
+#: templates/accounts/details_classification_module.html:62
+#: templates/fans/show_supporters.html:36 templates/fans/show_tables.html:33
+#: templates/matches/details.html:285 templates/matches/details.html.py:323
+#: templates/matches/details.html:344 templates/matches/details.html.py:368
+#: templates/matches/details_before.html:62
+#: templates/matches/details_before.html:100
+#: templates/matches/details_before.html:129
+#: templates/matches/details_before.html:153 templates/matches/index.html:290
+#: templates/matches/index_with_table.html:286
+#: templates/modules/ajax/matches/comments.html:9
+#: templates/modules/news/promoted_news.html:9 templates/news/add_2.html:19
+#: templates/news/add_3.html:22 templates/news/details.html:42
+#: templates/news/details.html.py:97 templates/news/details.html:135
+#: templates/news/details.html.py:155 templates/news/index.html:87
+#: templates/picks/index.html:94 templates/picks/index.html.py:98
+#: templates/picks/index.html:99 templates/picks/index.html.py:143
+#: templates/picks/index.html:147 templates/picks/index.html.py:148
+#: templates/teams/news.html:28 templates/videos/add_2.html:20
+msgid "punkty"
+msgstr "points"
+
+#: templates/index.html:59 templates/index.html.py:61 templates/index.html:123
+#: templates/index.html.py:124 templates/index_.html:59
+#: templates/index_.html.py:61 templates/index_.html:129
+#: templates/index_.html.py:130 templates/admin/comments/index.html:25
+#: templates/matches/details.html:272 templates/matches/details_before.html:48
+#: templates/matches/index.html:163
+#: templates/matches/index_with_table.html:159
+#: templates/modules/news/promoted_news.html:11
+#: templates/modules/news/promoted_news.html:13 templates/news/add_2.html:21
+#: templates/news/add_2.html.py:23 templates/news/add_3.html:24
+#: templates/news/add_3.html.py:26 templates/news/details.html:52
+#: templates/news/details.html.py:83 templates/news/index.html:89
+#: templates/news/index.html.py:91 templates/teams/news.html:30
+#: templates/teams/news.html.py:32
+msgid "Komentarze"
+msgstr "Comments"
+
+#: templates/index.html:60 templates/index.html.py:65 templates/index.html:165
+#: templates/index_.html:60 templates/index_.html.py:65
+#: templates/index_.html:171 templates/accounts/details.html:120
+#: templates/accounts/details_picks.html:144 templates/matches/index.html:207
+#: templates/matches/index_with_table.html:203
+#: templates/modules/matches/last_matches.html:31
+#: templates/modules/matches/last_matches.html:58
+#: templates/modules/matches/last_matches.html:85
+#: templates/modules/matches/last_matches.html:123
+#: templates/modules/matches/last_matches.html:150
+#: templates/modules/matches/last_matches.html:177
+#: templates/modules/matches/last_team_matches_300.html:28
+#: templates/modules/matches/last_team_matches_300.html:52
+#: templates/modules/matches/last_team_matches_300.html:76
+#: templates/modules/matches/last_team_matches_396.html:31
+#: templates/modules/matches/last_team_matches_396.html:58
+#: templates/modules/matches/last_team_matches_396.html:85
+#: templates/modules/matches/results.html:47
+#: templates/modules/news/promoted_news.html:12
+#: templates/modules/news/promoted_news.html:17 templates/news/add_2.html:22
+#: templates/news/add_2.html.py:27 templates/news/add_3.html:25
+#: templates/news/add_3.html.py:30 templates/news/index.html:90
+#: templates/news/index.html.py:95 templates/teams/news.html:31
+#: templates/teams/news.html.py:36
+msgid "Szczegoly"
+msgstr "Details"
+
+#: templates/index.html:64 templates/index.html.py:131
+#: templates/index_.html:64 templates/index_.html.py:137
+#: templates/matches/index.html:171
+#: templates/matches/index_with_table.html:167
+#: templates/modules/news/promoted_news.html:16 templates/news/add_2.html:26
+#: templates/news/add_3.html:29 templates/news/index.html:94
+#: templates/teams/news.html:35
+msgid "Filmiki:"
+msgstr "Videos:"
+
+#: templates/index.html:85 templates/index_.html:85
+#: templates/index_.html.py:90
+msgid "Najswiezsze informacje"
+msgstr "Latest news"
+
+#: templates/index.html:89 templates/index_.html:95
+msgid "Dzisiejsze"
+msgstr "Todays"
+
+#: templates/index.html:89 templates/index_.html:95
+msgid "Najblizsze"
+msgstr "Latest"
+
+#: templates/index.html:89 templates/index_.html:95
+msgid "spotkania"
+msgstr "matches"
+
+#: templates/index.html:127 templates/index.html.py:128
+#: templates/index.html:252 templates/index_.html:133
+#: templates/index_.html.py:134 templates/index_.html:258
+#: templates/matches/details.html:273 templates/matches/details_before.html:49
+#: templates/matches/index.html:167
+#: templates/matches/index_with_table.html:163
+msgid "Analizy"
+msgstr "Analyses"
+
+#: templates/index.html:132 templates/index.html.py:164
+#: templates/index_.html:138 templates/index_.html.py:170
+#: templates/accounts/details.html:119
+#: templates/accounts/details_picks.html:143
+#: templates/admin/images/index.html:98 templates/admin/videos/index.html:104
+#: templates/matches/add_images.html:41
+#: templates/matches/add_images_file.html:44
+#: templates/matches/add_images_url.html:44
+#: templates/matches/add_videos.html:36 templates/matches/added_images.html:24
+#: templates/matches/added_video.html:24 templates/matches/index.html:172
+#: templates/matches/index.html.py:206
+#: templates/matches/index_with_table.html:168
+#: templates/matches/index_with_table.html:202
+#: templates/modules/matches/last_matches.html:30
+#: templates/modules/matches/last_matches.html:57
+#: templates/modules/matches/last_matches.html:84
+#: templates/modules/matches/last_matches.html:122
+#: templates/modules/matches/last_matches.html:149
+#: templates/modules/matches/last_matches.html:176
+#: templates/modules/matches/last_team_matches_300.html:27
+#: templates/modules/matches/last_team_matches_300.html:51
+#: templates/modules/matches/last_team_matches_300.html:75
+#: templates/modules/matches/last_team_matches_396.html:30
+#: templates/modules/matches/last_team_matches_396.html:57
+#: templates/modules/matches/last_team_matches_396.html:84
+#: templates/modules/matches/results.html:46 templates/teams/tables.html:88
+#: templates/teams/tables.html.py:109 templates/teams/tables.html:126
+msgid "Mecz URL"
+msgstr "match"
+
+#: templates/index.html:132 templates/index_.html:138
+#: templates/accounts/details_activity.html:39
+#: templates/matches/details.html:275 templates/matches/details_before.html:51
+#: templates/modules/menu.html:118 templates/news/details.html:85
+#: templates/videos/details.html:7 templates/videos/index.html:11
+msgid "Filmy"
+msgstr "Videos"
+
+#: templates/index.html:138 templates/index_.html:144
+#: templates/accounts/details.html:85
+#: templates/accounts/details_picks.html:109 templates/matches/index.html:180
+#: templates/matches/index_with_table.html:176
+#: templates/modules/matches/results.html:21
+msgid "dogrywka"
+msgstr "extra time"
+
+#: templates/index.html:141 templates/index_.html:147
+#: templates/accounts/details.html:88
+#: templates/accounts/details_picks.html:112 templates/matches/index.html:183
+#: templates/matches/index_with_table.html:179
+#: templates/modules/matches/results.html:24
+msgid "2. polowa"
+msgstr "2nd half"
+
+#: templates/index.html:144 templates/index_.html:150
+#: templates/accounts/details.html:91
+#: templates/accounts/details_picks.html:115 templates/matches/index.html:186
+#: templates/matches/index_with_table.html:182
+#: templates/modules/matches/results.html:27
+msgid "przerwa"
+msgstr "Half Time"
+
+#: templates/index.html:147 templates/index_.html:153
+#: templates/accounts/details.html:94
+#: templates/accounts/details_picks.html:118 templates/matches/index.html:189
+#: templates/matches/index_with_table.html:185
+#: templates/modules/matches/results.html:30
+msgid "1. polowa"
+msgstr "1st half"
+
+#: templates/index.html:164 templates/index_.html:170
+#: templates/accounts/details.html:119
+#: templates/accounts/details_picks.html:143 templates/matches/index.html:172
+#: templates/matches/index.html.py:206
+#: templates/matches/index_with_table.html:168
+#: templates/matches/index_with_table.html:202
+#: templates/modules/matches/last_matches.html:30
+#: templates/modules/matches/last_matches.html:57
+#: templates/modules/matches/last_matches.html:84
+#: templates/modules/matches/last_matches.html:122
+#: templates/modules/matches/last_matches.html:149
+#: templates/modules/matches/last_matches.html:176
+#: templates/modules/matches/last_team_matches_300.html:27
+#: templates/modules/matches/last_team_matches_300.html:51
+#: templates/modules/matches/last_team_matches_300.html:75
+#: templates/modules/matches/last_team_matches_396.html:30
+#: templates/modules/matches/last_team_matches_396.html:57
+#: templates/modules/matches/last_team_matches_396.html:84
+#: templates/modules/matches/results.html:46
+msgid "Szczegoly meczu"
+msgstr "Match details"
+
+#: templates/index.html:167 templates/index.html.py:168
+#: templates/index_.html:173 templates/index_.html.py:174
+#: templates/matches/index.html:209 templates/matches/index.html.py:210
+#: templates/matches/index_with_table.html:205
+#: templates/matches/index_with_table.html:206
+msgid "Rozwin"
+msgstr "Unfold"
+
+#: templates/index.html:187 templates/index.html.py:207
+#: templates/index_.html:193 templates/index_.html.py:213
+#: templates/matches/details.html:84 templates/matches/details.html.py:99
+#: templates/matches/index.html:228 templates/matches/index.html.py:248
+#: templates/matches/index_with_table.html:224
+#: templates/matches/index_with_table.html:244
+msgid "(sam.)"
+msgstr "(own)"
+
+#: templates/index.html:194 templates/index.html.py:196
+#: templates/index_.html:200 templates/index_.html.py:202
+#: templates/matches/details.html:86 templates/matches/details.html.py:88
+#: templates/matches/details.html:96 templates/matches/details.html.py:98
+#: templates/matches/index.html:235 templates/matches/index.html.py:237
+#: templates/matches/index_with_table.html:231
+#: templates/matches/index_with_table.html:233
+msgid "Bramka"
+msgstr "Goal"
+
+#: templates/index.html:200 templates/index_.html:206
+#: templates/matches/index.html:241
+#: templates/matches/index_with_table.html:237
+msgid "Kartka zolta"
+msgstr "Yellow card"
+
+#: templates/index.html:203 templates/index_.html:209
+#: templates/matches/index.html:244
+#: templates/matches/index_with_table.html:240
+msgid "Kartka czerwona"
+msgstr "Red card"
+
+#: templates/index.html:225 templates/index_.html:231
+#: templates/matches/details.html:303 templates/matches/details_before.html:80
+#: templates/matches/index.html:265
+#: templates/matches/index_with_table.html:261 templates/news/details.html:115
+msgid "Napisz komentarz"
+msgstr "Write comment"
+
+#: templates/index.html:231 templates/index_.html:237
+#: templates/matches/details.html:309 templates/matches/details_before.html:86
+#: templates/matches/index.html:271
+#: templates/matches/index_with_table.html:267 templates/news/details.html:121
+msgid "Podpis"
+msgstr "Author"
+
+#: templates/index.html:236 templates/index.html.py:268
+#: templates/index_.html:242 templates/index_.html.py:274
+#: templates/matches/details.html:313 templates/matches/details_before.html:90
+#: templates/matches/details_before.html:113 templates/matches/index.html:276
+#: templates/matches/index.html.py:302
+#: templates/matches/index_with_table.html:272
+#: templates/matches/index_with_table.html:297 templates/news/details.html:125
+msgid "Wyslij"
+msgstr "Send"
+
+#: templates/index.html:264 templates/index_.html:270
+#: templates/matches/details_before.html:109 templates/matches/index.html:298
+#: templates/matches/index_with_table.html:293
+msgid "Analiza"
+msgstr "Analysis"
+
+#: templates/index.html:273 templates/index_.html:279
+#: templates/matches/details.html:334
+#: templates/matches/details_before.html:118 templates/matches/index.html:307
+#: templates/matches/index_with_table.html:301
+msgid ""
+"Aby dodac analize tego meczu lub zobaczyc te napisane przez innych musisz "
+"sie zalogowac. Jesli nie masz jeszcze konta"
+msgstr ""
+"To read user's analyses or write your own you have to log in. If you still "
+"don't have account"
+
+#: templates/index.html:273 templates/index_.html:279
+#: templates/matches/details.html:334 templates/matches/details.html.py:356
+#: templates/matches/details.html:380
+#: templates/matches/details_before.html:118
+#: templates/matches/details_before.html:141
+#: templates/matches/details_before.html:165 templates/matches/index.html:307
+#: templates/matches/index.html.py:322
+#: templates/matches/index_with_table.html:301
+#: templates/matches/index_with_table.html:316
+#: templates/modules/users/finest_supporters_league.html:20
+#: templates/modules/users/finest_supporters_league.html:32
+#: templates/modules/users/finest_supporters_team.html:17
+#: templates/modules/users/finest_supporters_team.html:29
+#: templates/news/details.html:167 templates/partials/user_box.html:17
+#: templates/teams/news.html:67
+msgid "Rejestracja URL"
+msgstr "register"
+
+#: templates/index.html:273 templates/index_.html:279
+#: templates/matches/details.html:334 templates/matches/details.html.py:356
+#: templates/matches/details.html:380
+#: templates/matches/details_before.html:118
+#: templates/matches/details_before.html:141
+#: templates/matches/details_before.html:165 templates/matches/index.html:307
+#: templates/matches/index_with_table.html:301 templates/news/details.html:167
+msgid "Formularz rejestracji"
+msgstr "Registration form"
+
+#: templates/index.html:273 templates/index_.html:279
+#: templates/matches/details.html:334 templates/matches/details.html.py:356
+#: templates/matches/details.html:380
+#: templates/matches/details_before.html:118
+#: templates/matches/details_before.html:141
+#: templates/matches/details_before.html:165 templates/matches/index.html:307
+#: templates/matches/index_with_table.html:301
+#: templates/modules/users/finest_supporters_league.html:20
+#: templates/modules/users/finest_supporters_team.html:17
+#: templates/news/details.html:167
+msgid "zarejestruj sie"
+msgstr "register"
+
+#: templates/index.html:284 templates/index_.html:290
+msgid "wiecej spotkan"
+msgstr "more matches"
+
+#: templates/index.html:292 templates/index_.html:298
+msgid "Ostatnio dodane filmy"
+msgstr "Last submitted videos"
+
+#: templates/about/help_en.html:8 templates/about/help_en.html.py:12
+#: templates/about/help_pl.html:8 templates/about/help_pl.html.py:12
+msgid "Pomoc"
+msgstr "Help"
+
+#: templates/about/help/liga-kibicow.html:8
+#: templates/accounts/details_classification_module.html:13
+#: templates/accounts/details_classification_module.html:60
+#: templates/picks/index.html:97 templates/picks/index.html.py:101
+#: templates/picks/index.html:146 templates/picks/index.html.py:150
+msgid "punktow"
+msgstr "points"
+
+#: templates/accounts/details.html:4
+#: templates/accounts/details_activity.html:12
+#: templates/accounts/details_compare.html:4
+#: templates/accounts/details_picks.html:4
+#: templates/accounts/details_stats.html:4
+#: templates/accounts/my_profile.html:3 templates/accounts/show_users.html:4
+#: templates/fans/show_supporters.html:4 templates/fans/show_tables.html:4
+#: templates/matches/add_images.html:4
+#: templates/matches/add_images_file.html:4
+#: templates/matches/add_videos.html:4 templates/matches/added_images.html:4
+#: templates/matches/added_video.html:4 templates/matches/details.html:18
+#: templates/matches/details.html.py:20 templates/matches/index.html:54
+#: templates/matches/index_with_table.html:59
+#: templates/messages/details.html:3 templates/messages/list.html:3
+#: templates/news/add_1.html:4 templates/news/add_2.html:4
+#: templates/news/add_3.html:4 templates/news/add_images.html:4
+#: templates/news/add_images_file.html:4 templates/news/add_images_url.html:4
+#: templates/news/add_videos.html:4 templates/news/details.html:16
+#: templates/news/index.html:4 templates/picks/index.html:8
+#: templates/teams/news.html:4 templates/videos/add_1.html:4
+#: templates/videos/add_2.html:4 templates/videos/added.html:4
+#: templates/videos/details.html:4
+msgid "24gole.pl"
+msgstr "24goals.com"
+
+#: templates/accounts/details.html:4
+#: templates/accounts/details_activity.html:12
+#: templates/accounts/details_compare.html:4
+#: templates/accounts/details_picks.html:4
+#: templates/accounts/details_stats.html:4
+#: templates/main/registration_form.html:27 templates/modules/menu.html:161
+#: templates/modules/menu.html.py:176 templates/partials/layout_en.html:48
+#: templates/partials/layout_pl.html:45
+msgid "Uzytkownik"
+msgstr "User"
+
+#: templates/accounts/details.html:12
+#: templates/accounts/details_activity.html:20
+#: templates/accounts/details_classification.html:25
+#: templates/accounts/details_compare.html:73
+#: templates/accounts/details_picks.html:36
+#: templates/accounts/details_stats.html:17
+#: templates/accounts/show_users.html:16 templates/accounts/show_users.html:18
+#: templates/accounts/show_users.html:64 templates/modules/menu.html:144
+#: templates/modules/menu.html.py:147 templates/modules/menu.html:155
+msgid "Uzytkownicy URL"
+msgstr "users"
+
+#: templates/accounts/details.html:12
+#: templates/accounts/details_activity.html:20
+#: templates/accounts/details_classification.html:25
+#: templates/accounts/details_compare.html:73
+#: templates/accounts/details_picks.html:36
+#: templates/accounts/details_stats.html:17 templates/modules/menu.html:144
+#: templates/modules/menu.html.py:155 templates/teams/tables.html:17
+msgid "Uzytkownicy"
+msgstr "Users"
+
+#: templates/accounts/details.html:37 templates/accounts/details_picks.html:61
+#: templates/modules/menu.html:148 templates/modules/menu.html.py:164
+msgid "Typy"
+msgstr "Predictions"
+
+#: templates/accounts/details.html:39
+#: templates/accounts/details_compare.html:99
+#: templates/accounts/details_picks.html:63
+#: templates/accounts/details_stats.html:43
+msgid "pokaz typy"
+msgstr "show predictions"
+
+#: templates/accounts/details.html:40 templates/accounts/details.html.py:46
+#: templates/accounts/details.html:52
+#: templates/accounts/details_compare.html:100
+#: templates/accounts/details_picks.html:64
+#: templates/accounts/details_picks.html:70
+#: templates/accounts/details_picks.html:76
+#: templates/accounts/details_stats.html:44
+msgid "Typy URL"
+msgstr "picks"
+
+#: templates/accounts/details.html:46 templates/accounts/details_picks.html:70
+msgid "Aktualne URL"
+msgstr "pending"
+
+#: templates/accounts/details.html:48 templates/accounts/details.html.py:50
+#: templates/accounts/details_picks.html:72
+#: templates/accounts/details_picks.html:74 templates/matches/index.html:105
+#: templates/matches/index_with_table.html:105
+msgid "nadchodzace"
+msgstr "upcoming"
+
+#: templates/accounts/details.html:52 templates/accounts/details_picks.html:76
+msgid "Archiwalne URL"
+msgstr "archive"
+
+#: templates/accounts/details.html:54 templates/accounts/details.html.py:56
+#: templates/accounts/details_picks.html:78
+#: templates/accounts/details_picks.html:80 templates/matches/index.html:104
+#: templates/matches/index_with_table.html:104
+msgid "zakonczone"
+msgstr "finished"
+
+#: templates/accounts/details.html:133
+#: templates/accounts/details_picks.html:159
+msgid "Nie ma takiego uzytkownika"
+msgstr "No such user"
+
+#: templates/accounts/details_activity.html:20 templates/modules/menu.html:149
+#: templates/modules/menu.html.py:165
+msgid "Aktywnosc"
+msgstr "Activity"
+
+#: templates/accounts/details_activity.html:29
+msgid "Pomoc URL"
+msgstr "help"
+
+#: templates/accounts/details_activity.html:29
+msgid "jak-mierzymy-aktywnosc"
+msgstr "how-do-we-measure-activity"
+
+#: templates/accounts/details_activity.html:29
+msgid "JAK MIERZYMY AKTYWNOSC ?"
+msgstr "HOW DO WE MEASURE ACTIVITY ?"
+
+#: templates/accounts/details_activity.html:31
+msgid "Punkty za aktywnosc"
+msgstr "Activity points"
+
+#: templates/accounts/details_activity.html:35
+msgid "Podsumowanie"
+msgstr "Summary"
+
+#: templates/accounts/details_activity.html:36
+#: templates/accounts/details_activity.html:44
+msgid "Trofea"
+msgstr "Trophies"
+
+#: templates/accounts/details_activity.html:37
+msgid "Artykuly"
+msgstr "Articles"
+
+#: templates/accounts/details_activity.html:38
+#: templates/admin/images/index.html:25 templates/matches/details.html:274
+#: templates/matches/details_before.html:50 templates/news/details.html:84
+msgid "Zdjecia"
+msgstr "Photos"
+
+#: templates/accounts/details_activity.html:45
+msgid "otrzymal/a"
+msgstr "received"
+
+#: templates/accounts/details_activity.html:46
+#: templates/accounts/details_activity.html:50
+#: templates/accounts/details_activity.html:55
+#: templates/accounts/details_activity.html:60
+#: templates/accounts/details_activity.html:65
+msgid "razem"
+msgstr "total"
+
+#: templates/accounts/details_activity.html:49
+#: templates/accounts/details_activity.html:54
+#: templates/accounts/details_activity.html:59
+msgid "dodal/a"
+msgstr "submitted"
+
+#: templates/accounts/details_activity.html:64
+msgid "typow"
+msgstr "picks"
+
+#: templates/accounts/details_activity.html:67
+#: templates/accounts/details_activity.html:84
+#: templates/accounts/details_activity.html:104
+#: templates/accounts/details_activity.html:124
+#: templates/accounts/details_activity.html:144
+msgid "Razem"
+msgstr "Total"
+
+#: templates/accounts/details_activity.html:87
+msgid "Ostatnie 100 artykulow"
+msgstr "Last 100 articles"
+
+#: templates/accounts/details_activity.html:107
+msgid "Ostatnich 50 zdjec"
+msgstr "Last 50 images"
+
+#: templates/accounts/details_activity.html:127
+msgid "Ostatnich 10 filmow"
+msgstr "Last 10 videos"
+
+#: templates/accounts/details_classification.html:13
+#: templates/news/add_1.html:48 templates/teams/details.html:14
+#: templates/teams/teams_list.html:13
+msgid "24gole"
+msgstr "24goals"
+
+#: templates/accounts/details_classification.html:25
+#: templates/accounts/details_classification_module.html:3
+msgid "Klasyfikacja"
+msgstr "Classification"
+
+#: templates/accounts/details_classification_module.html:6
+#: templates/picks/index.html:90
+msgid "pozycja"
+msgstr "position"
+
+#: templates/accounts/details_classification_module.html:6
+#: templates/picks/index.html:90
+msgid "Poz."
+msgstr "Pos."
+
+#: templates/accounts/details_classification_module.html:7
+#: templates/picks/index.html:91
+msgid "poprzedni tydzien"
+msgstr "previous week"
+
+#: templates/accounts/details_classification_module.html:7
+#: templates/picks/index.html:91
+msgid "PT"
+msgstr "PW"
+
+#: templates/accounts/details_classification_module.html:8
+#: templates/picks/index.html:92
+msgid "poprzedni miesiac"
+msgstr "previous month"
+
+#: templates/accounts/details_classification_module.html:8
+#: templates/picks/index.html:92
+msgid "PM"
+msgstr "PM"
+
+#: templates/accounts/details_classification_module.html:9
+#: templates/picks/index.html:93
+msgid "nazwa uzytkownika"
+msgstr "username"
+
+#: templates/accounts/details_classification_module.html:9
+#: templates/accounts/details_classification_module.html:45
+#: templates/picks/index.html:93 templates/picks/index.html.py:131
+msgid "uzytkownik"
+msgstr "user"
+
+#: templates/accounts/details_classification_module.html:11
+#: templates/accounts/details_classification_module.html:58
+#: templates/picks/index.html:95 templates/picks/index.html.py:144
+msgid "ilosc typow"
+msgstr "picks count"
+
+#: templates/accounts/details_classification_module.html:12
+#: templates/accounts/details_classification_module.html:59
+#: templates/fans/show_tables.html:34 templates/picks/index.html:96
+#: templates/picks/index.html.py:145
+msgid "srednia"
+msgstr "avg."
+
+#: templates/accounts/details_classification_module.html:16
+#: templates/accounts/details_classification_module.html:17
+#: templates/accounts/details_classification_module.html:63
+#: templates/accounts/details_classification_module.html:64
+#: templates/picks/index.html:149 templates/picks/index.html.py:151
+msgid "punkt"
+msgstr "point"
+
+#: templates/accounts/details_classification_module.html:25
+#: templates/accounts/details_classification_module.html:38
+#: templates/modules/ajax/accounts/overlay.html:20
+#: templates/modules/ajax/accounts/overlay.html:36
+#: templates/picks/index.html:111 templates/picks/index.html.py:124
+msgid "nowy gracz"
+msgstr "new user"
+
+#: templates/accounts/details_classification_module.html:25
+#: templates/accounts/details_classification_module.html:38
+#: templates/modules/ajax/accounts/overlay.html:20
+#: templates/modules/ajax/accounts/overlay.html:36
+#: templates/picks/index.html:111 templates/picks/index.html.py:124
+msgid "NOWY"
+msgstr "NEW"
+
+#: templates/accounts/details_classification_module.html:69
+#: templates/picks/index.html:159
+msgid "aktualizacja co 24h"
+msgstr "refreshing every 24h"
+
+#: templates/accounts/details_compare.html:97
+#: templates/accounts/details_stats.html:41 templates/matches/details.html:151
+msgid "Statystyki"
+msgstr "Statistics"
+
+#: templates/accounts/details_picks.html:154
+msgid "Brak typow"
+msgstr "No predictions"
+
+#: templates/accounts/details_picks.html:169
+msgid "Szukaj wg. daty meczu"
+msgstr "Search by match date"
+
+#: templates/accounts/details_picks.html:222
+msgid "Szukaj typow"
+msgstr "Find picks"
+
+#: templates/accounts/my_profile.html:3
+msgid "moj profil"
+msgstr "my profile"
+
+#: templates/accounts/my_profile.html:11
+msgid "Edycja danych"
+msgstr "User details"
+
+#: templates/accounts/my_profile.html:23
+msgid "Aktualizuj swoj profil"
+msgstr "Update your profile"
+
+#: templates/accounts/my_profile.html:25
+msgid "zmiana danych uzytkownika"
+msgstr "change users data"
+
+#: templates/accounts/my_profile.html:25
+msgid "zmiana hasla"
+msgstr "change password"
+
+#: templates/accounts/my_profile.html:25
+msgid "zmiana awatara"
+msgstr "change avatar"
+
+#: templates/accounts/my_profile.html:31
+msgid "Kontakt"
+msgstr "Contact"
+
+#: templates/accounts/my_profile.html:57
+msgid "Strona WWW"
+msgstr "Website"
+
+#: templates/accounts/my_profile.html:62
+msgid "O mnie"
+msgstr "About me"
+
+#: templates/accounts/my_profile.html:76 templates/accounts/my_profile.html:92
+msgid "Zmien haslo"
+msgstr "Change password"
+
+#: templates/accounts/my_profile.html:78
+msgid "Stare haslo"
+msgstr "Old password"
+
+#: templates/accounts/my_profile.html:82
+msgid "Nowe haslo"
+msgstr "New password"
+
+#: templates/accounts/my_profile.html:86
+msgid "Powtorz nowe haslo"
+msgstr "Repeat new password"
+
+#: templates/accounts/my_profile.html:99
+msgid "Zmien awatar"
+msgstr "Change avatar"
+
+#: templates/accounts/my_profile.html:101
+msgid "Wyslij swoj"
+msgstr "Send yours"
+
+#: templates/accounts/my_profile.html:101
+msgid ""
+"http://pl.wikipedia.org/wiki/Awatar_%28rzeczywisto%C5%9B%C4%87_wirtualna%29"
+msgstr "http://en.wikipedia.org/wiki/Avatar_%28icon%29"
+
+#: templates/accounts/my_profile.html:101
+msgid "awatar"
+msgstr "avatar"
+
+#: templates/accounts/my_profile.html:103
+msgid "Wyslij plik z Twojego komputera"
+msgstr "Send file from your computer"
+
+#: templates/accounts/my_profile.html:107
+msgid "Zmien"
+msgstr "Change"
+
+#: templates/accounts/show_users.html:4 templates/accounts/show_users.html:16
+#: templates/accounts/show_users.html:18 templates/fans/show_supporters.html:4
+#: templates/fans/show_tables.html:4 templates/modules/menu.html:147
+msgid "Lista uzytkownikow"
+msgstr "Users list"
+
+#: templates/accounts/show_users.html:6
+msgid "na litere"
+msgstr "on letter"
+
+#: templates/accounts/show_users.html:27
+msgid "Lista uzytkownikow wg. identyfikatora"
+msgstr "List of users by username"
+
+#: templates/accounts/show_users.html:55
+msgid "Brak uzytkownikow na litere"
+msgstr "No users on letter"
+
+#: templates/admin/comments/index.html:5 templates/admin/core/base.html:31
+#: templates/admin/core/change_form.html:10
+#: templates/admin/core/change_list.html:5
+#: templates/admin/core/delete_confirmation.html:3
+#: templates/admin/core/object_history.html:3
+#: templates/admin/core/auth/user/change_password.html:9
+#: templates/admin/countries/multi_edit.html:5
+#: templates/admin/images/index.html:5
+#: templates/admin/languages/multi_edit.html:5
+#: templates/admin/leagues/multi_edit.html:5
+#: templates/admin/mailing/generate.html:5
+#: templates/admin/matches/edit_squad.html:5
+#: templates/admin/matches/edit_stats.html:5
+#: templates/admin/matches/index.html:5
+#: templates/admin/matches/multi_add.html:5
+#: templates/admin/matches/multi_edit.html:5 templates/admin/news/add.html:5
+#: templates/admin/news/edit.html:5 templates/admin/news/index.html:6
+#: templates/admin/news/refuse.html:5 templates/admin/players/multi_add.html:5
+#: templates/admin/players/multi_edit.html:5
+#: templates/admin/players/transfers.html:5
+#: templates/admin/seasons/multi_edit.html:5
+#: templates/admin/stats/index.html:5 templates/admin/teams/multi_add.html:5
+#: templates/admin/teams/multi_edit.html:5 templates/admin/videos/edit.html:5
+#: templates/admin/videos/index.html:5
+msgid "Documentation"
+msgstr "Documentation"
+
+#: templates/admin/comments/index.html:5 templates/admin/core/base.html:31
+#: templates/admin/core/change_form.html:10
+#: templates/admin/core/change_list.html:5
+#: templates/admin/core/delete_confirmation.html:3
+#: templates/admin/core/object_history.html:3
+#: templates/admin/core/auth/user/change_password.html:9
+#: templates/admin/core/auth/user/change_password.html:15
+#: templates/admin/core/auth/user/change_password.html:46
+#: templates/admin/countries/multi_edit.html:5
+#: templates/admin/images/index.html:5
+#: templates/admin/languages/multi_edit.html:5
+#: templates/admin/leagues/multi_edit.html:5
+#: templates/admin/mailing/generate.html:5
+#: templates/admin/matches/edit_squad.html:5
+#: templates/admin/matches/edit_stats.html:5
+#: templates/admin/matches/index.html:5
+#: templates/admin/matches/multi_add.html:5
+#: templates/admin/matches/multi_edit.html:5 templates/admin/news/add.html:5
+#: templates/admin/news/edit.html:5 templates/admin/news/index.html:6
+#: templates/admin/news/refuse.html:5 templates/admin/players/multi_add.html:5
+#: templates/admin/players/multi_edit.html:5
+#: templates/admin/players/transfers.html:5
+#: templates/admin/seasons/multi_edit.html:5
+#: templates/admin/stats/index.html:5 templates/admin/teams/multi_add.html:5
+#: templates/admin/teams/multi_edit.html:5 templates/admin/videos/edit.html:5
+#: templates/admin/videos/index.html:5
+msgid "Change password"
+msgstr ""
+
+#: templates/admin/comments/index.html:5 templates/admin/core/base.html:31
+#: templates/admin/core/change_form.html:10
+#: templates/admin/core/change_list.html:5
+#: templates/admin/core/delete_confirmation.html:3
+#: templates/admin/core/object_history.html:3
+#: templates/admin/core/auth/user/change_password.html:9
+#: templates/admin/countries/multi_edit.html:5
+#: templates/admin/images/index.html:5
+#: templates/admin/languages/multi_edit.html:5
+#: templates/admin/leagues/multi_edit.html:5
+#: templates/admin/mailing/generate.html:5
+#: templates/admin/matches/edit_squad.html:5
+#: templates/admin/matches/edit_stats.html:5
+#: templates/admin/matches/index.html:5
+#: templates/admin/matches/multi_add.html:5
+#: templates/admin/matches/multi_edit.html:5 templates/admin/news/add.html:5
+#: templates/admin/news/edit.html:5 templates/admin/news/index.html:6
+#: templates/admin/news/refuse.html:5 templates/admin/players/multi_add.html:5
+#: templates/admin/players/multi_edit.html:5
+#: templates/admin/players/transfers.html:5
+#: templates/admin/seasons/multi_edit.html:5
+#: templates/admin/stats/index.html:5 templates/admin/teams/multi_add.html:5
+#: templates/admin/teams/multi_edit.html:5 templates/admin/videos/edit.html:5
+#: templates/admin/videos/index.html:5
+msgid "Log out"
+msgstr "Log out"
+
+#: templates/admin/comments/index.html:6 templates/admin/core/500.html:4
+#: templates/admin/core/base.html:36 templates/admin/core/change_form.html:13
+#: templates/admin/core/change_list.html:6
+#: templates/admin/core/delete_confirmation.html:6
+#: templates/admin/core/invalid_setup.html:4
+#: templates/admin/core/object_history.html:5
+#: templates/admin/core/auth/user/change_password.html:12
+#: templates/admin/countries/multi_edit.html:6
+#: templates/admin/images/index.html:6
+#: templates/admin/languages/multi_edit.html:6
+#: templates/admin/leagues/multi_edit.html:6
+#: templates/admin/mailing/generate.html:6
+#: templates/admin/matches/edit_squad.html:6
+#: templates/admin/matches/edit_stats.html:6
+#: templates/admin/matches/index.html:6
+#: templates/admin/matches/multi_add.html:6
+#: templates/admin/matches/multi_edit.html:6 templates/admin/news/add.html:6
+#: templates/admin/news/edit.html:6 templates/admin/news/index.html:7
+#: templates/admin/news/refuse.html:6 templates/admin/players/multi_add.html:6
+#: templates/admin/players/multi_edit.html:6
+#: templates/admin/players/transfers.html:6
+#: templates/admin/seasons/multi_edit.html:6
+#: templates/admin/stats/index.html:6 templates/admin/teams/multi_add.html:6
+#: templates/admin/teams/multi_edit.html:6 templates/admin/videos/edit.html:6
+#: templates/admin/videos/index.html:6
+msgid "Home"
+msgstr "Home"
+
+#: templates/admin/comments/index.html:12
+#: templates/admin/core/change_list.html:12
+#: templates/admin/countries/multi_edit.html:12
+#: templates/admin/images/index.html:12
+#: templates/admin/languages/multi_edit.html:12
+#: templates/admin/leagues/multi_edit.html:12
+#: templates/admin/mailing/generate.html:12
+#: templates/admin/matches/edit_squad.html:12
+#: templates/admin/matches/edit_stats.html:12
+#: templates/admin/matches/index.html:12
+#: templates/admin/matches/multi_add.html:12
+#: templates/admin/matches/multi_edit.html:12 templates/admin/news/add.html:12
+#: templates/admin/news/edit.html:12 templates/admin/news/index.html:13
+#: templates/admin/news/refuse.html:12
+#: templates/admin/players/multi_add.html:12
+#: templates/admin/players/multi_edit.html:12
+#: templates/admin/players/transfers.html:12
+#: templates/admin/seasons/multi_edit.html:12
+#: templates/admin/stats/index.html:12 templates/admin/teams/multi_add.html:12
+#: templates/admin/teams/multi_edit.html:12
+#: templates/admin/videos/edit.html:12 templates/admin/videos/index.html:12
+#, python-format
+msgid "Add %(name)s"
+msgstr "Add %(name)s"
+
+#: templates/admin/core/404.html:4 templates/admin/core/404.html.py:8
+msgid "Page not found"
+msgstr "Page not found"
+
+#: templates/admin/core/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr "We're sorry, but the requested page could not be found."
+
+#: templates/admin/core/500.html:4
+msgid "Server error"
+msgstr "Server error"
+
+#: templates/admin/core/500.html:6
+msgid "Server error (500)"
+msgstr ""
+
+#: templates/admin/core/500.html:9
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: templates/admin/core/500.html:10
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: templates/admin/core/base.html:31
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/core/base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/core/change_form.html:15 templates/admin/core/index.html:28
+msgid "Add"
+msgstr ""
+
+#: templates/admin/core/change_form.html:21
+#: templates/admin/core/object_history.html:5
+msgid "History"
+msgstr ""
+
+#: templates/admin/core/change_form.html:22
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/core/change_form.html:32
+#: templates/admin/core/auth/user/change_password.html:24
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/core/change_form.html:50
+msgid "Ordering"
+msgstr ""
+
+#: templates/admin/core/change_form.html:53
+msgid "Order:"
+msgstr ""
+
+#: templates/admin/core/delete_confirmation.html:9
+#: templates/admin/core/submit_line.html:3
+#: templates/admin/matches/multi_edit.html:95
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/core/delete_confirmation.html:14
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: templates/admin/core/delete_confirmation.html:21
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: templates/admin/core/delete_confirmation.html:26
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: templates/admin/core/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: templates/admin/core/index.html:17
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: templates/admin/core/index.html:18
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: templates/admin/core/index.html:34
+msgid "Change"
+msgstr ""
+
+#: templates/admin/core/index.html:44
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: templates/admin/core/index.html:52
+msgid "Recent Actions"
+msgstr ""
+
+#: templates/admin/core/index.html:53
+msgid "My Actions"
+msgstr ""
+
+#: templates/admin/core/index.html:57
+msgid "None available"
+msgstr ""
+
+#: templates/admin/core/invalid_setup.html:8
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: templates/admin/core/login.html:17
+msgid "Username:"
+msgstr ""
+
+#: templates/admin/core/login.html:20
+msgid "Password:"
+msgstr ""
+
+#: templates/admin/core/login.html:25
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/core/object_history.html:18
+msgid "Date/time"
+msgstr ""
+
+#: templates/admin/core/object_history.html:19
+msgid "User"
+msgstr ""
+
+#: templates/admin/core/object_history.html:20
+msgid "Action"
+msgstr ""
+
+#: templates/admin/core/object_history.html:26
+msgid "DATE_WITH_TIME_FULL"
+msgstr ""
+
+#: templates/admin/core/object_history.html:36
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: templates/admin/core/pagination.html:10
+msgid "Show all"
+msgstr ""
+
+#: templates/admin/core/search_form.html:8
+msgid "Go"
+msgstr ""
+
+#: templates/admin/core/search_form.html:10
+#, python-format
+msgid "1 result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/core/search_form.html:10
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: templates/admin/core/submit_line.html:4
+msgid "Save as new"
+msgstr ""
+
+#: templates/admin/core/submit_line.html:5
+msgid "Save and add another"
+msgstr ""
+
+#: templates/admin/core/submit_line.html:6
+msgid "Save and continue editing"
+msgstr ""
+
+#: templates/admin/core/submit_line.html:7
+msgid "Save"
+msgstr ""
+
+#: templates/admin/core/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: templates/admin/core/auth/user/add_form.html:12
+msgid "Username"
+msgstr ""
+
+#: templates/admin/core/auth/user/add_form.html:18
+#: templates/admin/core/auth/user/change_password.html:34
+msgid "Password"
+msgstr ""
+
+#: templates/admin/core/auth/user/add_form.html:23
+#: templates/admin/core/auth/user/change_password.html:39
+msgid "Password (again)"
+msgstr ""
+
+#: templates/admin/core/auth/user/add_form.html:24
+#: templates/admin/core/auth/user/change_password.html:40
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: templates/admin/core/auth/user/change_password.html:28
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: templates/admin/news/edit.html:6
+msgid "News"
+msgstr "News"
+
+#: templates/admin/players/multi_add.html:32
+#: templates/modules/matches/league_table.html:17
+#: templates/modules/matches/league_table.html:50
+#: templates/modules/matches/league_table.html:83
+#: templates/teams/details.html:14 templates/teams/details.html.py:26
+#: templates/teams/tables.html:189 templates/teams/tables.html.py:222
+#: templates/teams/tables.html:255
+msgid "Druzyna"
+msgstr "Team"
+
+#: templates/fans/show_supporters.html:4
+#: templates/fans/show_supporters.html:23 templates/fans/show_tables.html:4
+msgid "Kibice zespolu"
+msgstr "Supporters of"
+
+#: templates/fans/show_supporters.html:35
+msgid "nazwa"
+msgstr "name"
+
+#: templates/fans/show_supporters.html:37
+msgid "data rejestracji"
+msgstr "registration date"
+
+#: templates/fans/show_supporters.html:66
+msgid "Nie ma kibicow tej druzyny"
+msgstr "There's no supporters of this team"
+
+#: templates/fans/show_supporters.html:67
+msgid ""
+"Jezeli jej kibicujesz - <a href=\"/rejestracja/\">zarejestruj sie</a> i "
+"zacznij walczyc o jak najlepsza pozycje dla niej!"
+msgstr ""
+"If you're supporting them - <a href=\"/register/\">register</a> and start "
+"gaining points to get them higher"
+
+#: templates/fans/show_tables.html:24
+msgid ""
+"<strong>Liga Kibicow</strong> to zestawienie prezentujace liczbe punktow "
+"wszystkich typujacych, bedacych kibicami danej druzyny. Dzieki temu, ze "
+"kazdy wybiera druzyne, ktorej kibicuje przy rejestracji, "
+"<strong>przystepujemy do gry automatycznie</strong> i jedyne co musimy robic "
+"to jak najlepiej typowac wyniki prezentowanych spotkan."
+msgstr ""
+"<strong>Supporters League</strong> shows total number of points of all "
+"pickers being supporters of the given team. Because every user has chosen "
+"his favourite team during registration <strong>users joining this league "
+"automatically</strong> and the only thing they need to do to take beloved "
+"team to the first place is keeping pick's as accurate as possible."
+
+#: templates/fans/show_tables.html:33
+msgid "laczna liczba punktow wszystkich kibicow druzyny"
+msgstr "total points of all team's supporters"
+
+#: templates/fans/show_tables.html:33 templates/fans/show_tables.html.py:34
+#: templates/fans/show_tables.html:35
+msgid "sortuj"
+msgstr "sort"
+
+#: templates/fans/show_tables.html:34
+msgid "srednia liczba punktow na kazdego kibica"
+msgstr "average points of each supporter"
+
+#: templates/fans/show_tables.html:34
+msgid "sr. liczba pkt."
+msgstr "average points"
+
+#: templates/fans/show_tables.html:35
+msgid "laczna liczba kibicow"
+msgstr "total supporters"
+
+#: templates/fans/show_tables.html:35
+msgid "liczba kibicow"
+msgstr "supporters count"
+
+#: templates/fans/show_tables.html:35
+msgid "liczba-kibicow"
+msgstr "supporters-count"
+
+#: templates/fans/show_tables.html:47
+#: templates/modules/supp_league/supp_league.html:6
+msgid "Kibice URL"
+msgstr "supporters"
+
+#: templates/main/activate.html:4
+msgid "rejestracja"
+msgstr "Register"
+
+#: templates/main/activate.html:13
+msgid ""
+"Aktywacja powiodla sie! Mozesz sie teraz zalogowac i brac czynny udzial w "
+"zyciu serwisu."
+msgstr "Activation completed! Now you can log in."
+
+#: templates/main/activate.html:15
+msgid ""
+"Niestety, ale kod, ktory podales nie jest prawidlowy. Kody wyslane po "
+"rejestracji sa wazne tylko"
+msgstr ""
+"Unfortunatelly code you've entered is not correct. Account must be activated "
+"within "
+
+#: templates/main/activate.html:15
+msgid "dni"
+msgstr "days after registration."
+
+#: templates/main/registered.html:4 templates/main/registration_form.html:4
+#: templates/main/registration_form.html:11
+msgid "Rejestracja"
+msgstr "Register"
+
+#: templates/main/registered.html:11
+msgid "Gratulacje!"
+msgstr "Congratulations!"
+
+#: templates/main/registered.html:12
+msgid "Dziekujemy za rejestracje w serwisie"
+msgstr "Thank you for joining"
+
+#: templates/main/registered.html:13
+msgid ""
+"Mozesz sie zalogowac i zaczac korzystac ze wszystkich zaawansowanych funkcji "
+"serwisu"
+msgstr ""
+"Check your email for account activation link and right after activation dive "
+"into great features we prepared for you."
+
+#: templates/main/registration_form.html:13
+msgid "Co zyskujesz bedac zarejestrowanym ?"
+msgstr "What are the benefits of being registered ?"
+
+#: templates/main/registration_form.html:15
+msgid "mozliwosc <strong>dodawania newsow"
+msgstr "possibility to <strong>add news"
+
+#: templates/main/registration_form.html:16
+msgid ""
+"mozliwosc <strong>komentowania</strong> newsow i meczow oraz umieszczania "
+"<strong>analiz</strong> przed spotkaniami"
+msgstr ""
+"possibility to <strong>comment</strong> news and matches and post "
+"<strong>analyses</strong> before matches"
+
+#: templates/main/registration_form.html:17
+msgid "mozliwosc umieszczania <strong>zdjec</strong> i <strong>filmow"
+msgstr "possibility to <strong>share photos</strong> and <strong>videos"
+
+#: templates/main/registration_form.html:18
+msgid ""
+"mozliwosc <strong>typowania</strong> meczow i konkurowania z fanami pilki z "
+"calego swiata"
+msgstr ""
+"possibility to <strong>placing picks</strong> and compete with other "
+"football fans around the globe"
+
+#: templates/main/registration_form.html:19
+msgid "szanse na <strong>nagrody</strong>. Szczegoly juz wkrotce"
+msgstr "chances for <strong>rewards</strong>. Details soon"
+
+#: templates/main/registration_form.html:35
+msgid "Adres E-Mail"
+msgstr "Email address"
+
+#: templates/main/registration_form.html:43
+#: templates/partials/logout_box.html:14
+msgid "Haslo"
+msgstr "Password"
+
+#: templates/main/registration_form.html:51
+msgid "Haslo (ponownie)"
+msgstr "Repeat password"
+
+#: templates/main/registration_form.html:59
+msgid "Panstwo"
+msgstr "Country"
+
+#: templates/main/registration_form.html:67
+msgid "Twoja ulubiona druzyna"
+msgstr "Your favourite team"
+
+#: templates/main/registration_form.html:77
+msgid "Zarejestruj nowego uzytkownika"
+msgstr "Register new user"
+
+#: templates/matches/add_images.html:4
+#, python-format
+msgid ""
+" Dodaj zdjecia z meczu pomiedzy %(home_team_name_en)s, a %(away_team_name_en)"
+"s (%(match_date)s) "
+msgstr ""
+" Add photos of match between %(home_team_name_en)s and %(away_team_name_en)s "
+"(%(match_date)s) "
+
+#: templates/matches/add_images.html:12 templates/matches/details.html:29
+#: templates/matches/index.html:73 templates/matches/index.html.py:97
+#: templates/matches/index_with_table.html:78
+#: templates/matches/index_with_table.html:98 templates/modules/menu.html:62
+#: templates/modules/menu.html.py:115 templates/teams/tables.html:10
+#: templates/teams/teams_list.html:49
+msgid "Mecze"
+msgstr "Matches"
+
+#: templates/matches/add_images.html:12 templates/matches/details.html:18
+#: templates/matches/details.html.py:20
+msgid "Mecz"
+msgstr "Match"
+
+#: templates/matches/add_images.html:12
+#: templates/matches/add_images_file.html:12
+#: templates/matches/add_images_file.html:39
+#: templates/matches/add_images_url.html:12 templates/news/add_images.html:12
+#: templates/news/add_images_file.html:12
+msgid "Dodaj zdjecia"
+msgstr "Add photos"
+
+#: templates/matches/add_images.html:22
+#: templates/matches/add_images_file.html:22
+#: templates/matches/add_images_url.html:22
+#: templates/matches/add_videos.html:18 templates/matches/added_images.html:18
+#: templates/matches/added_video.html:18 templates/matches/details.html:47
+msgid "data spotkania"
+msgstr "match date"
+
+#: templates/matches/add_images.html:29 templates/news/add_images.html:29
+msgid ""
+"Obecnie zdjecia mozna przesylac tylko jako linki z serwisow <a href=\"http://"
+"www.flickr.com/\">Flickr</a>, <a href=\"http://www.fotka.pl/\">Fotka</a>, "
+"itp.:"
+msgstr ""
+"Currently you can add images only as links to services like <a href=\"http://"
+"www.flickr.com/\">Flickr</a>, <a href=\"http://www.photobucket.com/"
+"\">PhotoBucket</a>, etc.:"
+
+#: templates/matches/add_images.html:32 templates/news/add_images.html:32
+msgid "Dodaj linki &raquo;"
+msgstr "Add links &raquo;"
+
+#: templates/matches/add_images.html:41
+#: templates/matches/add_images_file.html:44
+#: templates/matches/add_images_url.html:44
+#: templates/matches/add_videos.html:36
+msgid "powrot do strony meczu"
+msgstr "return to match page"
+
+#: templates/matches/add_images_file.html:4
+#, python-format
+msgid ""
+" Wyslij zdjecia z meczu pomiedzy %(home_team_name_en)s, a %"
+"(away_team_name_en)s (%(match_date)s) "
+msgstr ""
+" Send images of match between %(home_team_name_en)s and %(away_team_name_en)"
+"s (%(match_date)s) "
+
+#: templates/matches/add_images_file.html:12
+#: templates/matches/add_images_url.html:12 templates/modules/menu.html:15
+#: templates/news/add_images.html:12 templates/news/add_images_file.html:12
+#: templates/news/details.html:24 templates/news/index.html:26
+#: templates/teams/news.html:12 templates/teams/tables.html:8
+msgid "Wiadomosci"
+msgstr "News"
+
+#: templates/matches/add_images_file.html:32
+#: templates/matches/add_images_url.html:32
+#: templates/news/add_images_file.html:32
+#: templates/news/add_images_url.html:28
+msgid "Dodaj nowe zdjecia"
+msgstr "Add new photos"
+
+#: templates/matches/add_images_file.html:34
+#: templates/matches/add_images_url.html:34
+#: templates/news/add_images_file.html:34
+#: templates/news/add_images_url.html:30
+msgid "Zdjecie"
+msgstr "Photo"
+
+#: templates/matches/add_videos.html:4
+#, python-format
+msgid ""
+" Dodaj filmik z meczu pomiedzy %(home_team_name_en)s, a %(away_team_name_en)"
+"s (%(match_date)s) "
+msgstr ""
+" Add videos of match between %(home_team_name_en)s and %(away_team_name_en)s "
+"(%(match_date)s) "
+
+#: templates/matches/add_videos.html:23 templates/news/add_videos.html:23
+#: templates/partials/right-column.html:4
+msgid "Dodaj nowy film"
+msgstr "Add new video"
+
+#: templates/matches/add_videos.html:24 templates/news/add_1.html:17
+#: templates/news/add_videos.html:24 templates/videos/add_1.html:18
+msgid "Tytul"
+msgstr "Title"
+
+#: templates/matches/add_videos.html:26 templates/news/add_videos.html:26
+msgid "Link"
+msgstr "Link"
+
+#: templates/matches/add_videos.html:28 templates/news/add_videos.html:28
+msgid "Opis"
+msgstr "Description"
+
+#: templates/matches/add_videos.html:32 templates/news/add_videos.html:32
+msgid "Dodaj link"
+msgstr "Add link"
+
+#: templates/matches/added_images.html:4
+msgid "Dziekujemy za dodanie zdjec z tego meczu"
+msgstr "Thank you for adding photos"
+
+#: templates/matches/added_images.html:23
+msgid ""
+"Linki zostaly wyslane do moderacji i pojawia sie na stronie najszybciej jak "
+"to bedzie mozliwe"
+msgstr "Links has been sent for moderation and will be available ASAP"
+
+#: templates/matches/added_images.html:24 templates/news/added_images.html:24
+msgid "dodaj kolejne linki do zdjec"
+msgstr "add more links do images"
+
+#: templates/matches/added_images.html:25
+#: templates/matches/added_video.html:25
+msgid "powrot do strony wynikow"
+msgstr "return to results page"
+
+#: templates/matches/added_video.html:4
+msgid "Dziekujemy za dodanie filmiku z tego meczu"
+msgstr "Thank you for adding videos"
+
+#: templates/matches/added_video.html:23 templates/news/added_video.html:23
+msgid ""
+"Link zostal wyslany do moderacji i pojawi sie na stronie najszybciej jak to "
+"bedzie mozliwe"
+msgstr "Link has been sent for moderation and will be available ASAP"
+
+#: templates/matches/added_video.html:24 templates/news/added_video.html:24
+msgid "dodaj kolejny link do filmu"
+msgstr "add link to another video"
+
+#: templates/matches/details.html:25
+#, python-format
+msgid ""
+"Mecz pilki noznej pomiedzy %(home_team_name_en)s, a %(away_team_name_en)s z "
+"dnia %(match_date)s zakonczyl sie wynikiem %(home_score)s:%(away_score)s. "
+"Dodaj komentarze i analizy do tego spotkania. Obejrzyj zdjecia i filmiki."
+msgstr ""
+"Football match between %(home_team_name_en)s, and %(away_team_name_en)s "
+"played %(match_date)s finished with score %(home_score)s:%(away_score)s. Add "
+"comments to this match, watch images and videos."
+
+#: templates/matches/details.html:56 templates/matches/details.html.py:58
+#: templates/modules/matches/last_matches.html:17
+#: templates/modules/matches/last_matches.html:24
+#: templates/modules/matches/last_matches.html:44
+#: templates/modules/matches/last_matches.html:51
+#: templates/modules/matches/last_matches.html:71
+#: templates/modules/matches/last_matches.html:78
+#: templates/modules/matches/last_matches.html:109
+#: templates/modules/matches/last_matches.html:116
+#: templates/modules/matches/last_matches.html:136
+#: templates/modules/matches/last_matches.html:143
+#: templates/modules/matches/last_matches.html:163
+#: templates/modules/matches/last_matches.html:170
+#: templates/modules/matches/last_team_matches_300.html:17
+#: templates/modules/matches/last_team_matches_300.html:24
+#: templates/modules/matches/last_team_matches_300.html:41
+#: templates/modules/matches/last_team_matches_300.html:48
+#: templates/modules/matches/last_team_matches_300.html:65
+#: templates/modules/matches/last_team_matches_300.html:72
+#: templates/modules/matches/last_team_matches_396.html:17
+#: templates/modules/matches/last_team_matches_396.html:24
+#: templates/modules/matches/last_team_matches_396.html:44
+#: templates/modules/matches/last_team_matches_396.html:51
+#: templates/modules/matches/last_team_matches_396.html:71
+#: templates/modules/matches/last_team_matches_396.html:78
+#: templates/modules/matches/league_table.html:31
+#: templates/modules/matches/league_table.html:64
+#: templates/modules/matches/league_table.html:97
+#: templates/modules/matches/results.html:8
+#: templates/modules/matches/results.html:15 templates/teams/news.html:12
+msgid "Druzyna URL"
+msgstr "team"
+
+#: templates/matches/details.html:78
+msgid "Bramki"
+msgstr "Goals"
+
+#: templates/matches/details.html:109
+msgid "Kartki"
+msgstr "Cards"
+
+#: templates/matches/details.html:118 templates/matches/details.html.py:130
+#: templates/matches/details.html:199
+msgid "Czerwona kartka"
+msgstr "Red card"
+
+#: templates/matches/details.html:121 templates/matches/details.html.py:133
+#: templates/matches/details.html:194
+msgid "Zolta kartka"
+msgstr "Yellow card"
+
+#: templates/matches/details.html:152
+msgid "Sklady"
+msgstr "Players"
+
+#: templates/matches/details.html:162
+msgid "Strzaly"
+msgstr "Shots"
+
+#: templates/matches/details.html:167
+msgid "Strzaly na bramke"
+msgstr "Shots on goal"
+
+#: templates/matches/details.html:172
+msgid "Faule"
+msgstr "Fouls"
+
+#: templates/matches/details.html:177
+msgid "Rogi"
+msgstr "Corners"
+
+#: templates/matches/details.html:182
+msgid "Spalone"
+msgstr "Offsides"
+
+#: templates/matches/details.html:188
+msgid "Posiadanie pilki"
+msgstr "Possession"
+
+#: templates/matches/details.html:204
+msgid "brak statystyk"
+msgstr "no statistics"
+
+#: templates/matches/details.html:246
+msgid "brak skladow"
+msgstr "no players"
+
+#: templates/matches/details.html:296 templates/matches/details_before.html:73
+#: templates/modules/ajax/matches/comments.html:20
+#: templates/news/details.html:108
+msgid "odpowiedz!"
+msgstr "reply!"
+
+#: templates/matches/details.html:330
+msgid "Analizy mozna dodawac tylko do meczow, ktore sie jeszcze nie rozpoczely"
+msgstr "Analyses can be added only to not started matches"
+
+#: templates/matches/details.html:352
+#: templates/matches/details_before.html:137 templates/news/details.html:143
+msgid ""
+"Jezeli posiadasz zdjecia zwiazane z tym spotkaniem i chcialbys je umiescic w "
+"serwisie"
+msgstr ""
+"If you have photos related with this match and you would like to add them"
+
+#: templates/matches/details.html:352 templates/matches/details.html.py:376
+#: templates/matches/details_before.html:137
+#: templates/matches/details_before.html:161
+msgid "mecz URL"
+msgstr "match"
+
+#: templates/matches/details.html:352 templates/matches/details.html.py:376
+#: templates/matches/details_before.html:137
+#: templates/matches/details_before.html:161 templates/news/details.html:143
+#: templates/news/details.html.py:163
+msgid "kliknij tutaj"
+msgstr "click here"
+
+#: templates/matches/details.html:356
+#: templates/matches/details_before.html:141
+msgid "Aby dodac zdjecia musisz sie zalogowac. Jesli nie masz jeszcze konta"
+msgstr "To add photos you must be logged in. If don't have account yet"
+
+#: templates/matches/details.html:376
+#: templates/matches/details_before.html:161
+msgid "Jezeli chcialbys umiescic filmy zwiazane z tym spotkaniem w serwisie"
+msgstr "To add videos related with this match"
+
+#: templates/matches/details.html:380
+#: templates/matches/details_before.html:165
+msgid "Aby dodac filmy musisz sie zalogowac. Jesli nie masz jeszcze konta"
+msgstr "To add videos you must be logged in. If don't have account yet"
+
+#: templates/matches/details_before.html:5
+#, python-format
+msgid ""
+"Mecz pilki noznej pomiedzy %(home_team_name_en)s, a %(away_team_name_en)s z "
+"dnia %(match_date)s. Sprawdz wyniki na zywo. Dodaj komentarze i analizy do "
+"tego spotkania. Obejrzyj zdjecia i filmiki."
+msgstr ""
+"Match between %(home_team_name_en)s and %(away_team_name_en)s begins %"
+"(match_date)s Check live scores. Add comments and analyses. Watch photos and "
+"videos."
+
+#: templates/matches/details_before.html:29 templates/teams/tables.html:139
+msgid "Tabele"
+msgstr "Tables"
+
+#: templates/matches/details_before.html:109 templates/matches/index.html:298
+#: templates/matches/index_with_table.html:293
+msgid "analiza"
+msgstr "analysis"
+
+#: templates/matches/index.html:54 templates/matches/index_with_table.html:59
+msgid "Wyniki meczow na zywo"
+msgstr "Live scores"
+
+#: templates/matches/index.html:61 templates/matches/index_with_table.html:66
+#: templates/news/index.html:11
+msgid "Wszystkie Ligi"
+msgstr "All Leagues"
+
+#: templates/matches/index.html:102
+#: templates/matches/index_with_table.html:102
+msgid "pokaz mecze"
+msgstr "display"
+
+#: templates/matches/index.html:103
+#: templates/matches/index_with_table.html:103
+msgid "trwajace url"
+msgstr "started"
+
+#: templates/matches/index.html:103
+#: templates/matches/index_with_table.html:103
+msgid "trwajace"
+msgstr "started"
+
+#: templates/matches/index.html:104
+#: templates/matches/index_with_table.html:104
+msgid "zakonczone url"
+msgstr "finished"
+
+#: templates/matches/index.html:105
+#: templates/matches/index_with_table.html:105
+msgid "nadchodzace url"
+msgstr "upcoming"
+
+#: templates/matches/index.html:118
+#: templates/matches/index_with_table.html:117
+msgid "Typuj Button"
+msgstr "Pick"
+
+#: templates/matches/index.html:122
+#: templates/matches/index_with_table.html:121
+msgid "brak spotkan"
+msgstr "no matches"
+
+#: templates/matches/index.html:129
+msgid ""
+"W dniu dzisiejszym nie ma zadnych spotkan. Ponizsza lista przedstawia mecze "
+"na najblizsze dni."
+msgstr ""
+"There are no matches today. List below shows forthcoming matches in next "
+"days."
+
+#: templates/matches/index.html:130
+#: templates/matches/index_with_table.html:129
+msgid ""
+"Nie zapomnij powrocic do meczy z dni poprzednich, aby sprawdzic wyniki i "
+"obejrzec video relacje."
+msgstr ""
+"Don't forget to return to previous days to check scores and watch or add "
+"videos"
+
+#: templates/matches/index.html:321
+msgid ""
+"Kazdy zarejestrowany uzytkownik moze typowac dowolny z dostepnych meczow."
+msgstr "Every registered user can add his predictions on any listed match"
+
+#: templates/matches/index.html:322
+#: templates/matches/index_with_table.html:316
+msgid "Wlacz sie do rywalizacji!"
+msgstr "Join the competition"
+
+#: templates/matches/index.html:327
+#: templates/matches/index_with_table.html:321
+msgid ""
+"Nie zapomnij powrocic meczy z dni poprzednich, aby sprawdzic wyniki i "
+"obejrzec video relacje."
+msgstr ""
+"Don't forget to return to previous days to check scores and watch or add "
+"videos"
+
+#: templates/matches/index.html:331
+msgid "Powyzsza lista moze nie zawierac wszystkich najblizszych meczy"
+msgstr "List above may not contain all forthcoming matches"
+
+#: templates/matches/index.html:332
+msgid ""
+"Wybierz konkretny dzien z gornego menu, aby miec pewnosc, ze ogladasz "
+"wszystkie spotkania"
+msgstr "Pick date from menu to make you're watching all matches"
+
+#: templates/matches/index_with_table.html:128
+msgid ""
+"W dniu dzisiejszym nie ma zadnych spotkan. Ponizsza lista przedstawia mecze "
+"na najblizsze dni"
+msgstr ""
+"There are no matches today. List below shows forthcoming matches in next "
+"days."
+
+#: templates/matches/index_with_table.html:315
+msgid ""
+"Kazdy zarejestrowany uzytkownik moze typowac dowolny z dostepnych meczow"
+msgstr "Every registered user can add his predictions to any listed match"
+
+#: templates/messages/details.html:3 templates/messages/details.html.py:6
+#: templates/messages/list.html:3 templates/messages/list.html.py:6
+#: templates/messages/list.html:31
+msgid "Lista wiadomosci"
+msgstr "Messages list"
+
+#: templates/messages/details.html:13 templates/messages/list.html:7
+#: templates/messages/list.html.py:17
+msgid "Skrzynka odbiorcza"
+msgstr "Inbox"
+
+#: templates/messages/details.html:14 templates/messages/list.html:8
+#: templates/messages/list.html.py:18
+msgid "Skrzynka nadawcza"
+msgstr "Outbox"
+
+#: templates/messages/details.html:16 templates/messages/list.html:10
+#: templates/messages/list.html.py:20
+msgid "Kosz"
+msgstr "Trash"
+
+#: templates/messages/details.html:30
+msgid "Nadawca"
+msgstr "Sender"
+
+#: templates/messages/details.html:31
+msgid "Temat"
+msgstr "Subject"
+
+#: templates/messages/details.html:35
+msgid "Odpowiedz"
+msgstr "Reply"
+
+#: templates/messages/details.html:37
+msgid "Oznacz jako niespam"
+msgstr "Mark as not spam"
+
+#: templates/messages/details.html:39
+msgid "Oznacz jako spam"
+msgstr "Mark as spam"
+
+#: templates/messages/details.html:43
+msgid "Oznacz jako nieusunieta"
+msgstr "Mark as not deleted"
+
+#: templates/messages/details.html:45
+msgid "Usun"
+msgstr "Delete"
+
+#: templates/messages/list.html:6
+msgid "PM URL"
+msgstr "messages"
+
+#: templates/messages/list.html:9
+msgid "Spam"
+msgstr "Spam"
+
+#: templates/messages/list.html:57
+msgid "Przeczytana"
+msgstr "Readed"
+
+#: templates/messages/list.html:61
+msgid "Nieprzeczytana"
+msgstr "Unreaded"
+
+#: templates/modules/menu.html:20 templates/modules/menu.html.py:21
+#: templates/modules/menu.html:22 templates/modules/menu.html.py:24
+#: templates/modules/menu.html:27 templates/modules/menu.html.py:30
+#: templates/modules/menu.html:33 templates/news/index.html:26
+#: templates/news/index.html.py:28 templates/news/index.html:30
+#: templates/news/index.html.py:34 templates/news/index.html:53
+#: templates/news/index.html.py:54 templates/news/index.html:55
+#: templates/news/index.html.py:56 templates/news/index.html:57
+#: templates/news/index.html.py:58 templates/news/index.html:60
+#: templates/news/index.html.py:61 templates/news/index.html:62
+msgid "Wiadomosci URL"
+msgstr "news"
+
+#: templates/modules/menu.html:123 templates/modules/menu.html.py:126
+#: templates/modules/menu.html:127 templates/modules/menu.html.py:128
+#: templates/modules/menu.html:129 templates/modules/menu.html.py:130
+#: templates/modules/menu.html:131 templates/modules/menu.html.py:132
+#: templates/modules/menu.html:133 templates/modules/menu.html.py:134
+#: templates/modules/menu.html:137
+msgid "Ranking URL"
+msgstr "predictions"
+
+#: templates/modules/menu.html:123 templates/modules/menu.html.py:126
+#: templates/modules/menu.html:127 templates/modules/menu.html.py:128
+#: templates/modules/menu.html:129 templates/modules/menu.html.py:130
+#: templates/modules/menu.html:131 templates/modules/menu.html.py:132
+#: templates/modules/menu.html:133 templates/modules/menu.html.py:134
+#: templates/modules/menu.html:137
+msgid "Ranking"
+msgstr "Rankings"
+
+#: templates/modules/menu.html:127 templates/news/index.html:61
+msgid "Liga Mistrzow"
+msgstr "Champions League"
+
+#: templates/modules/menu.html:127
+msgid "Liga Mistrzow short"
+msgstr "Champions League"
+
+#: templates/modules/menu.html:133
+msgid "Orange"
+msgstr "1. Liga"
+
+#: templates/modules/menu.html:149 templates/modules/menu.html.py:165
+#: templates/modules/videos.html:16 templates/modules/users/mini_box.html:12
+#: templates/news/details.html:40 templates/partials/user_box.html:11
+#: templates/videos/details.html:23 templates/videos/index.html:39
+msgid "Aktywnosc URL"
+msgstr "activity"
+
+#: templates/modules/menu.html:150 templates/modules/menu.html.py:151
+#: templates/modules/menu.html:166 templates/modules/menu.html.py:167
+#: templates/modules/users/mini_box.html:13
+#: templates/modules/users/mini_box.html:14
+msgid "Klasyfikacje URL"
+msgstr "classification"
+
+#: templates/modules/menu.html:150 templates/modules/menu.html.py:166
+#: templates/modules/users/mini_box.html:13
+msgid "Generalna URL"
+msgstr "general"
+
+#: templates/modules/menu.html:150 templates/modules/menu.html.py:166
+#: templates/partials/right-column.html:15
+msgid "Klasyfikacja generalna"
+msgstr "Overall standing"
+
+#: templates/modules/menu.html:151 templates/modules/menu.html.py:167
+#: templates/modules/users/mini_box.html:14
+msgid "Miesieczna URL"
+msgstr "month"
+
+#: templates/modules/menu.html:151 templates/modules/menu.html.py:167
+msgid "Klasyfikacja miesieczna"
+msgstr "General classification"
+
+#: templates/modules/video_categories.html:3
+msgid "Kategorie"
+msgstr "Categories"
+
+#: templates/modules/video_categories.html:6
+msgid "kategoria"
+msgstr "category"
+
+#: templates/modules/videos.html:3 templates/videos/index.html:26
+msgid "film"
+msgstr "video"
+
+#: templates/modules/who_online.html:4
+msgid "zarejestrowani + niezarejestrowani"
+msgstr "registered + unregistered"
+
+#: templates/modules/who_online.html:4
+msgid "Dostepni"
+msgstr "Online"
+
+#: templates/modules/matches/last_matches.html:6
+#: templates/modules/matches/last_matches.html:7
+#: templates/modules/matches/last_matches.html:8
+#: templates/modules/matches/last_matches.html:98
+#: templates/modules/matches/last_matches.html:99
+#: templates/modules/matches/last_matches.html:100
+#: templates/modules/matches/last_team_matches_300.html:6
+#: templates/modules/matches/last_team_matches_300.html:7
+#: templates/modules/matches/last_team_matches_300.html:8
+#: templates/modules/matches/last_team_matches_396.html:6
+#: templates/modules/matches/last_team_matches_396.html:7
+#: templates/modules/matches/last_team_matches_396.html:8
+#: templates/modules/matches/league_table.html:7
+#: templates/teams/tables.html:45 templates/teams/tables.html.py:154
+#: templates/teams/teams_list.html:32
+msgid "Tabela ligowa"
+msgstr "League Table"
+
+#: templates/modules/matches/last_matches.html:6
+#: templates/modules/matches/last_matches.html:98
+#: templates/modules/matches/last_team_matches_300.html:6
+#: templates/modules/matches/last_team_matches_396.html:6
+#, python-format
+msgid "Ostatnie %(limit)s"
+msgstr "Last %(limit)s"
+
+#: templates/modules/matches/last_matches.html:7
+#: templates/modules/matches/last_matches.html:99
+#: templates/modules/matches/last_team_matches_300.html:7
+#: templates/modules/matches/last_team_matches_396.html:7
+#, python-format
+msgid "Ostatnie %(limit)s (dom)"
+msgstr "Last %(limit)s (home)"
+
+#: templates/modules/matches/last_matches.html:8
+#: templates/modules/matches/last_matches.html:100
+#: templates/modules/matches/last_team_matches_300.html:8
+#: templates/modules/matches/last_team_matches_396.html:8
+#, python-format
+msgid "Ostatnie %(limit)s (wyjazd)"
+msgstr "Last %(limit)s (away)"
+
+#: templates/modules/matches/league_table.html:8
+#: templates/teams/tables.html:58 templates/teams/tables.html.py:167
+msgid "Tabela (dom)"
+msgstr "Table (home)"
+
+#: templates/modules/matches/league_table.html:9
+#: templates/teams/tables.html:71 templates/teams/tables.html.py:180
+msgid "Tabela (wyjazd)"
+msgstr "Table (away)"
+
+#: templates/modules/matches/league_table.html:18
+#: templates/modules/matches/league_table.html:32
+#: templates/modules/matches/league_table.html:51
+#: templates/modules/matches/league_table.html:65
+#: templates/modules/matches/league_table.html:84
+#: templates/modules/matches/league_table.html:98
+#: templates/teams/tables.html:190 templates/teams/tables.html.py:223
+#: templates/teams/tables.html:256
+msgid "Rozegranych spotkan"
+msgstr "Games played"
+
+#: templates/modules/matches/league_table.html:19
+#: templates/modules/matches/league_table.html:33
+#: templates/modules/matches/league_table.html:52
+#: templates/modules/matches/league_table.html:66
+#: templates/modules/matches/league_table.html:85
+#: templates/modules/matches/league_table.html:99
+#: templates/teams/tables.html:191 templates/teams/tables.html.py:224
+#: templates/teams/tables.html:257
+msgid "Punkty"
+msgstr "Points"
+
+#: templates/modules/matches/league_table.html:20
+#: templates/modules/matches/league_table.html:34
+#: templates/modules/matches/league_table.html:53
+#: templates/modules/matches/league_table.html:67
+#: templates/modules/matches/league_table.html:86
+#: templates/modules/matches/league_table.html:100
+#: templates/teams/tables.html:192 templates/teams/tables.html.py:225
+#: templates/teams/tables.html:258
+msgid "Wygrane"
+msgstr "Won"
+
+#: templates/modules/matches/league_table.html:21
+#: templates/modules/matches/league_table.html:35
+#: templates/modules/matches/league_table.html:54
+#: templates/modules/matches/league_table.html:68
+#: templates/modules/matches/league_table.html:87
+#: templates/modules/matches/league_table.html:101
+#: templates/teams/tables.html:193 templates/teams/tables.html.py:226
+#: templates/teams/tables.html:259
+msgid "Remisy"
+msgstr "Draws"
+
+#: templates/modules/matches/league_table.html:22
+#: templates/modules/matches/league_table.html:36
+#: templates/modules/matches/league_table.html:55
+#: templates/modules/matches/league_table.html:69
+#: templates/modules/matches/league_table.html:88
+#: templates/modules/matches/league_table.html:102
+#: templates/teams/tables.html:194 templates/teams/tables.html.py:227
+#: templates/teams/tables.html:260
+msgid "Przegrane"
+msgstr "Lost"
+
+#: templates/modules/matches/league_table.html:23
+#: templates/modules/matches/league_table.html:37
+#: templates/modules/matches/league_table.html:56
+#: templates/modules/matches/league_table.html:70
+#: templates/modules/matches/league_table.html:89
+#: templates/modules/matches/league_table.html:103
+#: templates/teams/tables.html:195 templates/teams/tables.html.py:228
+#: templates/teams/tables.html:261
+msgid "Strzelone bramki"
+msgstr "Goals scored"
+
+#: templates/modules/matches/league_table.html:24
+#: templates/modules/matches/league_table.html:38
+#: templates/modules/matches/league_table.html:57
+#: templates/modules/matches/league_table.html:71
+#: templates/modules/matches/league_table.html:90
+#: templates/modules/matches/league_table.html:104
+#: templates/teams/tables.html:196 templates/teams/tables.html.py:229
+#: templates/teams/tables.html:262
+msgid "Stracone bramki"
+msgstr "Goals advanced"
+
+#: templates/modules/news/most_popular_news.html:7
+#: templates/news/details.html:46 templates/videos/details.html:26
+msgid "razy"
+msgstr "times"
+
+#: templates/modules/news/most_popular_news.html:7
+#: templates/modules/news/related_news.html:7 templates/videos/details.html:20
+msgid "przez"
+msgstr "by"
+
+#: templates/modules/news/most_popular_news.html:7
+#: templates/modules/news/related_news.html:7 templates/news/details.html:46
+msgid "przeczytano"
+msgstr "readed"
+
+#: templates/modules/news/most_popular_news.html:7
+#: templates/modules/news/related_news.html:7
+msgid "skomentowano"
+msgstr "commented"
+
+#: templates/modules/news/most_popular_news.html:13
+#: templates/modules/news/related_news.html:21 templates/teams/news.html:60
+msgid "add-news"
+msgstr "add"
+
+#: templates/modules/news/most_popular_news.html:13
+#: templates/modules/news/related_news.html:21
+msgid "Dodaj pierwszy news"
+msgstr "Add first news"
+
+#: templates/modules/news/related_news.html:12
+msgid "wiesz o czyms czego tutaj nie ma ?"
+msgstr "got news not listed here ?"
+
+#: templates/modules/news/related_news.html:12 templates/news/index.html:113
+msgid "add news URL"
+msgstr "add"
+
+#: templates/modules/news/related_news.html:12
+msgid "dodaj to"
+msgstr "add it"
+
+#: templates/modules/news/related_news.html:15
+#: templates/modules/supp_league/supp_league.html:12
+#: templates/modules/users/finest_supporters.html:18
+#: templates/modules/users/finest_supporters_league.html:23
+#: templates/modules/users/finest_supporters_team.html:20
+#: templates/modules/users/top_users.html:18 templates/news/index.html:106
+#: templates/teams/news.html:47
+msgid "wiecej"
+msgstr "more"
+
+#: templates/modules/users/finest_supporters_league.html:32
+#: templates/modules/users/finest_supporters_team.html:29
+msgid "zostan kibicem"
+msgstr "become supporter"
+
+#: templates/modules/users/mini_box.html:11 templates/partials/user_box.html:8
+msgid "liczba punktow"
+msgstr "points count"
+
+#: templates/modules/users/mini_box.html:12
+msgid "aktywnosc"
+msgstr "activity"
+
+#: templates/modules/users/mini_box.html:13
+msgid "klasyfikacje generalne"
+msgstr "overall standings"
+
+#: templates/modules/users/mini_box.html:14
+msgid "klasyfikacje miesieczne"
+msgstr "this month standings"
+
+#: templates/news/add_1.html:4
+msgid "Dodaj nowa informacje lub artykul (Krok 1)"
+msgstr "Add news or article (Step 1)"
+
+#: templates/news/add_1.html:7 templates/news/add_1.html.py:14
+msgid "Dodajesz nowa wiadomosc - krok 1/3"
+msgstr "Adding news - step 1/3"
+
+#: templates/news/add_1.html:18 templates/videos/add_1.html:19
+msgid "Tytul nie moze byc krotszy, niz 5 znakow"
+msgstr "Title can contain min of 5 chars"
+
+#: templates/news/add_1.html:20
+msgid "Tresc"
+msgstr "Content"
+
+#: templates/news/add_1.html:21
+msgid "Tresc nie moze byc krotsza, niz 30 znakow"
+msgstr "Content can contain min of 30 chars"
+
+#: templates/news/add_1.html:23 templates/news/details.html:67
+msgid "Zrodlo"
+msgstr "Source"
+
+#: templates/news/add_1.html:24
+msgid "Podaj zrodlo"
+msgstr "Enter the source"
+
+#: templates/news/add_1.html:24
+msgid "(np. wlasne lub adres strony internetowej)"
+msgstr "(ie. 'own' or website address)"
+
+#: templates/news/add_1.html:27
+msgid "Zwiazany z liga"
+msgstr "Rel. with league"
+
+#: templates/news/add_1.html:35 templates/videos/add_1.html:37
+msgid "Podglad"
+msgstr "Preview"
+
+#: templates/news/add_1.html:41
+msgid ""
+"W tresci mozesz uzywac <a href=\"http://pl.wikipedia.org/wiki/BBCode\" "
+"target=\"_blank\">formatowania BBCODE</a>"
+msgstr ""
+"You can use <a href=\"http://en.wikipedia.org/wiki/BBCode\" target=\"_blank"
+"\">BBCODE formatting</a>"
+
+#: templates/news/add_1.html:42
+msgid "Przyklady"
+msgstr "Examples"
+
+#: templates/news/add_1.html:44
+msgid "pogrubienie"
+msgstr "bold"
+
+#: templates/news/add_1.html:45
+msgid "kursywa"
+msgstr "italic"
+
+#: templates/news/add_1.html:46
+msgid "podkreslenie"
+msgstr "underline"
+
+#: templates/news/add_1.html:47 templates/news/add_1.html.py:48
+#: templates/news/add_1.html:49
+msgid "http://www.24gole.pl"
+msgstr "http://www.24goals.com"
+
+#: templates/news/add_1.html:54
+msgid ""
+"W kolejnym kroku mozesz sprawdzic jak bedzie wygladala tresc, ktora wpisales/"
+"as w tym formularzu"
+msgstr ""
+"On the next step you can preview content you've added. Spend few whiles to "
+"make it look as good as possible."
+
+#: templates/news/add_1.html:59 templates/news/add_2.html:47
+#: templates/news/add_3.html:39
+msgid "Strona dodawania nowej wiadomosci"
+msgstr "Adding news page"
+
+#: templates/news/add_1.html:61 templates/news/add_2.html:49
+#: templates/news/add_3.html:41 templates/videos/add_1.html:56
+#: templates/videos/add_2.html:46 templates/videos/added.html:26
+msgid ""
+"Tylko zarejestrowani uzytkownicy moga umieszczac nowe tresci w serwisie.<br /"
+">\n"
+"\t\t\tJezeli masz juz konto to wystarczy, ze sie zalogujesz.<br />\n"
+"\t\t\tMozesz sie rowniez w kazdej chwili <a href=\"/rejestracja/\">zalozyc "
+"nowe konto</a> - zajmie Ci to mniej niz 30 sekund!"
+msgstr ""
+"Only registered users can add new content to the site.<br />\n"
+"\t\tIf you have account already just login.<br />\n"
+"You can also in any moment  <a href=\"/register/\">create new account</a> - "
+"it will take less than 30 seconds!"
+
+#: templates/news/add_2.html:4
+msgid "Dodaj nowa informacje lub artykul (Krok 2)"
+msgstr "Add news or article (Step 2)"
+
+#: templates/news/add_2.html:7 templates/news/add_2.html.py:14
+msgid "Dodajesz nowa wiadomosc - krok 2/3"
+msgstr "Adding news - step 2/3"
+
+#: templates/news/add_2.html:35 templates/videos/add_2.html:32
+msgid "Powrot do edycji"
+msgstr "Back to edit"
+
+#: templates/news/add_2.html:36
+msgid "Dodaj news button"
+msgstr "ADD"
+
+#: templates/news/add_2.html:42
+msgid ""
+"Jezeli news nie wyglada jeszcze tak jak bys chcial/a mozesz powrocic do jego "
+"edycji"
+msgstr "If it doesn't look perfect for you please return to editing mode"
+
+#: templates/news/add_2.html:42 templates/videos/add_2.html:39
+msgid "Uwazasz, ze wszystko jest ok ? Kliknij DODAJ"
+msgstr "Everytings ok ? Click ADD"
+
+#: templates/news/add_3.html:4
+msgid "Dodaj nowa informacje lub artykul (Krok 3/3)"
+msgstr "Add news or article (Step 3/3)"
+
+#: templates/news/add_3.html:7 templates/news/add_3.html.py:14
+msgid "Dodajesz nowa wiadomosc - krok 3/3"
+msgstr "Adding news - step 3/3"
+
+#: templates/news/add_3.html:17
+msgid ""
+"Gratulacje! Nowa wiadomosc zostala dodana i bedzie prezentowana na stronie "
+"po zatwierdzeniu przez moderatora"
+msgstr ""
+"Congratulations! Your news has been added and become available on the site "
+"as soon as moderator confirms it."
+
+#: templates/news/add_3.html:17 templates/videos/added.html:18
+msgid "Zostaniesz o tym poinformowany poprzez e-mail"
+msgstr "You will be informed by email"
+
+#: templates/news/add_images.html:4
+msgid "Dodaj zdjecia do wiadomosci o tytule"
+msgstr "Add photos to news titled"
+
+#: templates/news/add_images.html:22 templates/news/add_images_file.html:22
+#: templates/news/add_images_url.html:18 templates/news/add_videos.html:18
+#: templates/news/added_images.html:18 templates/news/added_video.html:18
+msgid "data dodania"
+msgstr "added"
+
+#: templates/news/add_images.html:41 templates/news/add_images_file.html:44
+#: templates/news/add_images_url.html:40 templates/news/add_videos.html:36
+#: templates/news/added.html:14 templates/news/added_images.html:25
+#: templates/news/added_video.html:25
+msgid "powrot do listy wiadomosci"
+msgstr "return to news list"
+
+#: templates/news/add_images_file.html:4
+msgid "Wyslij zdjecia do wiadomosci o tytule"
+msgstr "Send photos to news titled"
+
+#: templates/news/add_images_url.html:4
+msgid "Dodaj odnosniki do zdjec do wiadomosci o tytule"
+msgstr "Add links to photos to news titled"
+
+#: templates/news/add_videos.html:4
+msgid "Dodaj filmik do wiadomosci o tytule"
+msgstr "Add video to news titled"
+
+#: templates/news/added.html:13
+msgid ""
+"Artykul zostal wyslany do moderacji i pojawi sie na stronie (o ile bedzie "
+"poprawny) najszybciej jak to bedzie mozliwe."
+msgstr ""
+"News has been sent for moderation and become available on the site as soon "
+"as possible."
+
+#: templates/news/added_images.html:4
+msgid "Dziekujemy za dodanie zdjecia do tej wiadomosci"
+msgstr "Thank you for adding photo to this news"
+
+#: templates/news/added_images.html:23
+msgid ""
+"Linki zostaly wyslane do moderacji i pojawia sie na stronie najszybciej jak "
+"to bedzie mozliwe."
+msgstr ""
+"Links has been sent for moderation and become available as soon as possible."
+
+#: templates/news/added_video.html:4
+msgid "Dziekujemy za dodanie materialu video do tej wiadomosci"
+msgstr "Thank you for adding video to this news"
+
+#: templates/news/details.html:16
+msgid "Wiadomosc"
+msgstr "News"
+
+#: templates/news/details.html:163
+msgid "Jezeli chcialbys umiescic filmy zwiazane z ta wiadomoscia w serwisie"
+msgstr "If you would like to add videos related to this news"
+
+#: templates/news/details.html:167
+msgid ""
+"Aby dodac filmy zwiazane z ta wiadomoscia musisz sie zalogowac. Jesli nie "
+"masz jeszcze konta"
+msgstr ""
+"To add videos related to this news you have to be logged in. If you still "
+"don't own account"
+
+#: templates/news/index.html:4 templates/teams/news.html:4
+msgid "Najnowsze wiadomosci, wydarzenia, informacje"
+msgstr "Latest news, events, informations"
+
+#: templates/news/index.html:52
+msgid "newsy z ligi"
+msgstr "news related to league"
+
+#: templates/news/index.html:53
+msgid "premiership"
+msgstr "premiership"
+
+#: templates/news/index.html:53 templates/news/index.html.py:54
+#: templates/news/index.html:55 templates/news/index.html.py:56
+#: templates/news/index.html:59 templates/news/index.html.py:60
+#: templates/news/index.html:61 templates/news/index.html.py:62
+msgid "Tylko wiadomosci i artykuly z ligi"
+msgstr "Only news and articles related to league"
+
+#: templates/news/index.html:53
+msgid "Premiership"
+msgstr "Premiership"
+
+#: templates/news/index.html:54
+msgid "ligue-1"
+msgstr "ligue-1"
+
+#: templates/news/index.html:54
+msgid "Ligue 1"
+msgstr "Ligue 1"
+
+#: templates/news/index.html:55
+msgid "primera-division"
+msgstr "primera-division"
+
+#: templates/news/index.html:55
+msgid "Primera Division"
+msgstr "Primera Division"
+
+#: templates/news/index.html:56
+msgid "bundesliga"
+msgstr "bundesliga"
+
+#: templates/news/index.html:56
+msgid "Budesliga"
+msgstr "Bundesliga"
+
+#: templates/news/index.html:57
+msgid "orange-ekstraklasa"
+msgstr "polish-ekstraklasa"
+
+#: templates/news/index.html:58
+msgid "polish-ekstraklasa"
+msgstr "polish-ekstraklasa"
+
+#: templates/news/index.html:59
+msgid "Orange Ekstraklasa"
+msgstr "Polish Ekstraklasa"
+
+#: templates/news/index.html:60
+msgid "serie-a"
+msgstr "serie-a"
+
+#: templates/news/index.html:60
+msgid "Serie A"
+msgstr "Serie A"
+
+#: templates/news/index.html:61 templates/news/index.html.py:62
+msgid "europa"
+msgstr "europe"
+
+#: templates/news/index.html:61
+msgid "liga-mistrzow"
+msgstr "champions-league"
+
+#: templates/news/index.html:61
+msgid "champions-league"
+msgstr "liga-mistrzow"
+
+#: templates/news/index.html:62
+msgid "puchar-uefa"
+msgstr "uefa-cup"
+
+#: templates/news/index.html:62
+msgid "uefa-cup"
+msgstr "puchar-uefa"
+
+#: templates/news/index.html:62
+msgid "Puchar UEFA"
+msgstr "UEFA Cup"
+
+#: templates/news/index.html:66 templates/teams/details.html:44
+#: templates/teams/teams_list.html:59
+msgid "Najnowsze wiadomosci"
+msgstr "Latest news"
+
+#: templates/news/index.html:70 templates/videos/index.html:14
+msgid "Szukaj"
+msgstr "Search"
+
+#: templates/news/index.html:72 templates/videos/index.html:16
+msgid "Znajdz"
+msgstr "Find"
+
+#: templates/news/index.html:75 templates/videos/index.html:19
+msgid "Znaleziono"
+msgstr "Found"
+
+#: templates/news/index.html:75
+msgid "artykulow"
+msgstr "articles"
+
+#: templates/news/index.html:106
+msgid "czytaj dalej"
+msgstr "read more"
+
+#: templates/news/index.html:113 templates/teams/news.html:51
+msgid "Brak wiadomosci"
+msgstr "No news"
+
+#: templates/news/index.html:113 templates/videos/index.html:47
+msgid "Badz pierwszy"
+msgstr "Be quick and add something"
+
+#: templates/newsletter/add.html:9
+msgid "Podaj adres email i zapisz do newslettera"
+msgstr "Enter your email address and sign up to newsletter"
+
+#: templates/newsletter/add.html:25
+msgid ""
+"Jezeli chcesz byc informowany o nowosciach na stronie podaj swoj adres e-"
+"mail na ktory bedziemy wysylac informacje (<i>nie czesciej niz raz w "
+"tygodniu</i>)"
+msgstr ""
+"To get informed on news and new features please give us your email address. "
+"We send our newsletter not more often than once a week. We don't sale our "
+"email databases!"
+
+#: templates/partials/logout_box.html:5
+msgid "Wyloguj"
+msgstr "Logout"
+
+#: templates/partials/paginator.html:6 templates/partials/paginator.html:10
+#: templates/partials/paginator.html:19 templates/partials/paginator.html:26
+#: templates/partials/paginator.html:30
+msgid "strona-"
+msgstr "page-"
+
+#: templates/partials/paginator.html:6
+msgid "Poprzednia strona"
+msgstr "Previous page"
+
+#: templates/partials/paginator.html:6
+msgid "Poprzednie"
+msgstr "Previous"
+
+#: templates/partials/paginator.html:17
+msgid "Biezaca strona"
+msgstr "Current page"
+
+#: templates/partials/paginator.html:19
+msgid "Strona"
+msgstr "Page"
+
+#: templates/partials/paginator.html:30
+msgid "Nastepne"
+msgstr "Next"
+
+#: templates/partials/right-column.html:3
+msgid "add url"
+msgstr "add"
+
+#: templates/partials/right-column.html:3
+msgid "Dodaj nowy artykul"
+msgstr "Add new article"
+
+#: templates/partials/right-column.html:11
+msgid "Najlepsi w tym miesiacu"
+msgstr "Best this month"
+
+#: templates/partials/user_box.html:10
+msgid "edycja danych"
+msgstr "edit details"
+
+#: templates/partials/user_box.html:11
+msgid "moja aktywnosc"
+msgstr "my activity"
+
+#: templates/partials/user_box.html:17 templates/teams/news.html:67
+msgid "Zarejestruj sie"
+msgstr "Register"
+
+#: templates/picks/index.html:8
+msgid "Liga Typerow"
+msgstr "Predictions League"
+
+#: templates/picks/index.html:8
+msgid "Typowanie wynikow meczow"
+msgstr "Predict scores"
+
+#: templates/picks/index.html:22
+msgid "Najlepiej typujacy"
+msgstr "Finest pickers"
+
+#: templates/picks/index.html:29 templates/picks/index.html.py:36
+#: templates/picks/index.html:53 templates/picks/index.html.py:60
+msgid "Tydzien"
+msgstr "Week"
+
+#: templates/picks/index.html:46
+msgid "Klasyfikacja typerow"
+msgstr "Pickers classification"
+
+#: templates/picks/index.html:66
+msgid "pokaz wg. miesiaca"
+msgstr "show by month"
+
+#: templates/picks/index.html:67
+msgid "sierpien"
+msgstr "august"
+
+#: templates/picks/index.html:68
+msgid "wrzesien"
+msgstr "september"
+
+#: templates/picks/index.html:69
+msgid "pazdziernik"
+msgstr "october"
+
+#: templates/picks/index.html:70
+msgid "listopad"
+msgstr "november"
+
+#: templates/picks/index.html:71
+msgid "grudzien"
+msgstr "december"
+
+#: templates/picks/index.html:72
+msgid "styczen"
+msgstr "january"
+
+#: templates/picks/index.html:73
+msgid "luty"
+msgstr "february"
+
+#: templates/picks/index.html:74
+msgid "marzec"
+msgstr "march"
+
+#: templates/picks/index.html:78
+msgid "pokaz wg. tygodnia"
+msgstr "show by week"
+
+#: templates/picks/index.html:84
+msgid "pokaz"
+msgstr "show"
+
+#: templates/teams/details.html:14 templates/teams/teams_list.html:13
+msgid "Wyniki, terminarze, wiadomosci"
+msgstr "Results, fixtures, news"
+
+#: templates/teams/details.html:18
+msgid "Najnowsze wiadomosci o druzynie"
+msgstr "Latest team news"
+
+#: templates/teams/details.html:34
+msgid "Ostatnie wyniki"
+msgstr "Latest results"
+
+#: templates/teams/details.html:38
+msgid "Na zywo / Terminarz"
+msgstr "Live scores / Fixtures"
+
+#: templates/teams/details.html:62
+msgid "Najlepsi kibice zespolu"
+msgstr "Finest supporters"
+
+#: templates/teams/leagues_list.html:20
+msgid "Lista lig"
+msgstr "Leagues list"
+
+#: templates/teams/news.html:12 templates/teams/teams_list.html:25
+msgid "Druzyny"
+msgstr "Teams"
+
+#: templates/teams/news.html:19
+msgid "Wiadomosci zwiazane z"
+msgstr "News related with"
+
+#: templates/teams/news.html:57
+msgid ""
+"Jako zarejestrowany uzytkownik serwisu 24gole.pl masz mozliwosc dodawania "
+"nowych wiadomosci! <br />\n"
+"\t\t\tJezeli posiadasz informacje, ktora jeszcze nie pojawila sie w serwisie "
+"i chcialbys sie nia podzielic z innymi uzytkownikami strony to mozesz to "
+"zrobic w kazdej chwili..."
+msgstr ""
+"As registered 24goals user you're able to write news! <br />\n"
+"\t\t\tIf you have information that didn't appear here before and you want to "
+"share it with other 24goals users you can add it anytime"
+
+#: templates/teams/news.html:60
+msgid "Dodaj nowa wiadomosc"
+msgstr "Add news"
+
+#: templates/teams/news.html:64
+msgid ""
+"Kazdy zarejestrowany uzytkownik serwisu 24gole.pl ma mozliwosc dodawania "
+"nowych wiadomosci! <br />\n"
+"\t\t\tJezeli posiadasz informacje, ktora jeszcze nie pojawila sie w serwisie "
+"i chcialbys sie nia podzielic z innymi uzytkownikami strony to mozesz to "
+"zrobic w kazdej chwili..."
+msgstr ""
+"As registered 24goals user you're able to write news! <br />\n"
+"\t\t\tIf you have information that didn't appear here before and you want to "
+"share it with other 24goals users you can add it anytime"
+
+#: templates/teams/tables.html:15
+msgid "Typowanie"
+msgstr "Rankings"
+
+#: templates/teams/tables.html:45
+msgid "Ostatnie 5"
+msgstr "Last 5"
+
+#: templates/teams/tables.html:58
+msgid "Ostatnie 5 (dom)"
+msgstr "Last 5 (home)"
+
+#: templates/teams/tables.html:71
+msgid "Ostatnie 5 (wyjazd)"
+msgstr "Last 5 (away)"
+
+#: templates/teams/tables.html:283
+msgid "Zawodnicy"
+msgstr "Players"
+
+#: templates/teams/tables.html:293
+msgid "Sklady druzyny"
+msgstr "Players"
+
+#: templates/teams/tables.html:293
+msgid "Sklad"
+msgstr "Players"
+
+#: templates/teams/teams_list.html:13
+msgid "Liga"
+msgstr "League"
+
+#: templates/teams/teams_list.html:17
+msgid "Najnowsze wiadomosci o lidze"
+msgstr "Latest league news"
+
+#: templates/teams/teams_list.html:38
+msgid "Najlepsi kibice"
+msgstr "Finest pickers"
+
+#: templates/teams/teams_list.html:53
+msgid "Wyniki Na Zywo / Terminarz"
+msgstr "Live scores / Fixtures"
+
+#: templates/videos/add_1.html:4
+msgid "Dodaj nowy film na stronie (Krok 1)"
+msgstr "Add new video (Step 1)"
+
+#: templates/videos/add_1.html:7 templates/videos/add_1.html.py:15
+msgid "Dodajesz nowy film - krok 1/2"
+msgstr "Adding new video - step 1/2"
+
+#: templates/videos/add_1.html:21
+msgid "Kod HTML"
+msgstr "HTML code"
+
+#: templates/videos/add_1.html:22
+msgid "Tresc nie moze byc krotsza, niz 10 znakow"
+msgstr "Content can contain min of 10 chars"
+
+#: templates/videos/add_1.html:23 templates/videos/add_1.html.py:47
+msgid "przyklad"
+msgstr "example"
+
+#: templates/videos/add_1.html:27 templates/videos/details.html:16
+msgid "Kategoria"
+msgstr "Category"
+
+#: templates/videos/add_1.html:34
+msgid "Wybierz kategorie"
+msgstr "Choose category"
+
+#: templates/videos/add_1.html:43
+msgid ""
+"W kolejnym kroku mozesz sprawdzic jak bedzie wygladal na stronie film, ktory "
+"dodales w tym formularzu"
+msgstr "On the next step you can preview video you've added."
+
+#: templates/videos/add_1.html:48
+msgid "dodaj film przyklad"
+msgstr ""
+"To submit video correctly, please use HTML code provided by majority of "
+"video sharing websites. On the example youtube screenshot right field is "
+"marked by red box."
+
+#: templates/videos/add_1.html:54 templates/videos/add_2.html:44
+#: templates/videos/added.html:24
+msgid "Strona dodawania nowego filmu"
+msgstr "Share new video site"
+
+#: templates/videos/add_2.html:4
+msgid "Dodaj film na stronie (Krok 2)"
+msgstr "Add new video (Step 2)"
+
+#: templates/videos/add_2.html:7 templates/videos/add_2.html.py:15
+msgid "Dodajesz nowy film - krok 2/2"
+msgstr "Adding new video - step 2/2"
+
+#: templates/videos/add_2.html:33
+msgid "DODAJ"
+msgstr "ADD"
+
+#: templates/videos/add_2.html:39
+msgid "Jezeli popelniles/as blad mozesz powrocic do edycji"
+msgstr "If it doesn't look perfect for you, please return to editing mode"
+
+#: templates/videos/added.html:4
+msgid "Dodano nowy film na stronie"
+msgstr "New video added"
+
+#: templates/videos/added.html:7 templates/videos/added.html.py:15
+msgid "Dodales/as nowy film"
+msgstr "You've just added new video"
+
+#: templates/videos/added.html:18
+msgid ""
+"Gratulacje! Film zostal dodany i bedzie prezentowany na stronie po "
+"zatwierdzeniu przez moderatora"
+msgstr ""
+"Congratulations! Your video has been added and become available on the site "
+"as soon as moderator confirms it."
+
+#: templates/videos/details.html:4 templates/videos/details.html.py:14
+msgid "Film"
+msgstr "Video"
+
+#: templates/videos/details.html:18
+msgid "Dodano"
+msgstr "Submited"
+
+#: templates/videos/details.html:26
+msgid "Obejrzano"
+msgstr "Viewed"
+
+#: templates/videos/index.html:19
+msgid "filmow"
+msgstr "videos"
+
+#: templates/videos/index.html:47
+msgid "Nie ma jeszcze filmow w tej kategorii"
+msgstr "This category is still empty"
+
+#~ msgid "tekst motywacyjny na pierwszej stronie"
+#~ msgstr ""
+#~ "Welcome to 24goals. Our goal is to provide unique and exciting features "
+#~ "to every fan of this beautiful sport.<br />Everyone can actively "
+#~ "participate to the site by <a href=\"http://www.24goals.com/news/add/"
+#~ "\">adding news</a>, comments, matches analyses, upload photos and videos. "
+#~ "We also give you access to <a href=\"http://www.24goals.com/matches/"
+#~ "\">live scores</a>, results and fixtures and many more.<br />\n"
+#~ "By choosing favourite team registered fan can earn points for his team by "
+#~ "predicting scores. Thanks to that any team can become a leader of <a href="
+#~ "\"http://www.24goals.com/supporters-league/\">Supporters League</a> "
+#~ "depending on how good on predicting scores supporters they have!"
+
+#~ msgid "Ostatnie informacje"
+#~ msgstr "Latest news"
+
+#~ msgid "wiecej wiadomosci"
+#~ msgstr "more news"
+
+#~ msgid "Zapytanie musi zawierac min 3 znaki"
+#~ msgstr "Query must contain min of 3 characters"
+
+#~ msgid "Konkurs URL"
+#~ msgstr "contest"
+
+#~ msgid "Konkurs"
+#~ msgstr "Contest"
+
+#~ msgid "VIDEO"
+#~ msgstr "VIDEO"

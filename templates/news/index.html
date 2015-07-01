@@ -1,0 +1,169 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones flash bbcode %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Najnowsze wiadomosci, wydarzenia, informacje' %} -
+    {% if league_name %}
+        {{ league_name|capfirst }}
+        {% if news_date %}
+            ({{ news_date }})
+        {% endif %}
+    {% else %}
+        {% trans 'Wszystkie Ligi' %}
+        {% if news_date %}
+            ({{ news_date }})
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Wiadomosci URL' %}/">{% trans 'Wiadomosci' %}</a>
+    {% if league_name %}
+        / <a href="/{% trans 'Wiadomosci URL' %}/{{ league_name }}/">{{ league_name|capfirst }}</a>
+        {% if news_date %}
+            / <a href="/{% trans 'Wiadomosci URL' %}/{{ league_name }}/{{ news_date }}/">{{ news_date }}</a>
+        {% endif %}
+    {% else %}
+        {% if news_date %}
+            / <a href="/{% trans 'Wiadomosci URL' %}/{{ news_date }}/">{{ news_date }}</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+    {% flash %}
+        <div><strong>{{ msg }}</strong></div>
+    {% endflash %}
+
+    {# <div class="modul"> #}
+    {# 	<h1 class="tytul">{% trans 'Najpopularniejsze w ostatnich 24h' %}</h1> #}
+    {# 	{{most_popular}} #}
+    {# </div> #}
+    {% if news %}
+    <p class="small alignLeft">
+        <strong>{% trans 'newsy z ligi' %}:</strong>
+        <a
+                {% ifnotequal league_name 'premiership' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'premiership' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'premiership' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Premiership' %}"
+                style="background: url(/static/images/ikona_fl_en.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Premiership' %}</a>
+        |
+        <a
+                {% ifnotequal league_name 'ligue-1' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'ligue-1' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'ligue-1' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Ligue 1' %}"
+                style="background: url(/static/images/ikona_fl_fr.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Ligue 1' %}</a>
+        |
+        <a
+                {% ifnotequal league_name 'primera-division' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'primera-division' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'primera-division' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Primera Division' %}"
+                style="background: url(/static/images/ikona_fl_es.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Primera Division' %}</a>
+        |
+        <a
+                {% ifnotequal league_name 'bundesliga' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'bundesliga' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'bundesliga' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Budesliga' %}"
+                style="background: url(/static/images/ikona_fl_de.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Budesliga' %}</a>
+        <br/>
+        <a
+                {% ifnotequal league_name 'orange-ekstraklasa' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'orange-ekstraklasa' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'orange-ekstraklasa' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                {% ifnotequal league_name 'polish-ekstraklasa' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'polish-ekstraklasa' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'polish-ekstraklasa' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Orange Ekstraklasa' %}"
+                style="background: url(/static/images/ikona_fl_pl.png) left center no-repeat; padding-left: 20px; margin-left: 73px; margin-right: 5px;">{% trans 'Orange Ekstraklasa' %}</a>
+        |
+        <a
+                {% ifnotequal league_name 'serie-a' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'serie-a' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'serie-a' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Serie A' %}"
+                style="background: url(/static/images/ikona_fl_it.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Serie A' %}</a>
+        |
+        <a
+                {% ifnotequal league_name 'liga-mistrzow' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'liga-mistrzow' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'liga-mistrzow' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}{% ifnotequal league_name 'champions-league' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'champions-league' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'champions-league' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Liga Mistrzow' %}"
+                style="background: url(/static/images/ikona_fl_cl.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Liga Mistrzow' %}</a>
+        |
+        <a
+                {% ifnotequal league_name 'puchar-uefa' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'puchar-uefa' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'puchar-uefa' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}{% ifnotequal league_name 'uefa-cup' %}{% if news_date %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'uefa-cup' %}/{{ news_date }}/"
+                {% else %}href="/{% trans 'Wiadomosci URL' %}/{% trans 'europa' %}/{% trans 'uefa-cup' %}/"{% endif %}{% else %}class="aktywny"{% endifnotequal %}
+                title="{% trans 'Tylko wiadomosci i artykuly z ligi' %} {% trans 'Puchar UEFA' %}"
+                style="background: url(/static/images/ikona_fl_ue.png) left center no-repeat; padding-left: 20px; margin-left: 5px; margin-right: 5px;">{% trans 'Puchar UEFA' %}</a>
+    </p>
+    {% endif %}
+    <div class="modul">
+        <h1 class="tytul">{% trans 'Najnowsze wiadomosci' %}</h1>
+
+        <div>
+            <form method="post" action="">
+                <span>{% trans 'Szukaj' %}:</span>
+                <input type="text" name="search_query" value="{{ search_query }}"/>
+                <input type="submit" value="{% trans 'Znajdz' %}"/>
+            </form>
+            {% if search_query %}
+                <h2>{% trans 'Znaleziono' %}: {{ news_count }} {% trans 'artykulow' %}</h2>
+            {% endif %}
+            <br/>
+        </div>
+
+        {% if news %}
+
+            {% for n in news %}
+                <h2><a href="/news/{{ n.id }}/{{ n.url }}/">{{ n.caption }}</a>&nbsp;&nbsp;&nbsp;</h2>
+                <p class="small">
+                    <span class="autor username"><a
+                            href="/{% trans 'Uzytkownik URL' %}/{{ n.user|lower }}/">{{ n.user }}</a></span>
+                    <a href="/{% trans 'Uzytkownik URL' %}/{{ n.user|lower }}/aktywnosc/"><span
+                            class="activity_points">{{ n.user.get_profile.activity_points }}</span></a>
+                    <span class="{% trans 'punkty' %}">({{ n.user.get_profile.points }} {% trans 'pkt' %}.)</span>
+                    <span class="data" name="date">{{ n.published_at|date:"Y-m-d H:i"}}</span>
+				<span class="komentarze"><img src="/static/images/ikona_komentarz.gif" alt="{% trans 'Komentarze' %}: "
+                                              width="11" height="11"/>
+					<a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'Szczegoly' %}">
+                        <span style="color: red;">{% trans 'Komentarze' %}: {{ n.get_comments_count }}</span>
+                    </a>
+				</span>
+                    <img src="/static/images/ikona_videos.jpeg" alt="{% trans 'Filmiki:' %} " width="14" height="14"/>
+                    <a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'Szczegoly' %}">
+                        <span style="color: red;">Video: {{ n.get_videos_count }}</span>
+                    </a>
+                </p>
+                {% if n.assign_team_logo %}
+                    <img class="foto" src="/static/images/logos/team_{{ n.assign_team_logo.id }}.gif"/>
+                {% else %}
+                    {% if n.assign_league_logo %}
+                        <img class="foto" src="/static/images/logos/league_{{ n.assign_league_logo.id }}.gif"/>
+                    {% endif %}
+                {% endif %}
+                <p>{% filter bbcode %}{{ n.short_content|safe }}{% endfilter %}<strong><a
+                        href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'wiecej' %}"
+                        style="float: right; padding-bottom: 30px;">{% trans 'czytaj dalej' %} &raquo;</a></strong></p>
+                <br style="clear:both;"/>
+            {% endfor %}
+            <br style="clear:both;"/>
+            <span style="text-align: center">{% digg_paginator %}</span>
+        {% else %}
+            <br/>
+            <span style="text-align: center"><h2>{% trans 'Brak wiadomosci' %}</h2><h2><a
+                    href="/news/{% trans 'add news URL' %}/">{% trans 'Badz pierwszy' %} &raquo;</a></h2></span>
+        {% endif %}
+    </div>
+
+</div>
+<div id="kontent-kolumna1">
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

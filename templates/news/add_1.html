@@ -1,0 +1,89 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dodaj nowa informacje lub artykul (Krok 1)' %}
+{% endblock title %}
+
+{% block path %}{% trans 'Dodajesz nowa wiadomosc - krok 1/3' %}{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        {% if request.user.is_authenticated %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Dodajesz nowa wiadomosc - krok 1/3' %}</h2>
+
+                <form action="{{ path_info }}" method="post">
+                    <fieldset>
+                        <label for="caption" style="font-size: 18px;">{% trans 'Tytul' %} :</label><br clear="both"/>
+                        {% if form.errors.caption %}
+                            <span style="color: red; font-size: 12px;">{% trans 'Tytul nie moze byc krotszy, niz 5 znakow' %}</span>{% endif %}
+                        <br clear="both"/>
+                        {{ form.caption }}<br clear="both"/>
+                        <label for="content" style="font-size: 18px;">{% trans 'Tresc' %}:</label><br clear="both"/>
+                        {% if form.errors.content %}
+                            <span style="color: red; font-size: 12px;">{% trans 'Tresc nie moze byc krotsza, niz 30 znakow' %}</span>{% endif %}
+                        <br clear="both"/>
+                        {{ form.content }}<br clear="both"/>
+                        <label for="source" style="font-size: 18px;">{% trans 'Zrodlo' %}:</label><br clear="both"/>
+                        {{ form.source }} {% if form.errors.source %}
+                        <span style="color: red; font-size: 12px;">{% trans 'Podaj zrodlo' %}</span>{% endif %}{% trans '(np. wlasne lub adres strony internetowej)' %}
+                        <br clear="both"/>
+                    </fieldset>
+                    <fieldset>
+                        <label for="related_league_id"
+                               style="font-size: 18px;">{% trans 'Zwiazany z liga' %}:</label><br/><br/>
+                        <select name="related_league_id">
+                            {% for l in leagues %}
+                                <option value="{{ l.0 }}"
+                                        {% ifequal l.0 news.league_id %}selected="selected"{% endifequal %}>{{ l.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </fieldset>
+                    <div class="alignRight">
+                        <input class="button" name="preview" type="submit" value="{% trans 'Podglad' %} &raquo;"/>
+                    </div>
+                </form>
+            </div>
+
+            <div class="boks komunikat">
+                {% blocktrans %}W tresci mozesz uzywac
+                    <a href="http://pl.wikipedia.org/wiki/BBCode" target="_blank">formatowania
+                        BBCODE</a>{% endblocktrans %}.<br/>
+                <strong>{% trans 'Przyklady' %}:</strong><br/>
+                <ul>
+                    <li>[b]{% trans 'pogrubienie' %}[/b] = <b>{% trans 'pogrubienie' %}</b></li>
+                    <li>[i]{% trans 'kursywa' %}[/i] = <i>{% trans 'kursywa' %}</i></li>
+                    <li>[u]{% trans 'podkreslenie' %}[/u] = <u>{% trans 'podkreslenie' %}</u></li>
+                    <li>[url]{% trans 'http://www.24gole.pl' %}[/url] = <a
+                            href="{% trans 'http://www.24gole.pl' %}">{% trans 'http://www.24gole.pl' %}</a></li>
+                    <li>[url={% trans 'http://www.24gole.pl' %}]{% trans '24gole' %}[/url] = <a
+                            href="{% trans 'http://www.24gole.pl' %}">{% trans '24gole' %}</a></li>
+                    <li>[img]{% trans 'http://www.24gole.pl' %}/static/images/ikona_fl_en.png[/img] = <img
+                            src="{% trans 'http://www.24gole.pl' %}/static/images/ikona_fl_en.png"></li>
+                </ul>
+            </div>
+
+            <div class="boks center komunikat">
+                <strong>{% trans 'W kolejnym kroku mozesz sprawdzic jak bedzie wygladala tresc, ktora wpisales/as w tym formularzu' %}.</strong>
+            </div>
+
+        {% else %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Strona dodawania nowej wiadomosci' %}</h2>
+
+                <div class="boks center komunikat">
+                    {% blocktrans %}Tylko zarejestrowani uzytkownicy moga umieszczac nowe tresci w serwisie.<br/>
+                        Jezeli masz juz konto to wystarczy, ze sie zalogujesz.<br/>
+                        Mozesz sie rowniez w kazdej chwili <a href="/rejestracja/">zalozyc nowe konto</a> - zajmie Ci to
+                        mniej niz 30 sekund!{% endblocktrans %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

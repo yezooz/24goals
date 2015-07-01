@@ -1,0 +1,80 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Lista uzytkownikow' %} / {% trans 'Kibice zespolu' %} {{ team.name_pl }}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'liga-kibicow' %}/">{% trans 'Liga Kibicow' %}</a> / {{ team.name_pl }}
+{% endblock path %}
+
+
+{% block content %}
+
+    <div id="kontent-tresc">
+
+        <div class="modul">
+
+            {% if supps %}
+                <h2 class="tytul">{% trans 'Kibice zespolu' %} {{ team.name_pl }}</h2>
+                <span style="margin-right: 10px; margin-bottom: 10px; float: left; text-align: center;">
+		<dl style="float: left;">
+            <dt><img class="floatLeft" src="/static/images/logos/team_{{ team.id }}.gif"
+                     alt="Logo: {{ team.name_pl }}"/></dt>
+        </dl>
+		</span>
+
+                <br style="clear:both;"/>
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <thead>
+                    <tr>
+                        <th width="20">&nbsp;</th>
+                        <th width="50">{% trans 'nazwa' %}</th>
+                        <th width="50">{% trans 'punkty' %}</th>
+                        <th width="50">{% trans 'data rejestracji' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for supp in supps %}
+
+                        <tr class="{% cycle wiersz1,wiersz2 %}">
+                        <td>
+                            <strong>{{ forloop.counter }}.</strong>
+                        </td>
+                        <td>
+                            <a href="/{% trans 'Uzytkownik URL' %}/{{ supp|lower }}/">{{ supp }}</a>
+                        </td>
+                        <td>
+                            {{ supp.points }}
+                        </td>
+                        <td>
+                            {{ supp.created_at|date:"Y-m-d"}}
+                        </td>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                </span>
+
+
+            {% else %}
+                <br/>
+                <h1 align="center">{% trans 'Nie ma kibicow tej druzyny' %}</h1>
+                <h1 align="center">{% blocktrans %}Jezeli jej kibicujesz - <a href="/rejestracja/">zarejestruj sie</a> i
+                    zacznij walczyc o jak najlepsza pozycje dla niej!{% endblocktrans %}</h1>
+            {% endif %}
+
+            <br style="clear:both;"/>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

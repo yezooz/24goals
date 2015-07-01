@@ -1,0 +1,40 @@
+{% extends layout_lang %}{% load i18n lang common modules %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Film' %}
+{% endblock title %}
+
+{% block path %}<a href="/{% trans 'filmy' %}/">{% trans 'Filmy' %}</a> /
+    <a href="/{% trans 'filmy' %}/{% lang video_cat.name_en_url video_cat.name_pl_url %}/">{% lang video_cat.name_en video_cat.name_pl %}</a>
+    / {{ video.name }}{% endblock %}
+
+{% block top_left %}{% video_categories %}{% endblock %}
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h2 class="tytul">{% trans 'Film' %}: {{ video.name }}</h2>
+
+            <p class="small alignRight">
+                {% trans 'Kategoria' %}: <a
+                    href="/{% trans 'filmy' %}/{% lang video_cat.name_en_url video_cat.name_pl_url %}/">{% lang video_cat.name_en video_cat.name_pl %}</a>
+                &nbsp;|&nbsp;
+                {% trans 'Dodano' %}
+                <span name="date">{{ video.published_at }}</span>
+                {% trans 'przez' %}
+			<span class="username">
+				<a href="/{% trans 'Uzytkownik URL' %}/{{ video.user|lower }}/">{{ video.user }}</a>
+				<a href="/{% trans 'Uzytkownik URL' %}/{{ video.user|lower }}/{% trans 'Aktywnosc URL' %}/"><span
+                        class="activity_points">{{ video.user.get_profile.activity_points }}</span></a>
+			</span>
+                &nbsp;|&nbsp;
+                {% trans 'Obejrzano' %} {{ video.view_count }} {% trans 'razy' %}
+            </p>
+            <center>{{ video.content|safe }}</center>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

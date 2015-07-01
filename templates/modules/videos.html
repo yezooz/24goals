@@ -1,0 +1,20 @@
+{% load i18n lang common %}
+{% for v in videos %}
+    <a href="/{% trans 'film' %}/{{ v.id }}/{{ v.url }}/">
+        {% if v.content|yt_screen %}
+            <div style="padding-left: 15px; width: 190px; height: 150px; float: left;">
+            <img src="{{ v.content|yt_screen }}">
+        {% else %}
+            <div style="padding-left: 15px; width: 190px; height: 150px; float: left;">
+            <img src="/static/images/no-preview-{% lang 'en' 'pl' %}.gif"/>
+        {% endif %}
+        <br/>
+        {{ v.name }}</a>
+    <br/>
+    <span class="username">
+		<a href="/{% trans 'Uzytkownik URL' %}/{{ v.user|lower }}/">{{ v.user }}</a>
+		<a href="/{% trans 'Uzytkownik URL' %}/{{ v.user|lower }}/{% trans 'Aktywnosc URL' %}/"><span
+                class="activity_points">{{ v.user.get_profile.activity_points }}</span></a>
+	</span>
+    </div>
+{% endfor %}

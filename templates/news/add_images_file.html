@@ -1,0 +1,56 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Wyslij zdjecia do wiadomosci o tytule' %}: {{ news.caption }}
+{% endblock title %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/news/">{% trans 'Wiadomosci' %}</a> / <a href="/news/{{ news.id }}/{{ news.url }}/">{{ news.caption }}</a>
+    / {% trans 'Dodaj zdjecia' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+
+            <h1 class="tytul">
+                <span class="floatLeft">{{ news.caption }}</span>
+                <span class="data floatRight">{% trans 'data dodania' %}: <strong
+                        class="black">{{ news.created_at }}</strong></span>
+                <br class="clear"/>
+            </h1>
+            <br style="clear:both;"/>
+
+            <p style="font-size: 14px;">
+
+            </p>
+
+            <form action="" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend style="font-size: 20px;">{% trans 'Dodaj nowe zdjecia' %}</legend>
+                    {% for i in photos_count %}
+                        <label for="caption" style="font-size: 18px;">{% trans 'Zdjecie' %} {{ i }}:</label>
+                        <input type="file" name="photo_file_{{ i }}" value="" id="photo_{{ i }}"
+                               style="width: 400px; font-size: 16px;"><br/><br/>
+                    {% endfor %}
+                </fieldset>
+                <div class="alignRight">
+                    <input class="button" type="submit" value="Dodaj zdjęcia"/>
+                </div>
+            </form>
+
+            <h2>
+                <a href="/news/{{ news.id }}/{{ news.url }}/">&laquo; {% trans 'powrot do listy wiadomosci' %}</a>
+            </h2>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,174 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+<div id="content-main">
+    {% block object-tools %}
+        {% if has_add_permission %}
+            <ul class="object-tools">
+                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                    {% blocktrans with matches.opts.verbose_name|escape as name %}Add {{ name }}{% endblocktrans %}</a>
+                </li>
+            </ul>
+        {% endif %}
+    {% endblock %}
+    <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+        <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+        {% if matches.has_filters %}
+            <div id="changelist-filter">
+                <h2>{% trans 'Filter' %}</h2>
+                {% for spec in matches.filter_specs %}
+                    {% filter matches spec %}
+                {% endfor %}</div>{% endif %}
+
+        <form action="global_refresh/" method="POST">
+            <select name="status">
+                <option value="o" {% ifequal match.status "o" %}selected="selected"{% endifequal %}>Open</option>
+                <option value="d" {% ifequal match.status "d" %}selected="selected"{% endifequal %}>During</option>
+                <option value="f" {% ifequal match.status "f" %}selected="selected"{% endifequal %}>Finished</option>
+                <option value="c" {% ifequal match.status "c" %}selected="selected"{% endifequal %}>Cancelled</option>
+                <option value="p" {% ifequal match.status "p" %}selected="selected"{% endifequal %}>Postponed</option>
+            </select>
+            <input type="submit" value="globalna zmiana statusu" id="Globalna zmiana statusu">
+        </form>
+        <br/>
+
+        <table cellspacing="0">
+            <thead>
+            <tr>
+                <th width="20">ID</th>
+                <th width="1">"</th>
+                <th wdith="100">Home</th>
+                <th width="1">&nbsp;</th>
+                <th width="1">&nbsp;</th>
+                <th width="100">Away</th>
+                <th width="100">Date</th>
+                <th width="100">Time</th>
+                <th>Status</th>
+                <th colspan="2">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for match in matches %}
+            <tr style="background-color: beige;">
+                <form action="refresh/{{ match.id }}/" method="post">
+                    <td><a href="">{{ match.id }}</td>
+                    <td><input type="text" name="minute" value="{{ match.minute }}" size="3">
+                    <td width="120"><b>{{ match.home_team.name_pl }}</b></td>
+                    <td><input type="text" name="home_score" value="{{ match.home_score }}" size="1" id="home_score">
+                    </td>
+                    <td><input type="text" name="away_score" value="{{ match.away_score }}" size="1" id="away_score">
+                    </td>
+                    <td width="120"><b>{{ match.away_team.name_pl }}</b></td>
+                    <td><input type="text" name="match_date" value="{{ match.match_date }}" size="10" id="home_score">
+                    </td>
+                    <td><input type="text" name="match_time" value="{{ match.match_time }}" size="8" id="home_score">
+                    </td>
+                    <td>
+                        <select name="status">
+                            <option value="o" {% ifequal match.status "o" %}selected="selected"{% endifequal %}>Open
+                            </option>
+                            <option value="d" {% ifequal match.status "d" %}selected="selected"{% endifequal %}>During
+                            </option>
+                            <option value="f" {% ifequal match.status "f" %}selected="selected"{% endifequal %}>
+                                Finished
+                            </option>
+                            <option value="c" {% ifequal match.status "c" %}selected="selected"{% endifequal %}>
+                                Cancelled
+                            </option>
+                            <option value="p" {% ifequal match.status "p" %}selected="selected"{% endifequal %}>
+                                Postponed
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="submit" value="refresh">
+                        &nbsp;&nbsp;&nbsp;
+                        <a style="padding: 2px 2px 2px 2px; border: 1px solid grey;"
+                           href="stats/{{ match.id }}">stats</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a style="padding: 2px 2px 2px 2px; border: 1px solid grey;"
+                           href="squad/{{ match.id }}">squad</a>
+                    </td>
+                </form>
+            </tr>
+            <tr>
+                <td colspan="10">
+                    <table id="details_{{ match.id }}">
+                        {% for det in match.details.all %}
+                        <tr>
+                            {% ifequal det.side "right" %}
+                            <td width="10">{{ det.minute }}'</td>
+                            <td width="150">&nbsp;</td>
+                            <td width="100"><b>{{ det.player_name }}</b> ({{ det.action }}/{{ det.action_info }})</td>
+                            {% else %}
+                            <td width="10">{{ det.minute }}'</td>
+                            <td width="150"><b>{{ det.player_name }}</b> ({{ det.action }}/{{ det.action_info }})</td>
+                            <td width="100">&nbsp;</td>
+                            {% endifequal %}
+                            <td><a href="remove/{{ det.id }}" class="deletelink">{% trans 'Delete' %}</a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <form action="add/{{ match.id }}/" method="post">
+                            <tr>
+                                <td width="10"><input type="text" name="minute" size="3"></td>
+                                <td width="150">
+                                    <select name="left_player">
+                                        <option value="">---</option>
+                                        {% for player in players %}
+                                            <option value="{{ player.id }}">{{ player.last_name }} {{ player.first_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td width="150">
+                                    <select name="right_player">
+                                        <option value="">---</option>
+                                        {% for player in players %}
+                                            <option value="{{ player.id }}">{{ player.last_name }} {{ player.first_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td width="150">
+                                    <select name="action">
+                                        <option value="g">Goal</option>
+                                        <option value="r">Red Card</option>
+                                        <option value="y">Yellow Card</option>
+                                        </option>
+                                </td>
+                                <td width="150">
+                                    <select name="action_info">
+                                        <option value="">---</option>
+                                        <option value="p">Penalty</option>
+                                        <option value="o">Own Goal</option>
+                                        <option value="m">Missed Penalty</option>
+                                    </select>
+                                </td>
+                                <td><input type="submit" value="Add"></td>
+                            </tr>
+                        </form>
+
+                    </table>
+                </td>
+            </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}
+

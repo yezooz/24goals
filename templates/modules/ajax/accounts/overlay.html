@@ -1,0 +1,74 @@
+{% load i18n lang common modules %}
+<div style="font-size: 12px;">
+    <div style="float: left;">
+        <img width="50" height="50" src="/static/images/avatars/avatar_{{ acc.user_id }}.jpg" class="avatar"/>
+    </div>
+    <div style="float: right; color: grey; padding-top: 5px;">
+        <p style="font-size: 13px;"><img src="/static/images/flags/gif/{{ acc.country_code|lower }}.gif"/>&nbsp;<a
+                href="/user/{{ acc.username|lower }}/">{{ acc.username }}</a> <span style="font-size: 14px;"
+                                                                                    class="hover_box_activity_points">{{ acc.activity_points }}</span>
+        </p>
+
+        <p style="font-size: 14px;">{{ acc.points }} pkt.</p>
+
+        <p style="font-size: 11px;"><a href="/liga-kibicow/">{{ acc.favourite_team_name_pl }}</a></p>
+    </div>
+    <br style="clear: both;"/>
+    <br style="clear: both;"/>
+    {% if acc.ato_points %}
+    <p>
+        <strong>Klasyfikacja generalna:</strong>
+    </p>
+
+    <p style="font-size: 11px; padding-bottom: 5px;">
+        {{ acc.ato_points }} pkt. / Pozycja: {{ acc.ato_position }} (
+        {% ifequal acc.ato_prev_month 0 %}
+        <span title="{% trans 'nowy gracz' %}" style="font-size: 85%; color: #668600">{% trans 'NOWY' %}</span>
+        {% else %}
+        {% if acc.ato_prev_month|GT:acc.ato_position %}<img src="/static/images/arrow_up.gif"/> +
+            {{ acc.ato_prev_month|MINUS:acc.ato_position}}{% endif %}
+        {% if acc.ato_prev_month|LT:acc.ato_position %}<img src="/static/images/arrow_down.gif"/>
+            {{ acc.ato_prev_month|MINUS:acc.ato_position}}{% endif %}
+        {% ifequal acc.ato_prev_month acc.ato_position %}-{% endifequal %}
+        {% endifequal %}
+        )
+    </p>
+    {% endif %}
+    {% if acc.atm_points %}
+    <p>
+        <strong>Klasyfikacja miesięczna:</strong>
+    </p>
+
+    <p style="font-size: 11px; padding-bottom: 5px;">
+        {{ acc.atm_points }} pkt. / Pozycja: {{ acc.atm_position }} (
+        {% ifequal acc.atm_prev_month 0 %}
+        <span title="{% trans 'nowy gracz' %}" style="font-size: 85%; color: #668600">{% trans 'NOWY' %}</span>
+        {% else %}
+        {% if acc.atm_prev_month|GT:acc.atm_position %}<img src="/static/images/arrow_up.gif"/> +
+            {{ acc.atm_prev_month|MINUS:acc.atm_position}}{% endif %}
+        {% if acc.atm_prev_month|LT:acc.atm_position %}<img src="/static/images/arrow_down.gif"/>
+            {{ acc.atm_prev_month|MINUS:acc.atm_position}}{% endif %}
+        {% ifequal acc.atm_prev_month acc.atm_position %}-{% endifequal %}
+        {% endifequal %}
+        )
+    </p>
+    {% endif %}
+    <p>
+        <strong>Aktywność:</strong>
+    </p>
+
+    <p style="font-size: 11px;">
+        Dodane newsy: {{ acc.news_count }}
+    </p>
+
+    <p style="font-size: 11px;">
+        Dodane zdjęcia: {{ acc.images_count }}
+    </p>
+
+    <p style="font-size: 11px;">
+        Dodane filmy: {{ acc.videos_count }}
+    </p>
+
+    <p style="font-size: 11px;">
+        Dodane analizy spotkań: {{ acc.analyses_count }}
+    </p>

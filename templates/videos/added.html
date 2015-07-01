@@ -1,0 +1,40 @@
+{% extends layout_lang %}{% load i18n common modules %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dodano nowy film na stronie' %}
+{% endblock title %}
+
+{% block path %}{% trans 'Dodales/as nowy film' %}{% endblock %}
+
+{% block top_left %}{% video_categories cat_name %}{% endblock %}
+{% block content %}
+
+    <div id="kontent-tresc">
+        {% if request.user.is_authenticated %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Dodales/as nowy film' %}</h2>
+
+                <div class="sukces">
+                    <strong>{% trans 'Gratulacje! Film zostal dodany i bedzie prezentowany na stronie po zatwierdzeniu przez moderatora' %}.</strong> {% trans 'Zostaniesz o tym poinformowany poprzez e-mail' %}.
+                </div>
+            </div>
+
+        {% else %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Strona dodawania nowego filmu' %}</h2>
+
+                <div class="boks center komunikat">
+                    {% blocktrans %}Tylko zarejestrowani uzytkownicy moga umieszczac nowe tresci w serwisie.<br/>
+                        Jezeli masz juz konto to wystarczy, ze sie zalogujesz.<br/>
+                        Mozesz sie rowniez w kazdej chwili <a href="/rejestracja/">zalozyc nowe konto</a> - zajmie Ci to
+                        mniej niz 30 sekund!{% endblocktrans %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

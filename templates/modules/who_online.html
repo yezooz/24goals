@@ -1,0 +1,11 @@
+{% load i18n lang flash common %}
+
+<div class="modul">
+    <h4 class="tytul" title="{% trans 'zarejestrowani + niezarejestrowani' %}">{% trans 'Dostepni' %}
+        ({{ users|length }} + {{ anon_count }})</h4>
+    {% for user in users %}
+        <p style="background: transparent url(/static/images/dot-green.gif) left center no-repeat; padding-left: 12px; margin-left: 5px;">
+            &nbsp;<a href="/{% trans 'Uzytkownik URL' %}/{{ user|lower }}/">{{ user }}</a></p>
+    {% endfor %}
+    {# <h4>+{{anon_count}} {% trans 'niezalog.' %}</h4> #}
+</div>

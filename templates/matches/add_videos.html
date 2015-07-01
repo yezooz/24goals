@@ -1,0 +1,49 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} -
+    {% blocktrans with match.home_team.name_en as home_team_name_en and match.away_team.name_en as away_team_name_en and match.match_date as match_date %}
+        Dodaj filmik z meczu pomiedzy {{ home_team_name_en }}, a {{ away_team_name_en }} ({{ match_date }})
+    {% endblocktrans %}
+{% endblock title %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul meczSzczegol">
+
+            <h1 class="tytul">
+                <span class="floatLeft">{{ match.home_team.name_pl }} - {{ match.away_team.name_pl }}</span>
+                <span class="data floatRight">{% trans 'data spotkania' %}: <strong
+                        class="black">{{ match.match_date }}</strong></span>
+                <br class="clear"/>
+            </h1>
+
+            <form action="" method="post">
+                <fieldset>
+                    <legend style="font-size: 20px;">{% trans 'Dodaj nowy film' %}</legend>
+                    <label for="caption" style="font-size: 18px;">{% trans 'Tytul' %}:</label>
+                    {{ form.name }}{{ form.name.errors }}
+                    <label for="caption" style="font-size: 18px;">{% trans 'Link' %}:</label>
+                    {{ form.link }}{{ form.link.errors }}
+                    <label for="caption" style="font-size: 18px;">{% trans 'Opis' %}:</label>
+                    {{ form.description }}{{ form.description.errors }}
+                </fieldset>
+                <div class="alignRight">
+                    <input class="button" type="submit" value="{% trans 'Dodaj link' %}"/>
+                </div>
+            </form>
+            <h2>
+                <a href="/{% trans 'Mecz URL' %}/{{ match.id }}/">&laquo; {% trans 'powrot do strony meczu' %}</a>
+            </h2>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

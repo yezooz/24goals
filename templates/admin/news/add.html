@@ -1,0 +1,124 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+            <script type="text/javascript">
+                function check_title() {
+                    if ($('title').value == '') {
+                        alert('Musisz podać tytuł');
+                        return false;
+                    }
+                    else
+                        return true;
+                }
+            </script>
+
+            <form action="" method="post" onSubmit="return check_title()">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Dodaj wiadomość</th>
+                    </tr>
+                    </thead>
+                    <tbody style="background-color: beige;">
+                    <tr>
+                        <td>
+                            Tytuł:<br/>
+                            <input type="text" name="caption" value="" id="title" style="font-size: 16pt;" size="75">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nagłówek:<br/>
+                            <textarea name="short_content" cols="125" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Treść:<br/>
+                            <textarea name="content" cols="125" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Źródło:<br/>
+                            <input type="text" name="source" value="" id="source" style="font-size: 16pt;" size="75">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Język:<br/>
+                            <select name="lang">
+                                <option value="pl">Polski</option>
+                                <option value="en">Angielski</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Związany z ligą<br/>
+                            <select name="league_id">
+                                <option value="">---</option>
+                                {% for league in leagues %}
+                                    <option value="{{ league.id }}">{{ league.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Przypisz logo ligi:<br/>
+                            <select name="ass_league_id">
+                                <option value="">---</option>
+                                {% for league in leagues %}
+                                    <option value="{{ league.id }}">{{ league.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Przypisz logo druzyny:<br/>
+                            <select name="ass_team_id">
+                                <option value="">---</option>
+                                {% for team in teams %}
+                                    <option value="{{ team.id }}">{{ team.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="ADD NEWS">
+            </form>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}

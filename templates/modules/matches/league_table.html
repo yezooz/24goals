@@ -1,0 +1,121 @@
+{% load i18n %}
+
+{% if table_1 %}
+    <div class="modul">
+        <div id="tabele_tabs">
+            <ul class="zakladki">
+                <li><a href="#table_overall" title="{% trans 'Tabela ligowa' %}">{% trans 'Tabela ligowa' %}</a></li>
+                <li><a href="#table_home" title="{% trans 'Tabela (dom)' %}">{% trans 'Tabela (dom)' %}</a></li>
+                <li><a href="#table_away" title='Tabela (wyjazd)'>{% trans 'Tabela (wyjazd)' %}</a></li>
+            </ul>
+
+            <div id="table_overall">
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <thead>
+                    <tr class="border">
+                        <th>&nbsp;</th>
+                        <th>{% trans 'Druzyna' %}</th>
+                        <th title="{% trans 'Rozegranych spotkan' %}">GP</th>
+                        <th title="{% trans 'Punkty' %}">P</th>
+                        <th title="{% trans 'Wygrane' %}">W</th>
+                        <th title="{% trans 'Remisy' %}">D</th>
+                        <th title="{% trans 'Przegrane' %}">L</th>
+                        <th title="{% trans 'Strzelone bramki' %}">GS</th>
+                        <th title="{% trans 'Stracone bramki' %}">GA</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for t in table_1 %}
+                        <tr class="{% cycle wiersz1,wiersz2 %}"
+                            {% ifequal team_id t.team.id %}style="font-weight: bold;"{% endifequal %}{% ifequal team_id_2 t.team.id %}style="font-weight: bold;"{% endifequal %}>
+                            <td>{{ forloop.counter }}</td>
+                            <td style="text-align: left;"><a
+                                    href="/{% trans 'Druzyna URL' %}/{{ t.team.name_en_url }}/">{{ t.team.name_en }}</a>
+                            </td>
+                            <td title="{% trans 'Rozegranych spotkan' %}">{{ t.gp }}</td>
+                            <td title="{% trans 'Punkty' %}">{{ t.points }}</td>
+                            <td title="{% trans 'Wygrane' %}">{{ t.w }}</td>
+                            <td title="{% trans 'Remisy' %}">{{ t.d }}</td>
+                            <td title="{% trans 'Przegrane' %}">{{ t.l }}</td>
+                            <td title="{% trans 'Strzelone bramki' %}">{{ t.gs }}</td>
+                            <td title="{% trans 'Stracone bramki' %}">{{ t.ga }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="table_home">
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <thead>
+                    <tr class="border">
+                        <th>&nbsp;</th>
+                        <th>{% trans 'Druzyna' %}</th>
+                        <th title="{% trans 'Rozegranych spotkan' %}">GP</th>
+                        <th title="{% trans 'Punkty' %}">P</th>
+                        <th title="{% trans 'Wygrane' %}">W</th>
+                        <th title="{% trans 'Remisy' %}">D</th>
+                        <th title="{% trans 'Przegrane' %}">L</th>
+                        <th title="{% trans 'Strzelone bramki' %}">GS</th>
+                        <th title="{% trans 'Stracone bramki' %}">GA</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for t in table_2 %}
+                        <tr class="{% cycle wiersz1,wiersz2 %}"
+                            {% ifequal team_id t.team.id %}style="font-weight: bold;"{% endifequal %}{% ifequal team_id_2 t.team.id %}style="font-weight: bold;"{% endifequal %}>
+                            <td>{{ forloop.counter }}</td>
+                            <td style="text-align: left;"><a
+                                    href="/{% trans 'Druzyna URL' %}/{{ t.team.name_en_url }}/">{{ t.team.name_en }}</a>
+                            </td>
+                            <td title="{% trans 'Rozegranych spotkan' %}">{{ t.gp }}</td>
+                            <td title="{% trans 'Punkty' %}">{{ t.points }}</td>
+                            <td title="{% trans 'Wygrane' %}">{{ t.w }}</td>
+                            <td title="{% trans 'Remisy' %}">{{ t.d }}</td>
+                            <td title="{% trans 'Przegrane' %}">{{ t.l }}</td>
+                            <td title="{% trans 'Strzelone bramki' %}">{{ t.gs }}</td>
+                            <td title="{% trans 'Stracone bramki' %}">{{ t.ga }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="table_away">
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <thead>
+                    <tr class="border">
+                        <th>&nbsp;</th>
+                        <th>{% trans 'Druzyna' %}</th>
+                        <th title="{% trans 'Rozegranych spotkan' %}">GP</th>
+                        <th title="{% trans 'Punkty' %}">P</th>
+                        <th title="{% trans 'Wygrane' %}">W</th>
+                        <th title="{% trans 'Remisy' %}">D</th>
+                        <th title="{% trans 'Przegrane' %}">L</th>
+                        <th title="{% trans 'Strzelone bramki' %}">GS</th>
+                        <th title="{% trans 'Stracone bramki' %}">GA</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for t in table_3 %}
+                        <tr class="{% cycle wiersz1,wiersz2 %}"
+                            {% ifequal team_id t.team.id %}style="font-weight: bold;"{% endifequal %}{% ifequal team_id_2 t.team.id %}style="font-weight: bold;"{% endifequal %}>
+                            <td>{{ forloop.counter }}</td>
+                            <td style="text-align: left;"><a
+                                    href="/{% trans 'Druzyna URL' %}/{{ t.team.name_en_url }}/">{{ t.team.name_pl }}</a>
+                            </td>
+                            <td title="{% trans 'Rozegranych spotkan' %}">{{ t.gp }}</td>
+                            <td title="{% trans 'Punkty' %}">{{ t.points }}</td>
+                            <td title="{% trans 'Wygrane' %}">{{ t.w }}</td>
+                            <td title="{% trans 'Remisy' %}">{{ t.d }}</td>
+                            <td title="{% trans 'Przegrane' %}">{{ t.l }}</td>
+                            <td title="{% trans 'Strzelone bramki' %}">{{ t.gs }}</td>
+                            <td title="{% trans 'Stracone bramki' %}">{{ t.ga }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}

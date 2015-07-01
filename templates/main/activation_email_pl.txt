@@ -1,0 +1,6 @@
+
+Otrzymałeś tego maila, ponieważ zarejestrowałeś się na stronie {{ site_url }} używając tego adresu email. Aby aktywować konto kliknij w poniższy link:
+
+{{ site_url }}rejestracja/aktywacja/{{ activation_key }}/
+
+Jeżeli nie rejestrowałeś/aś się i ktoś użył po prostu Twojego adresu to nie przejmuj się. Nie będziesz otrzymywał/a od nas innej korespondencji, a konto wygaśnie za {{ expiration_days }} dni.

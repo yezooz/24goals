@@ -1,0 +1,86 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Lista uzytkownikow' %} / {% trans 'Kibice zespolu' %} {{ team.name_pl }}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    {% trans 'Liga Kibicow' %}
+{% endblock path %}
+
+
+{% block content %}
+
+    <div id="kontent-tresc">
+
+        <div class="modul">
+            <h2 class="tytul">{% trans 'Liga Kibicow' %}</h2>
+
+            <h3><p style="padding: 10px, 0px 10px 10px;">
+                {% blocktrans %}<strong>Liga Kibicow</strong> to zestawienie prezentujace liczbe punktow wszystkich
+                    typujacych, bedacych kibicami danej druzyny. Dzieki temu, ze kazdy wybiera druzyne, ktorej kibicuje
+                    przy rejestracji, <strong>przystepujemy do gry automatycznie</strong> i jedyne co musimy robic to
+                    jak najlepiej typowac wyniki prezentowanych spotkan.{% endblocktrans %}
+            </p>
+            </h3>
+            <br/>
+
+            <table border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                <tr>
+                    <th width="20">&nbsp;</th>
+                    <th width="50">nazwa</th>
+                    <th width="50"
+                        title="{% trans 'laczna liczba punktow wszystkich kibicow druzyny' %}">{% trans 'punkty' %}
+                        <span style="font-size: 9px;"><a
+                                href="/{% trans 'liga-kibicow' %}/{% trans 'punkty' %}/">({% trans 'sortuj' %})</a></span>
+                    </th>
+                    <th width="50"
+                        title="{% trans 'srednia liczba punktow na kazdego kibica' %}">{% trans 'sr. liczba pkt.' %}
+                        <span style="font-size: 9px;"><a
+                                href="/{% trans 'liga-kibicow' %}/{% trans 'srednia' %}/">({% trans 'sortuj' %})</a></span>
+                    </th>
+                    <th width="50" title="{% trans 'laczna liczba kibicow' %}">{% trans 'liczba kibicow' %} <span
+                            style="font-size: 9px;"><a href="/{% trans 'liga-kibicow' %}/{% trans 'liczba-kibicow' %}/">({% trans 'sortuj' %})</a></span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for team in teams %}
+
+                    <tr class="{% cycle wiersz1,wiersz2 %}">
+                    <td>
+                        <strong>{{ team.position }}.</strong>
+                    </td>
+                    <td>
+                        <a href="/{% trans 'Kibice URL' %}/{% lang team.team.name_en_url team.team.name_pl_url %}">{% lang team.team.name_en team.team.name_pl %}</a>
+                    </td>
+                    <td>
+                        {{ team.points }}
+                    </td>
+                    <td>
+                        {{ team.avg|floatformat:1}}
+                    </td>
+                    <td>
+                        {{ team.fans }}
+                    </td>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <br style="clear:both;"/>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,12 @@
+Dear {{ name }},
+
+Thank you for signing up with {{ product_name }}.
+
+Your new username is {{ username }}, and you can login at {{ login_url }}. Once logged in, you'll be able to access more features on our website..
+
+We hope that {{ product_name }} is of good use to you. If you have any feedback, please respond to this e-mail or submit it to us via our website.
+
+Regards,
+
+{{ product_name }} Administration
+{{ product_url }}

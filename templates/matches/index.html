@@ -1,0 +1,401 @@
+{% extends layout_lang %}{% load i18n lang common modules flash pick timezones %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8">
+
+        function rozwin(which, id) {
+            match = $('#match_box_' + id);
+            box = $('#' + which + '_box_' + id);
+            comments_box = $('#comments_' + id);
+
+            if (which == 'details')
+                trigger = $('#details_trigger_' + id);
+
+            box.toggle();
+            if (box.is(":visible")) {
+                match.addClass("aktywny");
+
+                if (which == 'comments') {
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/ajax-match-comments/" + id + "/",
+                        success: function (msg) {
+                            comments_box.html(msg);
+                            pDates();
+                        },
+                        failure: function () {
+                            comments_box.html("błąd / error");
+                        }
+                    });
+                }
+
+            }
+            else
+                match.removeClass("aktywny");
+
+            return false;
+        }
+
+        function response_to(m_id, c_id, author) {
+            $("#response_to_" + m_id).value = c_id;
+            $("#response_to_label_" + m_id).html("Odpowiedz na komentarz użytkownika : " + author + "[<a onClick='clear_response_to(" + m_id + ", " + c_id + ")' style='cursor: pointer'>anuluj<\/a>]");
+        }
+
+        function clear_response_to(m_id, c_id) {
+            $("#response_to_" + m_id).attr("value") = "";
+            $("#response_to_label_" + m_id).html("Komentarz:");
+        }
+
+    </script>
+{% endblock extrahead %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Wyniki meczow na zywo' %} -
+    {% ifnotequal league_name None %}
+        {{ league_name2|capfirst }}
+        {% if match_date %}
+            ({{ match_date }})
+        {% endif %}
+        {% else %}
+        {% trans 'Wszystkie Ligi' %}
+        {% if match_date %}
+            ({{ match_date }})
+        {% endif %}
+    {% endifnotequal %}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Mecze URL' %}/">{% trans 'Mecze' %}</a>
+    {% if league_name %}
+        / <a href="/{% trans 'Mecze URL' %}/{{ league_name }}/">{{ league_name2|capfirst }}</a>
+        {% if status_name %}
+            / <a href="/{% trans 'Mecze URL' %}/{{ status_name }}/">{{ status_name|capfirst }}</a>
+            {% if match_date %}
+                /
+                <a href="/{% trans 'Mecze URL' %}/{{ league_name }}/{{ match_date }}/{{ status_name }}/">{{ match_date }}</a>
+            {% endif %}
+        {% else %}
+            {% if match_date %}
+                / <a href="/{% trans 'Mecze URL' %}/{{ league_name }}/{{ match_date }}/">{{ match_date }}</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+    <div class="modul">
+        {% flash %}
+            <div><strong>{{ msg }}</strong></div>
+        {% endflash %}
+
+        <h1 class="tytul">{% trans 'Mecze' %}</h1>
+
+        {% if not only_future %}
+            {% if match_date|EQUALS_TODAY %}
+                <p class="small alignRight">
+                    {% trans 'pokaz mecze' %}:
+                    <a {% if status_name %}href="../{% trans 'trwajace url' %}/"
+                       {% else %}href="{% trans 'trwajace url' %}"{% endif %} title="{% trans 'trwajace' %}"
+                       {% ifequal status_name "trwajace" %}class="aktywny"{% endifequal %}{% ifequal status_name "started" %}class="aktywny"{% endifequal %}>{% trans 'trwajace' %}</a>
+                    |
+                    <a {% if status_name %}href="../{% trans 'zakonczone url' %}/"
+                       {% else %}href="{% trans 'zakonczone url' %}"{% endif %}
+                       {% ifequal status_name "zakonczone" %}class="aktywny"{% endifequal %}{% ifequal status_name "finished" %}class="aktywny"{% endifequal %}>{% trans 'zakonczone' %}</a>
+                    |
+                    <a {% if status_name %}href="../{% trans 'nadchodzace url' %}/"
+                       {% else %}href="{% trans 'nadchodzace url' %}"{% endif %}
+                       {% ifequal status_name "nadchodzace" %}class="aktywny"{% endifequal %}{% ifequal status_name "upcoming" %}class="aktywny"{% endifequal %}>{% trans 'nadchodzace' %}</a>
+                    |
+                    <a {% if status_name %}href="../"{% endif %} title="{% trans 'wszystkie' %}"
+                       {% ifequal status_name None %}class="aktywny"{% endifequal %}>{% trans 'wszystkie' %}</a>
+                </p>
+            {% endif %}
+        {% endif %}
+
+        <form action="/{% trans 'Mecze URL' %}/send/" method="post">
+            <table border="1" cellspacing="0" cellpadding="5">
+                <tfoot>
+                <tr>
+                    {% if matches %}
+                        <td colspan="3"></td>
+                        {% if request.user.is_authenticated %}
+                            <td class="typowanie"><input class="button" name="pick" type="submit"
+                                                         value="{% trans 'Typuj Button' %}"/></td>
+                        {% endif %}
+                        <td colspan="4"></td>
+                    {% else %}
+                        <td colspan="7" style="text-align: center"><h2>{% trans 'brak spotkan' %}</h2></td>
+                    {% endif %}
+                </tr>
+                </tfoot>
+                <tbody>
+                {% if only_future %}
+                    <div class="komunikat informacja" style="text-align: center;">
+                        {% trans 'W dniu dzisiejszym nie ma zadnych spotkan. Ponizsza lista przedstawia mecze na najblizsze dni.' %}<br/>
+                        {% trans 'Nie zapomnij powrocic do meczy z dni poprzednich, aby sprawdzic wyniki i obejrzec video relacje.' %}
+                    </div>
+                {% endif %}
+
+                {% for m in matches %}
+                {% if not match_date %}
+                    {% ifchanged m.match_date %}
+                        <tr>
+                            <td colspan="7"><strong>{{ m.match_date|date:"l, d F Y"}} {% if match_date %}{% else %}
+                                <a href='/mecze/{{ m.match_date|date:"Y-m-d"}}/'>&raquo;</a>{% endif %}</strong></td>
+                        </tr>
+                    {% endifchanged %}
+                {% endif %}
+                {% ifchanged m.league %}
+                    <tr>
+                        <td colspan="7"
+                            style="background: url(/static/images/flags/gif/{{ m.league.country_code|lower }}.gif) 6px no-repeat; padding-left: 25px;">
+                            <strong>{% lang m.league.name_en m.league.name_pl %} <a
+                                    href="/{% trans 'Mecze URL' %}/{% lang m.league.name_en_url m.league.name_pl_url %}/">&raquo;</a></strong>
+                        </td>
+                    </tr>
+                {% endifchanged %}
+                <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ m.id }}">
+                    <td class="druzyna1" {% if request.user.is_anonymous %}style="width: 25%"{% endif %}>
+                        {% lang m.home_team.name_en m.home_team.name_pl %}
+                    </td>
+                    <td class="wynik">
+                        {% ifnotequal m.home_score -1 %}{{ m.home_score }} - {{ m.away_score }}
+                        {% else %}v{% endifnotequal %}
+                    </td>
+                    <td class="druzyna2" {% if request.user.is_anonymous %}style="width: 25%"{% endif %}>
+                        {% lang m.away_team.name_en m.away_team.name_pl %}
+                    </td>
+                    <td class="typowanie" {% if request.user.is_anonymous %}style="width: 0%"{% endif %}>
+                        {% if request.user.is_authenticated %}
+                            <input tabindex="1" class="typ1" size="2" maxlength="2" name="pred_home_{{ m.id }}"
+                                   value="{% showpick picks m.id 'home' %}"
+                                   {% ifnotequal m.status "o" %}disabled="disabled"{% endifnotequal %}/>
+                            :
+                            <input tabindex="1" class="typ2" size="2" maxlength="2" name="pred_away_{{ m.id }}"
+                                   value="{% showpick picks m.id 'away' %}"
+                                   {% ifnotequal m.status "o" %}disabled="disabled"{% endifnotequal %}/>
+                        {% endif %}
+                    </td>
+                    <td class="szczegoly" {% if request.user.is_anonymous %}style="width: 16%"{% endif %}>
+					<span class="komentarze">
+						<img src="/static/images/ikona_komentarz.gif" alt="{% trans 'Komentarze' %}: " width="11"
+                             height="11"/>
+						<a href="javascript:void(0)" onClick="rozwin('comments', '{{ m.id }}')"
+                           title="">{{ m.get_comments_count }}</a>
+					</span>
+					<span class="analizy">
+						<img src="/static/images/ikona_analiza.gif" alt="{% trans 'Analizy' %}: " width="9"
+                             height="11"/>
+						<a href="javascript:void(0)" onClick="rozwin('analysis', '{{ m.id }}')"
+                           title="">{{ m.get_analysis_count }}</a>
+					</span>
+					<span class="analizy">
+						<img src="/static/images/ikona_videos.jpeg" alt="{% trans 'Filmiki:' %} " width="14"
+                             height="14"/>
+<a href="/{% trans 'Mecz URL' %}/{% lang m.home_team.name_en_url m.home_team.name_pl_url %}/{% lang m.away_team.name_en_url m.away_team.name_pl_url %}/{{ m.id }}/"
+   title="{% trans 'Szczegoly meczu' %}">
+    {{ m.get_videos_count }}
+</a>
+					</span>
+                    </td>
+                    <td class="czas">
+                        {% ifequal m.status "d" %}
+                            {% ifequal m.minute "-1" %}
+                                {% trans 'dogrywka' %}
+                                {% else %}
+                                {% ifequal m.minute "-2" %}
+                                    {% trans '2. polowa' %}
+                                    {% else %}
+                                    {% ifequal m.minute "-3" %}
+                                        {% trans 'przerwa' %}
+                                        {% else %}
+                                        {% ifequal m.minute "-4" %}
+                                            {% trans '1. polowa' %}
+                                            {% else %}
+                                            {{ m.minute }}''
+                                        {% endifequal %}
+                                    {% endifequal %}
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                        {% ifequal m.status "o" %}
+                            {% timezone m.match_date m.match_time 1 %}
+                            {{ match_time_zone|time:"H:i" }}
+                        {% endifequal %}
+                        {% ifequal m.status "f" %}
+                            {% showpick picks m.id 'points' %}
+                        {% endifequal %}
+                    </td>
+                    <td class="opcje" {% if request.user.is_anonymous %}style="width: 7%"{% endif %}>
+                        <a href="/{% trans 'Mecz URL' %}/{% lang m.home_team.name_en_url m.home_team.name_pl_url %}/{% lang m.away_team.name_en_url m.away_team.name_pl_url %}/{{ m.id }}/"
+                           title="{% trans 'Szczegoly meczu' %}">
+                            <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11"
+                                 height="11"/>
+                        </a>
+                        <a href="javascript:void(0)" onClick="rozwin('details', '{{ m.id }}')"
+                           title="{% trans 'Rozwin' %}">
+                            <img src="/static/images/ikona_zwiniete.gif" alt="{% trans 'Rozwin' %}" width="11"
+                                 height="11" id="details_trigger_{{ m.id }}"/>
+                        </a>
+                    </td>
+                <tr class="{% cycle wiersz1,wiersz2 %} aktywny rozwiniety" id="details_box_{{ m.id }}"
+                    style="display: none;">
+                    <td colspan="8">
+                        <table cellspacing="0" cellpadding="0">
+                            <thead>
+                            <tr>
+                                <th width="255">&nbsp;</th>
+                                <th width="40">&nbsp;</th>
+                                <th width="255">&nbsp;</th>
+                                <th width="10">&nbsp;</th>
+                            </tr>
+                            </thead>
+                            {% for d in m.details.all %}
+
+                            <tr>
+                                {% ifequal d.side "left" %}
+                                <td class="druzyna1">{{ d.player_name }}
+                                    {% ifequal d.action_info "o" %}{% trans '(sam.)' %}{% endifequal %} <span
+                                            class="black">{{ d.minute }}'</span></td>
+                                {% else %}
+                                <td class="druzyna1">&nbsp;</td>
+                                {% endifequal %}
+
+                                {% ifequal d.action "g" %}
+                                    {% ifequal d.action_info "p" %}
+                                        <td class="wynik"><img src="/static/images/ikona_gol_karny.gif"
+                                                               alt="{% trans 'Bramka' %}" title="{% trans 'Bramka' %}"/>
+                                        </td>
+                                        {% else %}
+                                        <td class="wynik"><img src="/static/images/ikona_gol.gif"
+                                                               alt="{% trans 'Bramka' %}" title="{% trans 'Bramka' %}"/>
+                                        </td>
+                                    {% endifequal %}
+                                {% endifequal %}
+                                {% ifequal d.action "y" %}
+                                    <td class="wynik"><img src="/static/images/ikona_kartka_zolta.gif"
+                                                           alt="{% trans 'Kartka zolta' %}"
+                                                           title="{% trans 'Kartka zolta' %}"/></td>
+                                {% endifequal %}
+                                {% ifequal d.action "r" %}
+                                    <td class="wynik"><img src="/static/images/ikona_kartka_czerwona.gif"
+                                                           alt="{% trans 'Kartka czerwona' %}"
+                                                           title="{% trans 'Kartka czerwona' %}"/></td>
+                                {% endifequal %}
+
+                                {% ifequal d.side "right" %}
+                                    <td class="druzyna2">{{ d.player_name }}
+                                        {% ifequal d.action_info "o" %}{% trans '(sam.)' %}{% endifequal %} <span
+                                                class="black">{{ d.minute }}'</span></td>
+                                    {% else %}
+                                    <td class="druzyna2">&nbsp;</td>
+                                {% endifequal %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+
+                <tr id="comments_box_{{ m.id }}" class="{% cycle wiersz1,wiersz2 %} aktywny rozwiniety"
+                    style="display: none;">
+                    <td colspan="8">
+                        <div class="boks">
+                            <div class="komentarze" id="comments_{{ m.id }}">
+
+                            </div>
+                            <p>
+                                <label for="komentarz"
+                                       id="response_to_label_{{ m.id }}">{% trans 'Napisz komentarz' %}:</label>
+                                <input type="hidden" name="response_to_{{ m.id }}" value=""
+                                       id="response_to_{{ m.id }}"/>
+                                <textarea id="komentarz_{{ m.id }}" name="comment_content_{{ m.id }}" rows="3"
+                                          cols="10"></textarea>
+                            </p>
+                            {% if not user.is_authenticated %}
+                                <div>
+                                    <em>{% trans 'Podpis' %}:</em> <input type="text" name="username_{{ m.id }}">
+                                </div>
+                            {% endif %}
+
+                            <div class="alignRight">
+                                <input class="button" name="add_comment_{{ m.id }}" type="submit"
+                                       value="{% trans 'Wyslij' %}"/>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr id="analysis_box_{{ m.id }}" class="{% cycle wiersz1,wiersz2 %} aktywny rozwiniety"
+                    style="display: none;">
+                    <td colspan="8">
+                        <div class="boks">
+                            <div class="komentarze">
+                                {% if request.user.is_authenticated %}
+                                    {% for a in m.get_analysis %}
+                                        <p class="small" style="padding-left: 10px;">
+                                            <span class="autor"><a
+                                                    href="/{% trans 'Uzytkownik URL' %}/{{ a.user|lower }}/">{{ a.user }}</a></span>
+                                            <span class="{% trans 'punkty' %}">({{ a.user.get_profile.points }} {% trans 'pkt' %})</span>
+                                            <span class="data" name="date">{{ a.published_at }}</span>
+                                            <span>{% if request.user.is_staff %}&nbsp;&nbsp;&nbsp;
+                                                <a href="/admin/main/comments/{{ a.id }}/accept/" style="color: red;">MODERUJ!</a>{% endif %}</span>
+                                            <br/>
+                                            <span>{{ a.content|safe }}</span></p>
+                                    {% endfor %}
+                                    {% ifequal m.status "o" %}
+                                        <p>
+                                            <label for={% trans 'analiza' %}>{% trans 'Analiza' %}:</label>
+                                            <textarea id="analiza_{{ m.id }}" name="analyse_content_{{ m.id }}" rows="3"
+                                                      cols="10"></textarea>
+                                        </p>
+                                        <div class="alignRight">
+                                            <input class="button" name="add_analyse_{{ m.id }}" type="submit"
+                                                   value="{% trans 'Wyslij' %}"/>
+                                        </div>
+                                    {% endifequal %}
+                                {% else %}
+                                    <p class="komunikat informacja">
+                                        {% trans 'Aby dodac analize tego meczu lub zobaczyc te napisane przez innych musisz sie zalogowac. Jesli nie masz jeszcze konta' %}
+                                        <a href="/{% trans 'Rejestracja URL' %}/"
+                                           title="{% trans 'Formularz rejestracji' %}">{% trans 'zarejestruj sie' %}</a>.
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+    {% if not user.is_authenticated %}
+        <div class="komunikat informacja" style="text-align: center;">
+            {% trans 'Kazdy zarejestrowany uzytkownik moze typowac dowolny z dostepnych meczow.' %}<br/>
+            <a href="/{% trans 'Rejestracja URL' %}/">{% trans 'Wlacz sie do rywalizacji!' %}</a>
+        </div>
+    {% endif %}
+    {% if not only_future %}
+        <div class="komunikat" style="text-align: center;">
+            {% trans 'Nie zapomnij powrocic meczy z dni poprzednich, aby sprawdzic wyniki i obejrzec video relacje.' %}
+        </div>
+    {% else %}
+        <div class="komunikat informacja" style="text-align: center;">
+            <strong>{% trans 'Powyzsza lista moze nie zawierac wszystkich najblizszych meczy' %}.</strong><br/>
+            {% trans 'Wybierz konkretny dzien z gornego menu, aby miec pewnosc, ze ogladasz wszystkie spotkania' %}.
+        </div>
+    {% endif %}
+
+</div>
+<div id="kontent-kolumna1">
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

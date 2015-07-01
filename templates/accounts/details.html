@@ -1,0 +1,151 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Uzytkownik' %} - {{ show_user }}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Uzytkownicy' %}</a> / {{ show_user }}
+{% endblock path %}
+
+{% block top_left %}
+    {# <div class="modul"> #}
+    {# 	<ul> #}
+    {# 		<li><a href="">Typy</a></li> #}
+    {# 		<li><a href="">Statystyki</a></li> #}
+    {# 		<li><a href="">Wyslane zdjecia</a></li> #}
+    {# 		<li><a href="">Wyslane filmy</a></li> #}
+    {# 		<li>---</li> #}
+    {# 		{% ifequal show_user user %} #}
+    {# 		<li><a href="">Skrzynka</a></li> #}
+    {# 		<li><a href="">Edycja profilu</a></li> #}
+    {# 		{% endifequal %} #}
+    {# 	  </ul> #}
+    {# </div> #}
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+
+    <div class="modul">
+        {% if show_user %}
+        <h2 class="tytul">{% trans 'Typy' %}</h2>
+
+        <p class="small alignRight">{% trans 'pokaz typy' %}:
+            <a href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/">
+                {% ifequal range 'all' %}
+                <strong>{% trans 'wszystkie' %}</strong>
+                {% else %}
+                {% trans 'wszystkie' %}
+                {% endifequal %}
+            </a> | <a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/{% trans 'Aktualne URL' %}/">
+                {% ifequal range 'pending' %}
+                    <strong>{% trans 'nadchodzace' %}</strong>
+                    {% else %}
+                    {% trans 'nadchodzace' %}
+                {% endifequal %}
+            </a> | <a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/{% trans 'Archiwalne URL' %}/">
+                {% ifequal range 'archive' %}
+                    <strong>{% trans 'zakonczone' %}</strong>
+                    {% else %}
+                    {% trans 'zakonczone' %}
+                {% endifequal %}
+            </a>
+        </p>
+
+        {% if picks %}
+		<span>
+			<table border="1" cellspacing="0" cellpadding="5">
+                <tbody>
+
+                {% for pick in picks %}
+
+                <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ m.id }}">
+                    <td width="180" class="druzyna1">
+                        {{ pick.match.home_team.name_pl }}
+                    </td>
+                    <td width="50" class="wynik">
+                        {% ifnotequal pick.match.home_score -1 %}{{ pick.match.home_score }}
+                        - {{ pick.match.away_score }}
+                        {% else %}v{% endifnotequal %}
+                    </td>
+                    <td width="180" class="druzyna2">
+                        {{ pick.match.away_team.name_pl }}
+                    </td>
+                    <td width="50" class="typowanie">
+                        {{ pick.home_score }} - {{ pick.away_score }}
+                    </td>
+                    <td width="50" style="text-align: center">
+                        {% ifequal {{ pick.match.minute }} "d" %}
+                            {% ifequal {{ pick.match.minute }} "-1" %}
+                                {% trans 'dogrywka' %}
+                                {% else %}
+                                {% ifequal {{ pick.match.minute }} "-2" %}
+                                    {% trans '2. polowa' %}
+                                    {% else %}
+                                    {% ifequal {{ pick.match.minute }} "-3" %}
+                                        {% trans 'przerwa' %}
+                                        {% else %}
+                                        {% ifequal {{ pick.match.minute }} "-4" %}
+                                            {% trans '1. polowa' %}
+                                            {% else %}
+                                            {{ pick.match.minute }}''
+                                        {% endifequal %}
+                                    {% endifequal %}
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                        {% ifequal pick.match.status "o" %}
+                            {% timezone pick.match.match_date pick.match.match_time 1 %}
+                            {{ match_time_zone|date:"d.m H:i" }}
+                        {% endifequal %}
+                        {% ifequal pick.match.status "f" %}
+                            {% ifequal pick.points -1 %}
+                                <span style="color: red">{{ pick.points }} {% trans 'pkt' %}.</span>
+                                {% else %}
+                                {% ifequal pick.points 0 %}
+                                    <span style="color: red">0 {% trans 'pkt' %}.</span>
+                                    {% else %}
+                                    <span style="color: green">{{ pick.points }} {% trans 'pkt' %}.</span>
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                    </td>
+                    <td width="10" class="opcje">
+                        <a href="/{% trans 'Mecz URL' %}/{{ pick.match.home_team.name_pl_url }}/{{ pick.match.away_team.name_pl_url }}/{{ pick.match.id }}/"
+                           title="{% trans 'Szczegoly meczu' %}">
+                            <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11"
+                                 height="11"/>
+                        </a>
+                    </td>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+		</span>
+        {% else %}
+        {% endif %}
+
+        {% else %}
+        <br/>
+
+        <h1 align="center">{% trans 'Nie ma takiego uzytkownika' %}</h1>
+        {% endif %}
+
+        <br style="clear:both;"/>
+    </div>
+
+</div>
+<div id="kontent-kolumna1">
+    {% user_mini_box show_user %}
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,87 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            <form action="" method="post">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th width="50">Name</th>
+                        <th width="100">FROM</th>
+                        <th width="50">&nbsp;</th>
+                        <th width="100">TO</th>
+                        <th width="350">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for player in players %}
+                        <tr style="background-color: beige;">
+                            <td>{{ player.last_name }}, {{ player.first_name }}</td>
+                            <td>
+                                <select name="from_team_id">
+                                    {% for team in teams %}
+                                        <option value="{{ team.id }}"
+                                                {% ifequal player.current_team_id team.id %}selected{% endifequal %}>{{ team.name_pl }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br/>
+                                <input type="text" name="from_team_string" value="">
+                            </td>
+                            <td>
+                                <center><img src="/static/images/right_arrow.jpeg"></center>
+                            </td>
+                            <td>
+                                <select name="to_team_id">
+                                    {% for team in teams %}
+                                        <option value="{{ team.id }}">{{ team.name_pl }}</option>
+                                    {% endfor %}
+                                </select>
+                                <br/>
+                                <input type="text" name="to_team_string" value="">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="5">
+                            <span style="float: left;"><input type="submit" value="EDIT"></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,145 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            <h1>{% trans 'Zdjecia' %}</h1>
+
+            <form action="" method="post">
+
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>NewsID</th>
+                        <th>MatchID</th>
+                        <th>UserID</th>
+                        <th width="350">Date</th>
+                        <th>Accepted ?</th>
+                        <th>Deleted ?</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" name="filter_nid" id="filter_nid" size="4">
+                        </td>
+                        <td>
+                            <input type="text" name="filter_mid" id="filter_mid" size="4">
+                        </td>
+                        <td>
+                            <input type="text" name="filter_uid" id="filter_uid" size="4">
+                        </td>
+                        <td>
+                            <strong>od</strong>
+                            <input type="text" name="filter_date_start" size="10" class="vDateField">
+                            <strong>do</strong>
+                            <input type="text" name="filter_date_end" size="10" class="vDateField">
+                        </td>
+                        <td>
+                            <a href="#" onclick="$('filter_accepted').value=1;">Tak</a> / <a href="#"
+                                                                                             onclick="$('filter_accepted').value=0;">Nie</a>
+                        </td>
+                        <td>
+                            <a href="#" onclick="$('filter_deleted').value=1;">Tak</a> / <a href="#"
+                                                                                            onclick="$('filter_deleted').value=0;">Nie</a>
+                        </td>
+                        <td>
+                            <input type="hidden" name="filter_accepted" value="" id="filter_accepted">
+                            <input type="hidden" name="filter_deleted" value="" id="filter_deleted">
+                            <input type="submit" name="filter" value="Filtruj">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+            <form action="" method="post">
+
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th width="20">ID</th>
+                        <th width="5">&nbsp;</th>
+                        <th width="30">Author</th>
+                        <th width="400">Content</th>
+                        <th width="200">Related</th>
+                        <th width="35">Created at</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in images %}
+                        <tr>
+                            <td><a href="{{ i.id }}">{{ i.id }}</td>
+                            <td width="1">{% if not i.is_deleted %}
+                                <input type="checkbox" name="delete_{{ i.id }}">{% endif %}</td>
+                            <td><a href="#" onclick="$('filter_uid').value={{ i.user.id }}">{{ i.user }}</td>
+                            <td><img src="{{ i.link }}"/></td>
+                            <td>
+                                {% ifequal i.dst "match" %}
+                                    <a href="/{% trans 'Mecz URL' %}/{{ i.dst_id }}">match image ({{ i.dst_id }})</a>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a style="padding: 2px 2px 2px 2px; border: 1px solid grey;" href="#"
+                                       onclick="$('filter_mid').value=''; $('filter_nid').value=''; $('filter_mid').value={{ i.dst_id }};">show
+                                        related</a>
+                                {% endifequal %}
+
+                                {% ifequal i.dst "news" %}
+                                    <a href="/news/{{ i.dst_id }}">news image ({{ i.dst_id }})</a>&nbsp;&nbsp;&nbsp;
+                                    <a style="padding: 2px 2px 2px 2px; border: 1px solid grey;" href="#"
+                                       onclick="$('filter_mid').value=''; $('filter_nid').value=''; $('filter_nid').value={{ i.dst_id }};">show
+                                        related</a>
+                                {% endifequal %}
+                            </td>
+                            <td>
+                                {{ i.created_at }}
+                            </td>
+                            <td>
+                                <a style="padding: 2px 2px 2px 2px; border: 1px solid grey;"
+                                   href="/admin/main/images/{{ i.id }}/">edit</a>&nbsp;&nbsp;&nbsp;
+                                <a style="padding: 2px 2px 2px 2px; border: 1px solid grey;"
+                                   href="/admin/main/images/{{ i.id }}/accept">accept!</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <input type="submit" name="delete" value="mass delete">
+
+        </div>
+    </div>
+
+{% endblock %}

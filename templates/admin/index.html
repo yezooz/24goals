@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <title>24gole.pl</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css"/>
+    <meta name="robots" content="NONE,NOARCHIVE"/>
+</head>
+
+<body class="dashboard">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+            <h1 id="site-name">24gole.pl</h1>
+
+        </div>
+
+        <div id="user-tools">Welcome, <strong>{{ request.user }}</strong>. <a href="password_change/">Change
+            password</a> / <a href="logout/">Log out</a></div>
+
+
+    </div>
+    <!-- END Header -->
+
+    <!-- Content -->
+    <div id="content" class="colMS">
+
+        <div id="content-main">
+            <div class="module">
+                <table summary="">
+                    <caption>Moderacja</caption>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/comments/">Komentarze</a></th>
+                        <td>&nbsp;</td>
+                        <td><a href="/admin/main/comments/" class="changelink">Moderuj</a></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/news/">Newsy</a></th>
+                        <td><a href="/admin/main/news/add/" class="addlink">Dodaj</a></td>
+                        <td><a href="/admin/main/news/" class="changelink">Moderuj</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/videos/">Filmiki</a></th>
+                        <td>&nbsp;</td>
+                        <td><a href="/admin/main/videos/" class="changelink">Moderuj</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/images/">Zdjecia</a></th>
+                        <td>&nbsp;</td>
+                        <td><a href="/admin/main/images/" class="changelink">Moderuj</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="module">
+                <table summary="">
+                    <caption>Administracja</caption>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/matches/">Mecze</a></th>
+                        <td><a href="/admin/main/matches/multi_add/" class="addlink">Dodaj</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/teams/">Drużyny</a></th>
+                        <td><a href="/admin/main/teams/multi_add/" class="addlink">Dodaj</a></td>
+                        <td><a href="/admin/main/teams/multi_edit/" class="changelink">Zmień</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/players/">Zawodnicy</a></th>
+                        <td><a href="/admin/main/players/multi_add/" class="addlink">Dodaj</a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="module">
+                <table summary="">
+                    <caption>Różne</caption>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/mailing/">Mailingi</a></th>
+                        <td><a href="/admin/main/mailing/send/" class="addlink">Wyślij</a></td>
+                        <td><a href="/admin/main/mailing/archive/" class="changelink">Archiwum</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/autoreplies/">Mailingi (Auto Replies)</a></th>
+                        <td><a href="/admin/main/autoreplies/add/" class="addlink">Dodaj</a></td>
+                        <td><a href="/admin/main/autoreplies/" class="changelink">Zmień</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/banlist/">Bany</a></th>
+                        <td><a href="/admin/main/banlist/add/" class="addlink">Dodaj</a></td>
+                        <td><a href="/admin/main/banlist/change/" class="changelink">Zmień</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/accountsactivity/">Punkty za aktywność</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="module">
+                <table summary="">
+                    <caption>Logs</caption>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/stats/moderate/">Moderacja / aktywność</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="module">
+                <table summary="">
+                    <caption>Administracja 2</caption>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/leagues/">Ligi</a></th>
+                        <td><a href="/admin/main/leagues/add/" class="addlink">Dodaj</a></td>
+                        <td><a href="/admin/main/leagues/multi_edit/" class="changelink">Zmień</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/seasons/">Sezony</a></th>
+                        <td><a href="/admin/main/seasons/add/" class="addlink">Dodaj</a></td>
+                        <td><a href="/admin/main/seasons/multi_edit/" class="changelink">Zmień</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/countries/multi_edit/">Państwa</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/languages/multi_edit/">Języki</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/stadiums/">Stadiony</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/videocategories/">Kategorie filmów</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/main/trophies/">Trofea</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a href="/admin/auth/user/">Uzytkownicy</a></th>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <br class="clear"/>
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

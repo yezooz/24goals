@@ -1,0 +1,75 @@
+{% load i18n lang common modules %}
+<div class="modul">
+    <h1 class="tytul">{% trans 'Klasyfikacja' %} {% lang table.0.league_name_en table.0.league_name_pl %}</h1>
+    <table>
+        <thead>
+        <th title="{% trans 'pozycja' %}">{% trans 'Poz.' %}</th>
+        <th title="{% trans 'poprzedni tydzien' %}">{% trans 'PT' %}</th>
+        <th title="{% trans 'poprzedni miesiac' %}">{% trans 'PM' %}</th>
+        <th title="{% trans 'nazwa uzytkownika' %}">{% trans 'uzytkownik' %}</th>
+        <th title="{% trans 'punkty' %}">{% trans 'pkt' %}.</th>
+        <th title="{% trans 'ilosc typow' %}">typ.</th>
+        <th title="{% trans 'srednia' %}">śr.</th>
+        <th title="x6 {% trans 'punktow' %}">6</th>
+        <th title="x4 {% trans 'punkty' %}">4</th>
+        <th title="x3 {% trans 'punkty' %}">3</th>
+        <th title="x1 {% trans 'punkt' %}">1</th>
+        <th title="x-1 {% trans 'punkt' %}">-1</th>
+        </thead>
+        <tbody>
+        {% for u in table %}
+        <tr>
+            <td><strong>{% if not u.position %}?{% else %}{{ u.position }}.{% endif %}</strong></td>
+            <td style="font-align: center; width: 7%;">
+                {% ifequal u.prev_week 0 %}
+                <span title="{% trans 'nowy gracz' %}" style="font-size: 85%; color: #668600">{% trans 'NOWY' %}</span>
+                {% else %}
+                {% ifequal u.prev_week -1 %}
+                &nbsp;&nbsp;-
+                {% else %}
+                {% if u.prev_week|GT:u.position %}<img src="/static/images/arrow_up.gif"/> +{{ u.prev_week|MINUS:u.
+                    position}}{% endif %}
+                {% if u.prev_week|LT:u.position %}<img src="/static/images/arrow_down.gif"/> {{ u.prev_week|MINUS:u.
+                    position}}{% endif %}
+                {% ifequal u.prev_week u.position %}-{% endifequal %}
+                {% endifequal %}
+                {% endifequal %}
+            </td>
+            <td style="font-align: center; width: 7%;">
+                {% ifequal u.prev_month 0 %}
+                    <span title="{% trans 'nowy gracz' %}"
+                          style="font-size: 85%; color: #668600">{% trans 'NOWY' %}</span>
+                    {% else %}
+                    {% if u.prev_month|GT:u.position %}<img src="/static/images/arrow_up.gif"/> +{{ u.prev_month|MINUS:u
+                        .position}}{% endif %}
+                    {% if u.prev_month|LT:u.position %}<img src="/static/images/arrow_down.gif"/> {{ u.prev_month|MINUS:
+                        u.position}}{% endif %}
+                    {% ifequal u.prev_month u.position %}-{% endifequal %}
+                {% endifequal %}
+            </td>
+            <td title="{% trans 'uzytkownik' %}: {{ u.username }}">
+					<span class="username">
+					<a href="/{% trans 'Uzytkownik URL' %}/{{ u.username|lower }}/">
+                        {% ifequal u.username request.user %}
+                            <strong>{{ u.username }}</strong>
+                            {% else %}
+                            {{ u.username }}
+                        {% endifequal %}
+                        {#&nbsp;&nbsp;<span class="activity_points">0</span>#}
+                    </a>
+					</span>
+            </td>
+            <td title="{% trans 'punkty' %}: {{ u.points }}">{{ u.points }}</td>
+            <td title="{% trans 'ilosc typow' %}: {{ u.picked }}">{{ u.picked }}</td>
+            <td title="{% trans 'srednia' %}: {{ u.avg }}">{{ u.avg }}</td>
+            <td title="6 {% trans 'punktow' %}: {{ u.six }}x">{{ u.six }}</td>
+            <td title="4 {% trans 'punkty' %}: {{ u.four }}x">{{ u.four }}</td>
+            <td title="3 {% trans 'punkty' %}: {{ u.three }}x">{{ u.three }}</td>
+            <td title="1 {% trans 'punkt' %}: {{ u.one }}x">{{ u.one }}</td>
+            <td title="-1 {% trans 'punkt' %}: {{ u.minus_one }}x">{{ u.minus_one }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <span class="small">{% trans 'aktualizacja co 24h' %}</span>
+</div>

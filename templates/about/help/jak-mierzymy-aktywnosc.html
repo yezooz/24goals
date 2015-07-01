@@ -1,0 +1,72 @@
+{% extends "about/help_pl.html" %}
+
+{% block title %}
+    Pomoc - Jak mierzymy aktywność ?
+{% endblock %}
+
+{% block path %}
+    Pomoc / Jak mierzymy aktywność ?
+{% endblock %}
+
+{% block help_content %}
+
+    <h1 class="tytul">Jak mierzymy aktywność ?</h1>
+
+    <p style="font-size: 15px; padding-left: 10px; padding-top: 10px;">
+        Na aktywność użytkownika składają się:
+    </p>
+    <p style="font-size: 13px; padding-left: 25px;">
+        - <a href="/zasady/">punkty za typowanie</a><br/>
+        - <a href="/pomoc/trofea/">wyróżnienia za np. wygranie miesiąca</a><br/>
+        - punkty za dodawane przez użytkownika treści (poniżej)
+    </p>
+    <p style="font-size: 15px; padding-left: 10px; padding-top: 10px;">
+        Punktacja:
+    <table border="1" style="width: 50%; padding-left: 10px; font-weight: bold;">
+        <tbody>
+        <tr>
+            <td>1.</td>
+            <td><strong>dodany artykuł</strong></td>
+            <td><span style="color: green;">+20 pkt</span></td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td><strong>dodana analiza meczu</strong></td>
+            <td><span style="color: green;">+10 pkt</span></td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td><strong>dodany film</strong></td>
+            <td><span style="color: green;">+5 pkt</span></td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td><strong>dodane zdjęcie</strong></td>
+            <td><span style="color: green;">+3 pkt</span></td>
+        </tr>
+        </tbody>
+    </table>
+    </p>
+    <p style="font-size: 15px; padding-left: 10px; padding-top: 10px;">
+        Punkty za aktywność są sumowane i prezentowane na stronie graficznie w postaci różnokolorowych kropek.<br/>
+    </p>
+    <p style="font-size: 15px; padding-left: 25px;">
+        100 pkt. = <img src="/static/images/dot_grey.png"/><br/>
+        <img src="/static/images/dot_grey.png"/><img src="/static/images/dot_grey.png"/><img
+            src="/static/images/dot_grey.png"/><img src="/static/images/dot_grey.png"/><img
+            src="/static/images/dot_grey.png"/> = <img src="/static/images/dot_orange.png"/> = 500 pkt.<br/>
+        i analogicznie:<br/>
+        <img src="/static/images/dot_orange.png"/><img src="/static/images/dot_orange.png"/><img
+            src="/static/images/dot_orange.png"/><img src="/static/images/dot_orange.png"/><img
+            src="/static/images/dot_orange.png"/> = <img src="/static/images/dot_green.png"/> = 2500 pkt.<br/>
+        <img src="/static/images/dot_green.png"/><img src="/static/images/dot_green.png"/><img
+            src="/static/images/dot_green.png"/><img src="/static/images/dot_green.png"/><img
+            src="/static/images/dot_green.png"/> = <img src="/static/images/dot_blue.png"/> = 12 500 pkt.<br/>
+        <img src="/static/images/dot_blue.png"/><img src="/static/images/dot_blue.png"/><img
+            src="/static/images/dot_blue.png"/><img src="/static/images/dot_blue.png"/><img
+            src="/static/images/dot_blue.png"/> = <img src="/static/images/dot_red.png"/> = 62 500 pkt.<br/>
+        <img src="/static/images/dot_red.png"/><img src="/static/images/dot_red.png"/><img
+            src="/static/images/dot_red.png"/><img src="/static/images/dot_red.png"/><img
+            src="/static/images/dot_red.png"/> = <img src="/static/images/dot_black.png"/> = 312 500 pkt.
+    </p>
+{% endblock %}

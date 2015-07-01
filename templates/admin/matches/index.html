@@ -1,0 +1,180 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+<div id="content-main">
+    {% block object-tools %}
+        {% if has_add_permission %}
+            <ul class="object-tools">
+                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                    {% blocktrans with matches.opts.verbose_name|escape as name %}Add {{ name }}{% endblocktrans %}</a>
+                </li>
+            </ul>
+        {% endif %}
+    {% endblock %}
+    <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+        <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+        {% if matches.has_filters %}
+            <div id="changelist-filter">
+                <h2>{% trans 'Filter' %}</h2>
+                {% for spec in matches.filter_specs %}
+                    {% filter matches spec %}
+                {% endfor %}</div>{% endif %}
+
+        <form action="" method="post">
+
+            <table cellspacing="0">
+                <thead>
+                <tr>
+                    <th>League</th>
+                    <th>Season</th>
+                    <th>Date</th>
+                    <th>Match ID</th>
+                    <th>ESPN MID</th>
+                    <th>Status</th>
+                    <th>Manual ?</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <select name="filter_league_id">
+                            <option value="0">---</option>
+                            {% for league in leagues %}
+                                <option value="{{ league.id }}">{{ league.name_pl }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="filter_season_id">
+                            {% for season in seasons %}
+                                <option value="{{ season.id }}">{{ season.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>
+                        <strong>od</strong>
+                        <input type="text" name="filter_date_start" size="10" class="vDateField"
+                               value="{{ request.POST.filter_date_start }}"><br/>
+                        <strong>do</strong>
+                        <input type="text" name="filter_date_end" size="10" class="vDateField"
+                               value="{{ request.POST.filter_date_end }}">
+                    </td>
+                    <td>
+                        <input type="text" name="filter_mid" size="6" value="{{ request.POST.filter_mid }}"><br/>
+                    </td>
+                    <td>
+                        <input type="text" name="filter_emid" size="6" value="{{ request.POST.filter_emid }}">
+                    </td>
+                    <td>
+                        <select name="filter_status" size="6">
+                            <option value="0">---</option>
+                            <option value="o">Open</option>
+                            <option value="d">During</option>
+                            <option value="f">Finished</option>
+                            <option value="p">Postponed</option>
+                            <option value="c">Cancelled</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a href="#" onclick="$('filter_manual').value=1;">Tak</a> / <a href="#"
+                                                                                       onclick="$('filter_manual').value=0;">Nie</a>
+                    </td>
+                    <td>
+                        <input type="hidden" name="filter_manual" value="" id="filter_manual">
+                        <input type="submit" name="filter" value="Filtruj">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </form>
+
+        <form action="" method="post">
+
+            <table cellspacing="0">
+                <thead>
+                <tr>
+                    <th width="20">ID</th>
+                    <th width="1">&nbsp;</th>
+                    <th wdith="100">Home</th>
+                    <th width="1">H</th>
+                    <th width="1">A</th>
+                    <th width="100">Away</th>
+                    <th width="80">Date</th>
+                    <th width="50">Time</th>
+                    <th width="50">&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for match in matches %}
+                {% ifequal match.status "o" %}
+                    <tr style="background-color: #ADFF2F;">
+                {% endifequal %}
+                {% ifequal match.status "f" %}
+                    <tr style="background-color: #FF7F50;">
+                {% endifequal %}
+                {% ifequal match.status "d" %}
+                    <tr style="background-color: #6495ED;">
+                {% endifequal %}
+                {% ifequal match.status "c" %}
+                    <tr style="background-color: #C0C0C0;">
+                {% endifequal %}
+                {% ifequal match.status "p" %}
+                    <tr style="background-color: #C0C0C0;">
+                {% endifequal %}
+                <td><a href="{{ result.id }}">{{ match.id }}</td>
+                <td width="1"><input type="checkbox" name="edit_{{ match.id }}">
+                <td width="120"><b>{{ match.home_team.name_pl }}</b></td>
+                <td>{{ match.home_score }}</td>
+                <td>{{ match.away_score }}</td>
+                <td width="120"><b>{{ match.away_team.name_pl }}</b></td>
+                <td>{{ match.match_date }}</td>
+                <td>{{ match.match_time }}</td>
+                <td align="center">
+                    {% ifequal match.minute "-1" %}
+                    Extra Time
+                    {% else %}
+                    {% ifequal match.minute "-2" %}
+                    2nd half
+                    {% else %}
+                    {% ifequal match.minute "-3" %}
+                    Half Time
+                    {% else %}
+                    {% ifequal match.minute "-4" %}
+                    1st half
+                    {% else %}
+                    {{ match.minute }}''
+                    {% endifequal %}
+                    {% endifequal %}
+                    {% endifequal %}
+                    {% endifequal %}
+                </td>
+                <td><a style="padding: 2px 2px 2px 2px; border: 1px solid grey;"
+                       href="/admin/main/matches/multi_edit/{{ match.id }}/">edit</a></td>
+                </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <input type="submit" name="edit" value="edit scores">
+
+    </div>
+</div>
+
+{% endblock %}
+

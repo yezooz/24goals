@@ -1,0 +1,163 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/ui.tabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#zakladki > ul").tabs();
+        });
+    </script>
+{% endblock %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Uzytkownik' %} - {{ show_user }}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Uzytkownicy' %}</a> /
+    <a href="/{% trans 'Uzytkownik URL' %}/{{ user.username|lower }}/">{{ user.username }}</a> / {% trans 'Aktywnosc' %}
+{% endblock path %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+
+    <div class="modul">
+        <p class="komunikat center">
+            <span style="font-size: 12pt;"><a href="/{% trans 'Pomoc URL' %}/{% trans 'jak-mierzymy-aktywnosc' %}/"
+                                              style="text-decoration: none; color: black;">{% trans 'JAK MIERZYMY AKTYWNOSC ?' %}</a></span>
+        </p>
+
+        <h2 class="tytul">{% trans 'Punkty za aktywnosc' %} - {{ user }}</h2>
+
+        <div id="zakladki">
+            <ul>
+                <li><a href="#podsumowanie" title="{% trans 'Podsumowanie' %}">
+                    &nbsp;{% trans 'Podsumowanie' %}&nbsp;</a></li>
+                <li><a href="#trofea" title="{% trans 'Trofea' %}">&nbsp;{% trans 'Trofea' %}&nbsp;</a></li>
+                <li><a href="#newsy" title="{% trans 'Artykuly' %}">&nbsp;{% trans 'Artykuly' %}&nbsp;</a></li>
+                <li><a href="#zdjecia" title="{% trans 'Zdjecia' %}">&nbsp;{% trans 'Zdjecia' %}&nbsp;</a></li>
+                <li><a href="#filmy" title="{% trans 'Filmy' %}">&nbsp;{% trans 'Filmy' %}&nbsp;</a></li>
+            </ul>
+            <div class="boks">
+                <div id="podsumowanie">
+                    <p>
+                        <strong>{% trans 'Trofea' %}:</strong><br/>
+                        {% trans 'otrzymal/a' %}: <strong>{{ stats.trophies|length }}</strong><br/>
+                        {% trans 'razem' %}: <strong>{{ stats.trophies_points }} pkt.</strong></p>
+
+                    <p>
+                        <strong>Artykuły:</strong><br/>
+                        {% trans 'dodal/a' %}: <strong>{{ stats.news|length }}</strong><br/>
+                        {% trans 'razem' %}: <strong>{{ stats.news_points }} pkt.</strong></p>
+                    </p>
+                    <p>
+                        <strong>Zdjęcia:</strong><br/>
+                        {% trans 'dodal/a' %}: <strong>{{ stats.images|length }}</strong><br/>
+                        {% trans 'razem' %}: <strong>{{ stats.images_points }} pkt.</strong></p>
+                    </p>
+                    <p>
+                        <strong>Filmy:</strong><br/>
+                        {% trans 'dodal/a' %}: <strong>{{ stats.videos|length }}</strong><br/>
+                        {% trans 'razem' %}: <strong>{{ stats.videos_points }} pkt.</strong></p>
+                    </p>
+                    <p>
+                        <strong>Typowanie:</strong><br/>
+                        {% trans 'typow' %}: <strong>{{ stats.picks_count }}</strong><br/>
+                        {% trans 'razem' %}: <strong>{{ stats.picks_points }} pkt.</strong></p>
+                    </p>
+                    <p style="font-size: 12pt;"><strong>{% trans 'Razem' %}:</strong>&nbsp;{{ stats.total_points }} pkt.
+                        = <span class="activity_points">{{ stats.total_points }}</span></p>
+                </div>
+                <div id="trofea">
+                    {% for row in stats.trophies %}
+                    <p>
+                        {{ forloop.counter }}.&nbsp;{% lang row.name_en row.name_pl %}&nbsp;({{ row.date }})
+                        {% ifequal row.points -1 %}
+                        <span style="color: red; padding-left: 10px;">{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% else %}
+                        {% ifequal row.points 0 %}
+                        <span style="color: red; padding-left: 10px;">0 {% trans 'pkt' %}.</span>
+                        {% else %}
+                        <span style="color: green; padding-left: 10px;">+{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% endifequal %}
+                        {% endifequal %}
+                    </p>
+                    {% endfor %}
+                    <p style="font-size: 12pt;"><strong>{% trans 'Razem' %}:</strong> {{ stats.trophies_points }} pkt.
+                    </p>
+                </div>
+                <div id="newsy">
+                    <p style="color: black; padding-left: 10px;">{% trans 'Ostatnie 100 artykulow' %}</p>
+                    {% for row in stats.news %}
+                    {% if forloop.counter|LTE:100 %}
+                    <p>
+                        {{ forloop.counter }}.&nbsp;<a href="/news/{{ row.id }}/{{ row.url }}/">{{ row.caption }}</a>&nbsp;({{ row.published_at }})
+                        {% ifequal row.points -1 %}
+                        <span style="color: red; padding-left: 10px;">{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% else %}
+                        {% ifequal row.points 0 %}
+                        <span style="color: red; padding-left: 10px;">0 {% trans 'pkt' %}.</span>
+                        {% else %}
+                        <span style="color: green; padding-left: 10px;">+{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% endifequal %}
+                        {% endifequal %}
+                    </p>
+                    {% endif %}
+                    {% endfor %}
+                    <p style="font-size: 12pt;"><strong>{% trans 'Razem' %}:</strong> {{ stats.news_points }} pkt.</p>
+                </div>
+                <div id="zdjecia">
+                    <p style="color: black; padding-left: 10px;">{% trans 'Ostatnich 50 zdjec' %}</p>
+                    {% for row in stats.images %}
+                    {% if forloop.counter|LTE:50 %}
+                    <p>
+                        {{ forloop.counter }}.&nbsp;<a href="{{ row.link }}" target="_blank">
+                        {{ row.link|slice:":50"}}</a></a>&nbsp;({{ row.created_at }})
+                        {% ifequal row.points -1 %}
+                        <span style="color: red; padding-left: 10px;">{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% else %}
+                        {% ifequal row.points 0 %}
+                        <span style="color: red; padding-left: 10px;">0 {% trans 'pkt' %}.</span>
+                        {% else %}
+                        <span style="color: green; padding-left: 10px;">+{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% endifequal %}
+                        {% endifequal %}
+                    </p>
+                    {% endif %}
+                    {% endfor %}
+                    <p style="font-size: 12pt;"><strong>{% trans 'Razem' %}:</strong> {{ stats.images_points }} pkt.</p>
+                </div>
+                <div id="filmy">
+                    <p style="color: black; padding-left: 10px;">{% trans 'Ostatnich 10 filmow' %}</p>
+                    {% for row in stats.videos %}
+                    {% if forloop.counter|LTE:10 %}
+                    <p>
+                        {{ forloop.counter }}.&nbsp;<a href="{{ row.link }}" target="_blank">{{ row.content|safe }}</a>&nbsp;({{ row.created_at }})
+                        {% ifequal row.points -1 %}
+                        <span style="color: red; padding-left: 10px;">{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% else %}
+                        {% ifequal row.points 0 %}
+                        <span style="color: red; padding-left: 10px;">0 {% trans 'pkt' %}.</span>
+                        {% else %}
+                        <span style="color: green; padding-left: 10px;">+{{ row.points }} {% trans 'pkt' %}.</span>
+                        {% endifequal %}
+                        {% endifequal %}
+                    </p>
+                    {% endif %}
+                    {% endfor %}
+                    <p style="font-size: 12pt;"><strong>{% trans 'Razem' %}:</strong> {{ stats.videos_points }} pkt.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="kontent-kolumna1">
+    {% user_mini_box user %}
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

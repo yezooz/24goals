@@ -1,0 +1,174 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block title %}
+    {% trans 'Liga Typerow' %} w {% trans '24gole.pl' %} - {% trans 'Typowanie wynikow meczow' %}
+    {% if league_name %}
+        - {{ league_name|capfirst }}
+        {% if month_name %}
+            / {{ month_name|capfirst }}
+        {% endif %}
+    {% else %}
+        {% if month_name %}
+            - {{ month_name|capfirst }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Typer URL' %}/">{% trans 'Najlepiej typujacy' %}</a>
+    {% if league_name %}
+        / <a href="/typer/{{ league_name }}/">{{ league_name|capfirst }}</a>
+        {% if month_name %}
+            / {{ month_name|capfirst }}
+        {% endif %}
+        {% if selected_week %}
+            / {{ selected_week }}. {% trans 'Tydzien' %}
+        {% endif %}
+    {% else %}
+        {% if month_name %}
+            / {{ month_name|capfirst }}
+        {% endif %}
+        {% if selected_week %}
+            / {{ selected_week }}. {% trans 'Tydzien' %}
+        {% endif %}
+    {% endif %}
+{% endblock path %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+    <div class="modul">
+        <h2 class="tytul">
+            {% trans 'Klasyfikacja typerow' %}
+            {% if league_name %}
+                &nbsp;-&nbsp;{{ league_name|capfirst }}
+                {% if month_name %}
+                    / {{ month_name|capfirst }}
+                {% endif %}
+                {% if selected_week %}
+                    / {{ selected_week }}. {% trans 'Tydzien' %}
+                {% endif %}
+            {% else %}
+                {% if month_name %}
+                    &nbsp;-&nbsp;{{ month_name|capfirst }}
+                {% endif %}
+                {% if selected_week %}
+                    &nbsp;-&nbsp;{{ selected_week }}. {% trans 'Tydzien' %}
+                {% endif %}
+            {% endif %}
+        </h2>
+
+        <form action="" method="post">
+            <select name="select_month">
+                <option value="">{% trans 'pokaz wg. miesiaca' %}</option>
+                <option value="sierpien">{% trans 'sierpien' %} 2007</option>
+                <option value="wrzesien">{% trans 'wrzesien' %} 2007</option>
+                <option value="pazdziernik">{% trans 'pazdziernik' %} 2007</option>
+                <option value="listopad">{% trans 'listopad' %} 2007</option>
+                <option value="grudzien">{% trans 'grudzien' %} 2007</option>
+                <option value="styczen}">{% trans 'styczen' %} 2008</option>
+                <option value="luty">{% trans 'luty' %} 2008</option>
+                <option value="marzec">{% trans 'marzec' %} 2008</option>
+            </select>
+
+            <select name="select_week">
+                <option value="">{% trans 'pokaz wg. tygodnia' %}</option>
+                {% for week in weeks %}
+                    <option value="{{ forloop.counter0 }}">{{ week }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="{% trans 'pokaz' %}">
+        </form>
+
+        {% if users %}
+        <table>
+            <thead>
+            <th title="{% trans 'pozycja' %}">{% trans 'Poz.' %}</th>
+            <th title="{% trans 'poprzedni tydzien' %}">{% trans 'PT' %}</th>
+            <th title="{% trans 'poprzedni miesiac' %}">{% trans 'PM' %}</th>
+            <th title="{% trans 'nazwa uzytkownika' %}">{% trans 'uzytkownik' %}</th>
+            <th title="{% trans 'punkty' %}">{% trans 'pkt' %}.</th>
+            <th title="{% trans 'ilosc typow' %}">typ.</th>
+            <th title="{% trans 'srednia' %}">śr.</th>
+            <th title="x6 {% trans 'punktow' %}">6</th>
+            <th title="x4 {% trans 'punkty' %}">4</th>
+            <th title="x3 {% trans 'punkty' %}">3</th>
+            <th title="x1 punkt">1</th>
+            <th title="x0 {% trans 'punktow' %}">0</th>
+            <th title="x-1 punkt">-1</th>
+            </thead>
+            <tbody>
+            {% for u in users %}
+            {% if u.points|GT:0 %}
+            <tr>
+                <td><strong>{{ forloop.counter }}.<a name="{{ u.username }}"></strong></td>
+                <td style="font-align: center; width: 7%;">
+                    {% ifequal u.prev_week 0 %}
+                    <span title="{% trans 'nowy gracz' %}"
+                          style="font-size: 85%; color: #668600">{% trans 'NOWY' %}</span>
+                    {% else %}
+                    {% ifequal u.prev_week -1 %}
+                    &nbsp;&nbsp;-
+                    {% else %}
+                    {% if u.prev_week|GT:u.position %}<img src="/static/images/arrow_up.gif"/> +{{ u.prev_week|MINUS:u.
+                        position}}{% endif %}
+                    {% if u.prev_week|LT:u.position %}<img src="/static/images/arrow_down.gif"/> {{ u.prev_week|MINUS:u.
+                        position}}{% endif %}
+                    {% ifequal u.prev_week u.position %}-{% endifequal %}
+                    {% endifequal %}
+                    {% endifequal %}
+                </td>
+                <td style="font-align: center; width: 7%;">
+                    {% ifequal u.prev_month 0 %}
+                        <span title="{% trans 'nowy gracz' %}"
+                              style="font-size: 85%; color: #668600">{% trans 'NOWY' %}</span>
+                        {% else %}
+                        {% if u.prev_month|GT:u.position %}<img src="/static/images/arrow_up.gif"/> +
+                            {{ u.prev_month|MINUS:u.position}}{% endif %}
+                        {% if u.prev_month|LT:u.position %}<img src="/static/images/arrow_down.gif"/>
+                            {{ u.prev_month|MINUS:u.position}}{% endif %}
+                        {% ifequal u.prev_month u.position %}-{% endifequal %}
+                    {% endifequal %}
+                </td>
+                <td title="{% trans 'uzytkownik' %}: {{ u.username }}">
+						<span class="username">
+						<a href="/{% trans 'Uzytkownik URL' %}/{{ u.username|lower }}/">
+                            {% ifequal u.username user %}
+                                <strong>{{ u.username }}</strong>
+                                {% else %}
+                                {{ u.username }}
+                            {% endifequal %}
+                            {#&nbsp;&nbsp;<span class="activity_points">0</span>#}
+                        </a>
+						</span>
+                </td>
+                <td title="{% trans 'punkty' %}: {{ u.points }}">{{ u.points }}</td>
+                <td title="{% trans 'ilosc typow' %}: {{ u.picked }}">{{ u.picked }}</td>
+                <td title="{% trans 'srednia' %}: {{ u.avg }}">{{ u.avg }}</td>
+                <td title="6 {% trans 'punktow' %}: {{ u.six }}x">{{ u.six }}</td>
+                <td title="4 {% trans 'punkty' %}: {{ u.four }}x">{{ u.four }}</td>
+                <td title="3 {% trans 'punkty' %}: {{ u.three }}x">{{ u.three }}</td>
+                <td title="1 {% trans 'punkt' %}: {{ u.one }}x">{{ u.one }}</td>
+                <td title="0 {% trans 'punktow' %}: {{ u.zero }}x">{{ u.zero }}</td>
+                <td title="-1 {% trans 'punkt' %}: {{ u.minus_one }}x">{{ u.minus_one }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        {% endif %}
+        <span class="small">{% trans 'aktualizacja co 24h' %}</span>
+    </div>
+</div>
+<div id="kontent-kolumna1">
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+
+{% endblock content %}

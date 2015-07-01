@@ -1,0 +1,75 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}{% trans '24gole.pl' %} - {% trans 'Lista wiadomosci' %}{% endblock %}
+
+{% block path %}
+    {% trans 'Lista wiadomosci' %}
+{% endblock path %}
+
+{% block top_left %}
+    <div class="modul">
+        {# <h4 class="tytul">Ligi</h4> #}
+        <ul>
+            <li><a href="/uzytkownik/wiadomosci/przychodzace/" title="Skrzynka odbiorcza">{% ifequal selected 'inbox' %}
+                <strong>{% trans 'Skrzynka odbiorcza' %}</strong>{% else %}
+                {% trans 'Skrzynka odbiorcza' %}{% endifequal %}</a></li>
+            <li><a href="/uzytkownik/wiadomosci/wychodzace/" title="Skrzynka nadawcza">{% ifequal selected 'outbox' %}
+                <strong>{% trans 'Skrzynka nadawcza' %}</strong>{% else %}
+                {% trans 'Skrzynka nadawcza' %}{% endifequal %}</a></li>
+            <li><a href="/uzytkownik/wiadomosci/spam/" title="Skrzynka spamowa">{% ifequal selected 'spam' %}
+                <strong>Spam</strong>{% else %}Spam{% endifequal %}</a></li>
+            <li><a href="/uzytkownik/wiadomosci/kosz/" title="Kosz">{% ifequal selected 'trash' %}
+                <strong>{% trans 'Kosz' %}</strong>{% else %}{% trans 'Kosz' %}{% endifequal %}</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="kolumna1">
+            <div class="modul">
+                {% if flash %}<strong>{{ flash }}</strong>{% endif %}
+
+                <form action="" method="post">
+                    <h1 class="tytul">{{ msg.subject }} {{ msg.sent_at }}</h1>
+
+                    <p>{% trans 'Nadawca' %}: {{ msg.fm }}</p>
+
+                    <p>{% trans 'Temat' %}: {{ msg.subject }}</p>
+                    {{ msg.content|safe }}
+                    <br/>
+                    {% ifequal side 'in' %}
+                        <input class="button" type="submit" name="reply" value="{% trans 'Odpowiedz' %}"/>
+                        {% if msg.is_spam %}
+                            <input class="button" type="submit" name="not-spam"
+                                   value="{% trans 'Oznacz jako niespam' %}"/>
+                        {% else %}
+                            <input class="button" type="submit" name="spam" value="{% trans 'Oznacz jako spam' %}"/>
+                        {% endif %}
+
+                        {% if msg.is_deleted %}
+                            <input class="button" type="submit" name="not-delete"
+                                   value="{% trans 'Oznacz jako nieusunieta' %}"/>
+                        {% else %}
+                            <input class="button" type="submit" name="delete" value="{% trans 'Usun' %}"/>
+                        {% endif %}
+                    {% endifequal %}
+
+                </form>
+            </div>
+        </div>
+        <div class="kolumna2">
+            {% block top_right_part %}{% endblock top_right_part %}
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+
+    </div>
+{% endblock content %}

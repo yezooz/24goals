@@ -1,0 +1,48 @@
+{% extends layout_lang %}{% load common %}
+
+{% block title %}
+    24gole.pl - O Nas
+{% endblock %}
+
+{% block path %}
+    O nas
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">O nas</h1>
+
+            <p style="font-size: 13px; padding-left: 10px; padding-top: 10px;">
+
+            <p style="font-size: 13px; padding-left: 10px; padding-top: 10px;"><strong>Naszym celem</strong> jest przede
+                wszystkim zintegrowanie internetowego światka piłkarskiego poprzez <strong>możliwość umieszczania
+                    własnych newsów</strong>, <strong>opinii</strong>, <strong>analiz</strong> związanych z sześcioma
+                ligami. Uwagę swoją skupiliśmy na najwyżej notowanych ligach europejskich (<strong>Hiszpańskiej</strong>,
+                <strong>Angielskiej</strong>, <strong>Włoskiej</strong>, <strong>Niemieckiej</strong>, <strong>Francuskiej</strong>)
+                dodając także Naszą <strong>Orange Ekstraklasę</strong>.</p>
+
+            <p style="font-size: 13px; padding-left: 10px; padding-top: 10px;">Zapewniamy możliwość
+                <strong>typowania</strong> wszystkich wyników z wyżej wymienionych lig z ciekawymi
+                <strong>statystykami</strong> i <strong>podsumowaniami</strong> rozegranych kolejek. Nasi użytkownicy
+                mają możliwość umieszczania <strong>komentarzy</strong> do poszczególnych meczy, dzięki czemu
+                obstawiający mecze będą mogli sugerować prawdopodobne <strong>składy</strong> czy też umieszczać
+                <strong>graczy którzy w danym meczu nie wystąpią</strong>, a więc informacje jakże pomocne miłośnikom
+                zakładów. Do każdego z meczy jest możliwość <strong>dodawania zdjęć i filmików</strong> co pozwoli
+                odwzorować atmosferę widowiska.</p>
+
+            <p style="font-size: 13px; padding-left: 10px; padding-top: 10px;">Wszelkich opcji i nowinek jest znacznie
+                więcej. Z biegiem czasu będziemy wprowadzać kolejne udogodnienia. Jesteśmy otwarci na wszelkiego rodzaju
+                opinie i sugestie dotyczące tworzonego przez nas serwisu, które pozwolą <strong>wspólnymi
+                    siłami</strong> stworzyć naprawdę ciekawą witrynę.</p>
+            </p>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+
+    </div>
+{% endblock content %}

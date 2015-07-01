@@ -1,0 +1,109 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            {% if leagues %}
+                <h1>Dodaj mecze z ligi:</h1>
+                {% for league in leagues %}
+                    <a href="/admin/main/matches/multi_add/{{ league.id }}">{{ league.name_en }}</a><br/>
+                {% endfor %}
+            {% else %}
+
+                <form action="" method="post">
+                    <table cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th wdith="100">Home</th>
+                            <th width="1">&nbsp;</th>
+                            <th width="1">&nbsp;</th>
+                            <th width="100">Away</th>
+                            <th width="100">Date</th>
+                            <th width="100">Time</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for i in multi_count %}
+                            <tr style="background-color: beige;">
+                                <td width="120">
+                                    <select name="home_team_{{ i }}">
+                                        <option value="">---</option>
+                                        {% for team in teams %}
+                                            <option value="{{ team.id }}">{{ team.name_pl }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td><input type="text" name="home_score_{{ i }}" id="home_score_{{ i }}" value="-1"
+                                           size="2"></td>
+                                <td><input type="text" name="away_score_{{ i }}" id="away_score_{{ i }}" value="-1"
+                                           size="2"></td>
+                                <td width="120">
+                                    <select name="away_team_{{ i }}">
+                                        <option value="">---</option>
+                                        {% for team in teams %}
+                                            <option value="{{ team.id }}">{{ team.name_pl }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" name="match_date_{{ i }}" value="" size="12">
+                                </td>
+                                <td>
+                                    <input type="text" name="match_time_{{ i }}" value="" size="12">
+                                </td>
+                                <td>
+                                    <select name="season_id_{{ i }}">
+                                        {% for season in seasons %}
+                                            <option value="{{ season.id }}">{{ season.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>
+                                <input type="submit" value="ADD">
+                </form>
+                </td>
+                </tr>
+                </tbody>
+                </tbody>
+                </table>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
+

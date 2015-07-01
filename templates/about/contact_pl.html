@@ -1,0 +1,41 @@
+{% extends layout_lang %}{% load common %}
+
+{% block title %}
+    24gole.pl - Kontakt
+{% endblock %}
+
+{% block path %}
+    Kontakt
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">Formularz kontaktowy</h1>
+            <br/>
+
+            <form action="" method="post">
+                Imię lub adres e-mail (jeżeli chcesz, żebyśmy mogli się z Toba skontaktować):<br/>
+                <input type="text" name="email">
+                <br/>
+                Powód:
+                <select name="reason"><br/>
+                    <option value="">---</option>
+                    <option value="blad">Błąd w serwisie</option>
+                    <option value="opinia">Opinia</option>
+                    <option value="reklama">Reklama</option>
+                    <option value="wspolpraca">Współpraca</option>
+                </select><br/><br/><br/>
+                Treść:<br/>
+                <textarea name="content"></textarea><br/>
+                <input type="submit" value="Wyslij">
+            </form>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

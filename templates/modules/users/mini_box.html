@@ -1,0 +1,25 @@
+{% load i18n %}
+<div class="modul" style="border: 1px grey dotted; padding: 3px 1px 3px 3px;">
+    {# <h1 class="tytul">{% trans 'Profil' %}: {{user.username}}</h1> #}
+    <img class="avatar floatRight" src="/static/images/avatars/avatar_{{ user.user_id }}.jpg"
+         alt="{{ user.username }} avatar" width="80" height="80"/>
+    <dl style="font-weight: bold">
+        <dt>{{ user.username }}&nbsp;<span class="activity_points">{{ user.activity_points }}</span></dt>
+        <dd>{{ user.favourite_team_name_pl }}</dd>
+    </dl>
+    <br clear="both"/>
+    <dl>
+        <dd><span style="font-weight: normal; color: #999999; font-size: 92.4%;">{% trans 'liczba punktow' %}:</span>
+            <strong>{{ user.points }}</strong></dd>
+        <dd><span style="font-weight: normal; color: #999999; font-size: 92.4%;"><a
+                href="/{% trans 'Uzytkownik URL' %}/{{ user.username|lower }}/{% trans 'Aktywnosc URL' %}/">{% trans 'aktywnosc' %} &raquo;</a></span>
+        </dd>
+        <dd><span style="font-weight: normal; color: #999999; font-size: 92.4%;"><a
+                href="/{% trans 'Uzytkownik URL' %}/{{ user.username|lower }}/{% trans 'Klasyfikacje URL' %}/{% trans 'Generalna URL' %}/">{% trans 'klasyfikacje generalne' %} &raquo;</a></span>
+        </dd>
+        <dd><span style="font-weight: normal; color: #999999; font-size: 92.4%;"><a
+                href="/{% trans 'Uzytkownik URL' %}/{{ user.username|lower }}/{% trans 'Klasyfikacje URL' %}/{% trans 'Miesieczna URL' %}/">{% trans 'klasyfikacje miesieczne' %} &raquo;</a></span>
+        </dd>
+    </dl>
+</div>
+<hr/>

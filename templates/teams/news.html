@@ -1,0 +1,97 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Najnowsze wiadomosci, wydarzenia, informacje' %} -
+    {% lang team.name_en team.name_pl %}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Druzyny URL' %}/">{% trans 'Druzyny' %}</a> /
+    <a href="/{% trans 'Druzyna URL' %}/{% lang team.name_en_url team.name_pl_url %}">{% lang team.name_en team.name_pl %}</a>
+    / {% trans 'Wiadomosci' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">{% trans 'Wiadomosci zwiazane z' %} {% lang team.name_en team.name_pl %}</h1>
+            {% if news %}
+                {% for n in news %}
+                    {% ifchanged %}<br style="clear:both;"/><h2>{{ n.published_at|date:"l, d F Y"}}
+                        {% if news_date %}{% else %}
+                            <a href='/news/{{ n.published_at|date:"Y-m-d"}}/'>&raquo;</a>{% endif %}</h2>
+                    {% endifchanged %}
+
+                    <br style="clear:both;"/>
+                    <h2><a href="/news/{{ n.id }}/{{ n.url }}/">{{ n.caption }}</a>&nbsp;&nbsp;&nbsp;</h2>
+                    <p class="small">
+                        <span class="autor"><a href="/{% trans 'Uzytkownik URL' %}/{{ n.user|lower }}/">{{ n.user }}</a></span>
+                        <span class="{% trans 'punkty' %}">({{ n.user.get_profile.points }} {% trans 'pkt' %}.)</span>
+                        <span class="data">{{ n.published_at|date:"H:i"}}</span>
+				<span class="komentarze"><img src="/static/images/ikona_komentarz.gif" alt="{% trans 'Komentarze' %}: "
+                                              width="11" height="11"/>
+					<a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'Szczegoly' %}">
+                        <span style="color: red;">{% trans 'Komentarze' %}: {{ n.get_comments_count }}</span>
+                    </a>
+				</span>
+                        <img src="/static/images/ikona_videos.jpeg" alt="{% trans 'Filmiki:' %} " width="14"
+                             height="14"/>
+                        <a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'Szczegoly' %}">
+                            <span style="color: red;">Video: {{ n.get_videos_count }}</span>
+                        </a>
+                    </p>
+                    {% if n.assign_team_logo %}
+                        <img class="foto" src="/static/images/logos/team_{{ n.assign_team_logo.id }}.gif"/>
+                    {% else %}
+                        {% if n.assign_league_logo %}
+                            <img class="foto" src="/static/images/logos/league_{{ n.assign_league_logo.id }}.gif"/>
+                        {% endif %}
+                    {% endif %}
+                    <p>{{ n.short_content }}<strong><a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'wiecej' %}"
+                                                       style="float: right; padding-bottom: 30px;">czytaj
+                        dalej &raquo;</a></strong></p>
+                {% endfor %}
+            {% else %}
+                <br/>
+                <span style="text-align: center"><h2>{% trans 'Brak wiadomosci' %}</h2></span>
+            {% endif %}
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="adSerwis">
+                {% blocktrans %}Jako zarejestrowany uzytkownik serwisu 24gole.pl masz mozliwosc dodawania nowych
+                    wiadomosci! <br/>
+                    Jezeli posiadasz informacje, ktora jeszcze nie pojawila sie w serwisie i chcialbys sie nia podzielic
+                    z innymi uzytkownikami strony to mozesz to zrobic w kazdej chwili...{% endblocktrans %}
+                <br/>
+                <a style="text-align: center"
+                   href="/news/{% trans 'add-news' %}/">{% trans 'Dodaj nowa wiadomosc' %}!</a>
+            </div>
+        {% else %}
+            <div class="adSerwis">
+                {% blocktrans %}Kazdy zarejestrowany uzytkownik serwisu 24gole.pl ma mozliwosc dodawania nowych
+                    wiadomosci! <br/>
+                    Jezeli posiadasz informacje, ktora jeszcze nie pojawila sie w serwisie i chcialbys sie nia podzielic
+                    z innymi uzytkownikami strony to mozesz to zrobic w kazdej chwili...{% endblocktrans %}
+                <br/>
+                <a style="text-align: center" href="/{% trans 'Rejestracja URL' %}/">{% trans 'Zarejestruj sie' %}!</a>
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        {{ league_tables }}
+
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+    </div>
+{% endblock content %}

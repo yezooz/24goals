@@ -1,0 +1,42 @@
+{% extends layout_lang %}{% load i18n lang common modules flash pick timezones %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/ui.tabs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tabele_tabs > ul").tabs();
+        });
+    </script>
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">{% trans 'Lista lig' %}</h1>
+            {% for l in leagues %}
+                {% ifchanged l.country %}
+                    <li><a href="/teams/{{ l.country.name_en_url }}/"><img
+                            src="/static/images/flags/medium/{{ l.country.name_short|lower }}.gif"/></a></li>
+                {% endifchanged %}
+                <ul>
+                    <li><a href="/teams/{{ l.country.name_en_url }}/{{ l.name_en_url }}/">{{ l.name_en }}</a></li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {{ league_tables }}
+
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+    </div>
+{% endblock content %}

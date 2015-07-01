@@ -1,0 +1,39 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1>
+                Adres e-mail został dodany do listy wysyłkowej.<br/><br/>
+                <a href="/">&laquo; powrót do strony głównej</a>
+                <br>
+            </h1>
+        </div>
+
+        {% block paging %}
+            <ul class="stronicowanie">
+            </ul>
+        {% endblock paging %}
+
+        {% if request.user.is_authenticated %}
+            <div class="adSerwis">
+                Zaraz po wysłaniu formularza Twoja wiadomość zostanie przekazana moderatorowi. Jest to niezbędne, aby
+                uniknąć duplikatów i innych nieporządanych treści.<br/>
+                O rozpoczęciu wyświetlania Twojego newsa zostaniesz poinformowany przez email podany podczas
+                rejestracji.<br/>
+                Czynimy wszelkie możliwe starania, aby czas pomiędzy wysłaniem, a potwierdzeniem był jak najkrótszy.
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+
+    </div>
+{% endblock content %}

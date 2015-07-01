@@ -1,0 +1,80 @@
+{% extends layout_lang %}{% load i18n lang flash common modules %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dodaj nowy film na stronie (Krok 1)' %}
+{% endblock title %}
+
+{% block path %}{% trans 'Dodajesz nowy film - krok 1/2' %}{% endblock %}
+
+{% block top_left %}{% video_categories cat_name %}{% endblock %}
+{% block content %}
+
+    <div id="kontent-tresc">
+        {% if request.user.is_authenticated %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Dodajesz nowy film - krok 1/2' %}</h2>
+
+                <form action="{{ path_info }}" method="post">
+                    <fieldset>
+                        <label for="name" style="font-size: 18px;">{% trans 'Tytul' %} :</label><br clear="both"/>
+                        {% if form.errors.name %}
+                            <span style="color: red; font-size: 12px;">{% trans 'Tytul nie moze byc krotszy, niz 5 znakow' %}</span>{% endif %}
+                        <br clear="both"/>
+                        {{ form.name }}<br clear="both"/>
+                        <label for="content" style="font-size: 18px;">{% trans 'Kod HTML' %}:</label><br clear="both"/>
+                        {% if form.errors.content %}
+                            <span style="color: red; font-size: 12px;">{% trans 'Tresc nie moze byc krotsza, niz 10 znakow' %}</span>{% endif %}
+                        <br clear="both"/>
+                        <em>Pamietaj, zeby nie podawac adresu URL do filmu tylko link do wstawienia na strone (<a
+                                href="#{% trans 'przyklad' %}">przyklad</a>)</em>
+                        {{ form.content }}<br clear="both"/>
+                    </fieldset>
+                    <fieldset>
+                        <label for="cat_name" style="font-size: 18px;">{% trans 'Kategoria' %}:</label><br/><br/>
+                        <select name="cat_name">
+                            <option value="">{% trans 'Wybierz z listy' %} ...</option>
+                            {% for v_cat in vid_cats %}
+                                <option value="{% lang v_cat.name_en_url v_cat.name_pl_url %}"
+                                        {% ifequal v_cat.name_en_url cat_name %}selected="selected"{% endifequal %}{% ifequal v_cat.name_pl_url cat_name %}selected="selected"{% endifequal %}>{% lang v_cat.name_en v_cat.name_pl %}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.errors.cat_name %}
+                            <span style="color: red; font-size: 12px;">{% trans 'Wybierz kategorie' %}</span>{% endif %}
+                        <br clear="both"/>
+                    </fieldset>
+                    <div class="alignRight">
+                        <input class="button" name="preview" type="submit" value="{% trans 'Podglad' %} &raquo;"/>
+                    </div>
+                </form>
+            </div>
+
+            <div class="boks center komunikat">
+                <strong>{% trans 'W kolejnym kroku mozesz sprawdzic jak bedzie wygladal na stronie film, ktory dodales w tym formularzu' %}.</strong>
+            </div>
+
+            <div class="boks komunikat">
+                <a name="{% trans 'przyklad' %}">
+                    {% trans 'dodaj film przyklad' %}
+                    <a href="/static/images/videos-youtube-example-pl-large.jpg" target="_blank"><img
+                            src="/static/images/videos-youtube-example-pl-small.jpg"/></a>
+            </div>
+
+        {% else %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Strona dodawania nowego filmu' %}</h2>
+
+                <div class="boks center komunikat">
+                    {% blocktrans %}Tylko zarejestrowani uzytkownicy moga umieszczac nowe tresci w serwisie.<br/>
+                        Jezeli masz juz konto to wystarczy, ze sie zalogujesz.<br/>
+                        Mozesz sie rowniez w kazdej chwili <a href="/rejestracja/">zalozyc nowe konto</a> - zajmie Ci to
+                        mniej niz 30 sekund!{% endblocktrans %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

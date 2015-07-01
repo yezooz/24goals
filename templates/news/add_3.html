@@ -1,0 +1,57 @@
+{% extends layout_lang %}{% load bbcode i18n common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dodaj nowa informacje lub artykul (Krok 3/3)' %}
+{% endblock title %}
+
+{% block path %}{% trans 'Dodajesz nowa wiadomosc - krok 3/3' %}{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        {% if request.user.is_authenticated %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Dodajesz nowa wiadomosc - krok 3/3' %}</h2>
+
+                <div class="sukces">
+                    <strong>{% trans 'Gratulacje! Nowa wiadomosc zostala dodana i bedzie prezentowana na stronie po zatwierdzeniu przez moderatora' %}.</strong> {% trans 'Zostaniesz o tym poinformowany poprzez e-mail' %}.
+                </div>
+
+                <p class="small">
+                    <span class="autor"><a
+                            href="/{% trans 'Uzytkownik URL' %}/{{ news.user|lower }}/">{{ news.user }}</a></span>
+                    <span class="{% trans 'punkty' %}">({{ news.user.get_profile.points }} {% trans 'pkt' %}.)</span>
+                    <span class="data">{{ news.published_at|date:"Y-m-d"}} {{ news.published_at|date:"H:i"}}</span>
+		    <span class="komentarze"><img src="/static/images/ikona_komentarz.gif" alt="{% trans 'Komentarze' %}: "
+                                          width="11" height="11"/>
+				<a href="/news/{{ news.id }}/{{ news.url }}/" title="{% trans 'Szczegoly' %}">
+                    <span style="color: red;">{% trans 'Komentarze' %}: {{ news.get_comments_count }}</span>
+                </a>
+			</span>
+                    <img src="/static/images/ikona_videos.jpeg" alt="{% trans 'Filmiki:' %} " width="14" height="14"/>
+                    <a href="/news/{{ news.id }}/{{ news.url }}/" title="{% trans 'Szczegoly' %}">
+                        <span style="color: red;">Video: {{ news.get_videos_count }}</span>
+                    </a>
+                </p>
+                {% filter bbcode %}{{ news.short_content|safe }}{% endfilter %}
+            </div>
+
+        {% else %}
+            <div class="modul">
+                <h2 class="tytul">{% trans 'Strona dodawania nowej wiadomosci' %}</h2>
+
+                <div class="boks center komunikat">
+                    {% blocktrans %}Tylko zarejestrowani uzytkownicy moga umieszczac nowe tresci w serwisie.<br/>
+                        Jezeli masz juz konto to wystarczy, ze sie zalogujesz.<br/>
+                        Mozesz sie rowniez w kazdej chwili <a href="/rejestracja/">zalozyc nowe konto</a> - zajmie Ci to
+                        mniej niz 30 sekund!{% endblocktrans %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

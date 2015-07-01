@@ -1,0 +1,38 @@
+{% extends layout_lang %}{% load common %}
+
+{% block title %}
+    24goals.com - FIFA 2008 contests for picking scores!
+{% endblock %}
+
+{% block path %}
+    Contest - FIFA 2008
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">Contest - FIFA 2008</h1>
+
+            <p style="font-size: 13px; padding-left: 10px; padding-top: 10px;">
+
+            <p style="font-size: 13px; padding-left: 10px; padding-top: 10px;">
+                We're proud to present <strong>the month best picker</strong> - to win <a
+                    href="http://www.canyoufifa08.com/">FIFA 2008</a>. Current rankings can be found on <a
+                    href="/predictions/month/january/">www.24goals.com/predictions/month/january/</a> and top 10 on
+                every page.
+            </p>
+
+            <p style="font-size: 15px; padding-left: 10px; padding-top: 10px;">
+                <img src="/static/images/fifa_08_en.jpg">
+            </p>
+            </p>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+
+    </div>
+{% endblock content %}

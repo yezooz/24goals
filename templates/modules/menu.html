@@ -1,0 +1,352 @@
+{% load i18n %}
+
+{% if is_folded %}
+    <div id="menu" class="zwiniete">
+{% else %}
+    <div id="menu" class="rozwiniete">
+{% endif %}
+<div>
+    <ul>
+        {% comment %} --- INDEX --- {% endcomment %}
+        <li{% ifequal module 'index' %} class="aktywny"{% endifequal %}>
+            <a tabindex="1" href="/" title="Start"><span>Start</span></a>
+        </li>
+        {% comment %} --- NEWS --- {% endcomment %}
+        <li{% ifequal module 'news' %} class="aktywny"{% endifequal %}>
+            <a tabindex="1" href="/news/" title="{% trans 'Wiadomosci' %}"><span>{% trans 'Wiadomosci' %}</span></a>
+
+            {% ifequal module 'news' %}
+                {% if params.league_name %}
+                    <ul>
+                        <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                {{ dates.today_minus_2|date:"Y-m-d"}}/" title="News {{ params.league_name }}
+                                {{ dates.today_minus_2|date:"Y-m-d"}}"><span>{{ dates.today_minus_2|date:"l (d.m)"}}</span></a>
+                        </li>
+                        <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                {{ dates.yesterday|date:"Y-m-d"}}/" title="News {{ params.league_name }}
+                                {{ dates.yesterday|date:"Y-m-d"}}"><span>{{ dates.yesterday|date:"l (d.m)"}}</span></a>
+                        </li>
+                        <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                {{ dates.today|date:"Y-m-d"}}/"
+                               title="News {{ params.league_name }} {{ dates.today|date:"Y-m-d"}}"><span><strong>
+                            {{ dates.today|date:"l (d.m)"}}</strong></span></a></li>
+                        {% if dates.tomorrow %}
+                            <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                    {{ dates.tomorrow|date:"Y-m-d"}}/" title="News {{ params.league_name }}
+                                    {{ dates.tomorrow|date:"Y-m-d"}}"><span>{{ dates.tomorrow|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                        {% if dates.today_plus_2 %}
+                            <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                    {{ dates.today_plus_2|date:"Y-m-d"}}/" title="News {{ params.league_name }}
+                                    {{ dates.today_plus_2|date:"Y-m-d"}}"><span>{{ dates.today_plus_2|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                        {% if dates.today_plus_3 %}
+                            <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                    {{ dates.today_plus_3|date:"Y-m-d"}}/" title="News {{ params.league_name }}
+                                    {{ dates.today_plus_3|date:"Y-m-d"}}"><span>{{ dates.today_plus_3|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                        {% if dates.today_plus_4 %}
+                            <li><a tabindex="1" href="/{% trans 'Wiadomosci URL' %}/{{ params.league_name }}/
+                                    {{ dates.today_plus_4|date:"Y-m-d"}}/" title="News {{ params.league_name }}
+                                    {{ dates.today_plus_4|date:"Y-m-d"}}"><span>{{ dates.today_plus_4|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li><a tabindex="1" href="/news/{{ dates.today_minus_2|date:"Y-m-d"}}/" title="news
+                                {{ dates.today_minus_2|date:"Y-m-d"}}"><span>{{ dates.today_minus_2|date:"l (d.m)"}}</span></a>
+                        </li>
+                        <li><a tabindex="1" href="/news/{{ dates.yesterday|date:"Y-m-d"}}/" title="news
+                                {{ dates.yesterday|date:"Y-m-d"}}"><span>{{ dates.yesterday|date:"l (d.m)"}}</span></a>
+                        </li>
+                        <li><a tabindex="1" href="/news/{{ dates.today|date:"Y-m-d"}}/" title="News
+                                {{ dates.today|date:"Y-m-d"}}"><span>{{ dates.today|date:"l (d.m)"}}</span></a></li>
+                        {% if dates.tomorrow %}
+                            <li><a tabindex="1" href="/news/{{ dates.tomorrow|date:"Y-m-d"}}/" title="News
+                                    {{ dates.tomorrow|date:"Y-m-d"}}"><span>{{ dates.tomorrow|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                        {% if dates.today_plus_2 %}
+                            <li><a tabindex="1" href="/news/{{ dates.today_plus_2|date:"Y-m-d"}}/" title="news
+                                    {{ dates.tomorrow|date:"Y-m-d"}}"><span>{{ dates.today_plus_2|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                        {% if dates.today_plus_3 %}
+                            <li><a tabindex="1" href="/news/{{ dates.today_plus_3|date:"Y-m-d"}}/" title="news
+                                    {{ dates.today_plus_2|date:"Y-m-d"}}"><span>{{ dates.today_plus_3|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                        {% if dates.today_plus_4 %}
+                            <li><a tabindex="1" href="/news/{{ dates.today_plus_4|date:"Y-m-d"}}/" title="news
+                                    {{ dates.today_minus_3|date:"Y-m-d"}}"><span>{{ dates.today_plus_4|date:"l (d.m)"}}</span></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            {% endifequal %}
+        </li>
+
+        {% comment %} --- MATCHES --- {% endcomment %}
+        <li{% ifequal module 'matches' %} class="aktywny"{% endifequal %}>
+            {% ifequal module 'matches' %}
+
+                <a tabindex="1" href="/{% trans 'Mecze URL' %}/"
+                   title="{% trans 'Mecze' %}"><span>{% trans 'Mecze' %}</span></a>
+                {% ifequal method 'index' %}
+                    {% if params.league_name %}
+                        {% if params.status_name %}
+                            <ul>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_minus_2|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_minus_2|date:"l (d.m)"}}"><span>{{ dates.today_minus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.yesterday|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.yesterday|date:"l (d.m)"}}"><span>{{ dates.yesterday|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li class="aktywny"><a tabindex="1"
+                                                       href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                                               {{ dates.today|date:"Y-m-d"}}/{{ params.status_name }}"
+                                                       title="
+                                                               {{ dates.today|date:"l (d.m)"}}"><span>{{ dates.today|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.tomorrow|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.tomorrow|date:"l (d.m)"}}"><span>{{ dates.tomorrow|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_plus_2|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_plus_2|date:"l (d.m)"}}"><span>{{ dates.today_plus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_plus_3|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_plus_3|date:"l (d.m)"}}"><span>{{ dates.today_plus_3|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_plus_4|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_plus_4|date:"l (d.m)"}}"><span>{{ dates.today_plus_4|date:"l (d.m)"}}</span></a>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <ul>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_minus_2|date:"Y-m-d"}}" title="
+                                        {{ dates.today_minus_2|date:"l (d.m)"}}"><span>{{ dates.today_minus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.yesterday|date:"Y-m-d"}}" title="
+                                        {{ dates.yesterday|date:"l (d.m)"}}"><span>{{ dates.yesterday|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li class="aktywny"><a tabindex="1"
+                                                       href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                                               {{ dates.today|date:"Y-m-d"}}" title="
+                                        {{ dates.today|date:"l (d.m)"}}"><span>{{ dates.today|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.tomorrow|date:"Y-m-d"}}" title="
+                                        {{ dates.tomorrow|date:"l (d.m)"}}"><span>{{ dates.tomorrow|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_plus_2|date:"Y-m-d"}}" title="
+                                        {{ dates.today_plus_2|date:"l (d.m)"}}"><span>{{ dates.today_plus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_plus_3|date:"Y-m-d"}}" title="
+                                        {{ dates.today_plus_3|date:"l (d.m)"}}"><span>{{ dates.today_plus_3|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ params.league_name }}/
+                                        {{ dates.today_plus_4|date:"Y-m-d"}}" title="
+                                        {{ dates.today_plus_4|date:"l (d.m)"}}"><span>{{ dates.today_plus_4|date:"l (d.m)"}}</span></a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    {% else %}
+                        {% if params.status_name %}
+                            <ul>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.today_minus_2|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_minus_2|date:"l (d.m)"}}"><span>{{ dates.today_minus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.yesterday|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.yesterday|date:"l (d.m)"}}"><span>{{ dates.yesterday|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li class="aktywny"><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.today|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today|date:"l (d.m)"}}"><span>{{ dates.today|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.tomorrow|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.tomorrow|date:"l (d.m)"}}"><span>{{ dates.tomorrow|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.today_plus_2|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_plus_2|date:"l (d.m)"}}"><span>{{ dates.today_plus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.today_plus_3|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_plus_3|date:"l (d.m)"}}"><span>{{ dates.today_plus_3|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/
+                                        {{ dates.today_plus_4|date:"Y-m-d"}}/{{ params.status_name }}" title="
+                                        {{ dates.today_plus_4|date:"l (d.m)"}}"><span>{{ dates.today_plus_4|date:"l (d.m)"}}</span></a>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <ul>
+                                <li><a tabindex="1"
+                                       href="/{% trans 'Mecze URL' %}/{{ dates.today_minus_2|date:"Y-m-d"}}" title="
+                                        {{ dates.today_minus_2|date:"l (d.m)"}}"><span>{{ dates.today_minus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ dates.yesterday|date:"Y-m-d"}}"
+                                       title="
+                                               {{ dates.yesterday|date:"l (d.m)"}}"><span>{{ dates.yesterday|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li class="aktywny"><a tabindex="1"
+                                                       href="/{% trans 'Mecze URL' %}/{{ dates.today|date:"Y-m-d"}}"
+                                                       title="
+                                                               {{ dates.today|date:"l (d.m)"}}"><span>{{ dates.today|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ dates.tomorrow|date:"Y-m-d"}}"
+                                       title="
+                                               {{ dates.tomorrow|date:"l (d.m)"}}"><span>{{ dates.tomorrow|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ dates.today_plus_2|date:"Y-m-d"}}"
+                                       title="
+                                               {{ dates.today_plus_2|date:"l (d.m)"}}"><span>{{ dates.today_plus_2|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ dates.today_plus_3|date:"Y-m-d"}}"
+                                       title="
+                                               {{ dates.today_plus_3|date:"l (d.m)"}}"><span>{{ dates.today_plus_3|date:"l (d.m)"}}</span></a>
+                                </li>
+                                <li><a tabindex="1" href="/{% trans 'Mecze URL' %}/{{ dates.today_plus_4|date:"Y-m-d"}}"
+                                       title="
+                                               {{ dates.today_plus_4|date:"l (d.m)"}}"><span>{{ dates.today_plus_4|date:"l (d.m)"}}</span></a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                    {% endif %}
+                {% endifequal %}
+                {% ifequal method 'index' %}
+                    {# NOTHING #}
+                {% endifequal %}
+
+                {% else %}
+                <a tabindex="1" href="/{% trans 'Mecze URL' %}/"
+                   title="{% trans 'Mecze' %}"><span>{% trans 'Mecze' %}</span></a>
+            {% endifequal %}
+        </li>
+        <li class="red"><a tabindex="1" href="/{% trans 'filmy' %}/"
+                           title="{% trans 'Filmy' %}"><span>{% trans 'Filmy' %}</span></a></li>
+
+        {% comment %} --- PREDICTION --- {% endcomment %}
+        <li{% ifequal module 'prediction' %} class="aktywny"{% endifequal %}>
+            {% ifequal module 'prediction' %}
+                <a tabindex="1" href="/{% trans 'Ranking URL' %}/"
+                   title="{% trans 'Ranking' %}"><span>{% trans 'Ranking' %}</span></a>
+                <ul>
+                    {# <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/" title="{% trans 'Ranking' %} {% trans 'wszystkie ligi' %}"><span>{% trans 'Wszystkie Ligi' %}</span></a></li> #}
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/euro-2008/"
+                           title="{% trans 'Ranking' %} EURO 2008"><span>EURO 2008</span></a></li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/champions-league/"
+                           title="{% trans 'Ranking' %} {% trans 'Liga Mistrzow' %}"><span>{% trans 'Liga Mistrzow short' %}</span></a>
+                    </li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/uefa-cup/"
+                           title="{% trans 'Ranking' %} UEFA"><span>UEFA</span></a></li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/premiership/"
+                           title="{% trans 'Ranking' %} Premiership"><span><img src="/static/images/ikona_fl_en.png">&nbsp;&nbsp;Premiership</span></a>
+                    </li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/ligue-1/"
+                           title="{% trans 'Ranking' %} Ligue 1"><span><img src="/static/images/ikona_fl_fr.png">&nbsp;&nbsp;Ligue 1</span></a>
+                    </li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/primera-division/"
+                           title="{% trans 'Ranking' %} Primera Division"><span><img
+                            src="/static/images/ikona_fl_es.png">&nbsp;&nbsp;Primera Division</span></a></li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/bundesliga/"
+                           title="{% trans 'Ranking' %} Bundesliga"><span><img src="/static/images/ikona_fl_de.png">&nbsp;&nbsp;Bundesliga</span></a>
+                    </li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/orange-ekstraklasa/"
+                           title="{% trans 'Ranking' %} Orange Ekstraklasa"><span><img
+                            src="/static/images/ikona_fl_pl.png">&nbsp;&nbsp;{% trans 'Orange' %}</span></a></li>
+                    <li><a tabindex="1" href="/{% trans 'Ranking URL' %}/serie-a/"
+                           title="{% trans 'Ranking' %} Serie A"><span><img src="/static/images/ikona_fl_it.png">&nbsp;&nbsp;Serie A</span></a>
+                    </li>
+                </ul>
+                {% else %}
+                <a tabindex="1" href="/{% trans 'Ranking URL' %}/"
+                   title="{% trans 'Ranking' %}"><span>{% trans 'Ranking' %}</span></a>
+            {% endifequal %}
+        </li>
+
+        {% comment %} --- USERS --- {% endcomment %}
+        <li{% ifequal module 'users' %} class="aktywny"{% endifequal %}>
+            {% ifequal module 'users' %}
+                <a tabindex="1" href="/{% trans 'Uzytkownicy URL' %}/"
+                   title="{% trans 'Uzytkownicy' %}"><span>{% trans 'Uzytkownicy' %}</span></a>
+                {% if not is_folded %}
+                    <ul>
+                        <li><a tabindex="1" href="/{% trans 'Uzytkownicy URL' %}/"
+                               title="{% trans 'Lista uzytkownikow' %}"><span>{% trans 'Lista uzytkownikow' %}</span></a>
+                        </li>
+                        <li><a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/"
+                               title="{% trans 'Typy' %}"><span>{% trans 'Typy' %}</span></a></li>
+                        <li><a tabindex="1"
+                               href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/{% trans 'Aktywnosc URL' %}/"
+                               title="{% trans 'Aktywnosc' %}"><span>{% trans 'Aktywnosc' %}</span></a></li>
+                        <li><a tabindex="1"
+                               href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/{% trans 'Klasyfikacje URL' %}/{% trans 'Generalna URL' %}/"
+                               title="{% trans 'Klasyfikacja generalna' %}"><span>{% trans 'Klasyfikacja generalna' %}</span></a>
+                        </li>
+                        <li><a tabindex="1"
+                               href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/{% trans 'Klasyfikacje URL' %}/{% trans 'Miesieczna URL' %}/"
+                               title="{% trans 'Klasyfikacja miesieczna' %}"><span>{% trans 'Klasyfikacja miesieczna' %}</span></a>
+                        </li>
+                    </ul>
+                {% endif %}
+                {% else %}
+                <a tabindex="1" href="/{% trans 'Uzytkownicy URL' %}/"
+                   title="{% trans 'Uzytkownicy' %}"><span>{% trans 'Uzytkownicy' %}</span></a>
+            {% endifequal %}
+        </li>
+        {% if request.user.is_authenticated %}
+        <li{% ifequal module 'user' %} class="aktywny"{% endifequal %}>
+            {% ifequal module 'user' %}
+            <a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{ request.user }}/"
+               title="{% trans 'Uzytkownik' %} {{ request.user }}"><span>{{ request.user|capfirst }}</span></a>
+            {% if not is_folded %}
+                <ul>
+                    <li><a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/"
+                           title="{% trans 'Typy' %}"><span>{% trans 'Typy' %}</span></a></li>
+                    <li><a tabindex="1"
+                           href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/{% trans 'Aktywnosc URL' %}/"
+                           title="{% trans 'Aktywnosc' %}"><span>{% trans 'Aktywnosc' %}</span></a></li>
+                    <li><a tabindex="1"
+                           href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/{% trans 'Klasyfikacje URL' %}/{% trans 'Generalna URL' %}/"
+                           title="{% trans 'Klasyfikacja generalna' %}"><span>{% trans 'Klasyfikacja generalna' %}</span></a>
+                    </li>
+                    <li><a tabindex="1"
+                           href="/{% trans 'Uzytkownik URL' %}/{{ params.username|lower }}/{% trans 'Klasyfikacje URL' %}/{% trans 'Miesieczna URL' %}/"
+                           title="{% trans 'Klasyfikacja miesieczna' %}"><span>{% trans 'Klasyfikacja miesieczna' %}</span></a>
+                    </li>
+                </ul>
+            {% endif %}
+            {# <ul> #}
+            {# 				<li><a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{request.user}}/typy/" title="{% trans 'Wszystkie typy' %}"><span>Typy</span></a></li> #}
+            {# 				<li><a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{request.user}}/typy/archiwalne/" title="{% trans 'Archiwalne typy' %}"><span>Archiwalne typy</span></a></li> #}
+            {# 				<li><a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{request.user}}/typy/aktualne/" title="{% trans 'Aktualne typy' %}"><span>Aktualne typy</span></a></li> #}
+            {# </ul> #}
+            {% else %}
+            <a tabindex="1" href="/{% trans 'Uzytkownik URL' %}/{{ request.user }}/"
+               title="{% trans 'Uzytkownik' %} {{ request.user }}"><span>{{ request.user|capfirst }}</span></a>
+            {% endifequal %}
+        </li>
+        {% endif %}
+        {# <li class="red"><a tabindex="1" href="/{% trans 'Konkurs URL' %}/" title="{% trans 'Konkurs' %}"><span>{% trans 'Konkurs' %}</span></a></li> #}
+
+    </ul>
+</div>
+</div>

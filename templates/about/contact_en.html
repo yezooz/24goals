@@ -1,0 +1,41 @@
+{% extends layout_lang %}{% load common %}
+
+{% block title %}
+    24goals.com - Contact form
+{% endblock %}
+
+{% block path %}
+    Contact form
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">Contact form</h1>
+            <br/>
+
+            <form action="" method="post">
+                Name or email address (if you'd like us to contact you):<br/>
+                <input type="text" name="email">
+                <br/>
+                Reason:
+                <select name="reason"><br/>
+                    <option value="">---</option>
+                    <option value="blad">Bug on the site</option>
+                    <option value="opinia">Opinion</option>
+                    <option value="reklama">Advertising</option>
+                    <option value="wspolpraca">Partnership</option>
+                </select><br/><br/><br/>
+                Content:<br/>
+                <textarea name="content"></textarea><br/>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

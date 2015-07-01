@@ -1,0 +1,28 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block path %}
+    {% trans 'Rejestracja' %}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">{% trans 'Gratulacje!' %}</h1>
+
+            <h2>{% trans 'Dziekujemy za rejestracje w serwisie' %}.</h2>
+
+            <h2>{% trans 'Mozesz sie zalogowac i zaczac korzystac ze wszystkich zaawansowanych funkcji serwisu' %}.</h2>
+
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+
+    </div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% load i18n lang %}
+<div class="modul">
+    <h4 class="tytul">{% trans 'Kategorie' %}</h4>
+    <ul>
+        {% for vc in video_categories %}
+        <li><a href="/{% trans 'filmy' %}/{% trans 'kategoria' %}/{% lang vc.name_en_url vc.name_pl_url %}/"
+               title="{% trans 'kategoria' %} {% lang vc.name_en_url vc.name_pl_url %}">{% ifequal vc.name_pl_url selected %}<strong>{% lang vc.name_en vc.name_pl %}</strong>{% else %}{% lang vc.name_en vc.name_pl %}{% endifequal %}
+        </a></li>
+        {% endfor %}
+    </ul>
+</div>

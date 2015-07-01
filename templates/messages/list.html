@@ -1,0 +1,97 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}{% trans '24gole.pl' %} - {% trans 'Lista wiadomosci' %}{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownik URL' %}/{% trans 'PM URL' %}/">{% trans 'Lista wiadomosci' %}</a> /
+    {% ifequal selected 'inbox' %}{% trans 'Skrzynka odbiorcza' %}{% endifequal %}
+    {% ifequal selected 'outbox' %}{% trans 'Skrzynka nadawcza' %}{% endifequal %}
+    {% ifequal selected 'spam' %}{% trans 'Spam' %}{% endifequal %}
+    {% ifequal selected 'trash' %}{% trans 'Kosz' %}{% endifequal %}
+{% endblock path %}
+
+{% block top_left %}
+    <div class="modul">
+        {# <h4 class="tytul">Ligi</h4> #}
+        <ul>
+            <li><a href="/uzytkownik/wiadomosci/przychodzace/" title="Skrzynka odbiorcza">{% ifequal selected 'inbox' %}
+                <strong>{% trans 'Skrzynka odbiorcza' %}</strong>{% else %}
+                {% trans 'Skrzynka odbiorcza' %}{% endifequal %}</a></li>
+            <li><a href="/uzytkownik/wiadomosci/wychodzace/" title="Skrzynka nadawcza">{% ifequal selected 'outbox' %}
+                <strong>{% trans 'Skrzynka nadawcza' %}</strong>{% else %}
+                {% trans 'Skrzynka nadawcza' %}{% endifequal %}</a></li>
+            <li><a href="/uzytkownik/wiadomosci/spam/" title="Skrzynka spamowa">{% ifequal selected 'spam' %}
+                <strong>Spam</strong>{% else %}Spam{% endifequal %}</a></li>
+            <li><a href="/uzytkownik/wiadomosci/kosz/" title="Kosz">{% ifequal selected 'trash' %}
+                <strong>{% trans 'Kosz' %}</strong>{% else %}{% trans 'Kosz' %}{% endifequal %}</a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+    <div class="kolumna1">
+        <div class="modul">
+            {% if flash %}<strong>{{ flash }}</strong>{% endif %}
+            <h1 class="tytul">{% trans 'Lista wiadomosci' %}</h1>
+            <table border="1" cellspacing="0" cellpadding="5" style="min-height: 300px;">
+                <tbody>
+                {% if not messages %}
+                    brak wiadomości
+                {% else %}
+                    <form action="" method="post">
+                    <div>
+                        <p>
+                            <select name="selected_action">
+                                <option value="">wybierz opcję</option>
+                                <option value="not-readed">Oznacz jako nieprzeczytane</option>
+                                <option value="readed">Oznacz jako przeczytane</option>
+                                <option value="spam">Oznacz jako spam</option>
+                                <option value="delete">Usuń</option>
+                            </select>
+                            <input type="button" value="Przekaż"/>
+                        </p>
+                    </div>
+                {% endif %}
+
+                {% for msg in messages %}
+                <tr class="{% cycle wiersz1,wiersz2 %}
+				{% ifequal msg.is_red 1 %}
+			    	 przeczytana">
+                    <td style="width: 2%"><input type="checkbox" name="msg_{{ msg.id }}"/></td>
+                    <td style="width: 2%"><img src="/static/images/ikona_przeczytane.gif"
+                                               alt="{% trans 'Przeczytana' %}" width="14" height="14"/></td>
+                    {% else %}
+                    nieprzeczytana">
+                    <td style="width: 10%"><input type="checkbox" name="msg_{{ msg.id }}"/></td>
+                    <td style="width: 10%"><img src="/static/images/ikona_nieprzeczytane.gif"
+                                                alt="{% trans 'Nieprzeczytana' %}" width="14" height="14"/></td>
+                    {% endifequal %}
+                    <td style="width: 20%"><a href="/{% trans 'Uzytkownik URL' %}/{{ msg.fm }}/">{{ msg.fm }}</a></td>
+                    <td style="width: 56%"><a href="/uzytkownik/wiadomosc/{{ msg.id }}/">{{ msg.subject }}</a></td>
+                    <td style="width: 20%" name="date">{{ msg.sent_at|date:"Y-m-d H:i:s"}}</td>
+                </tr>
+                {% endfor %}
+
+                {% if not messages %}
+                    </form>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="kolumna2">
+        {% block top_right_part %}{% endblock top_right_part %}
+    </div>
+</div>
+<div id="kontent-kolumna1">
+    <div class="adBlok">
+        {% block skyscrapper %}
+            {# {% include "partials/adsense.html" %} #}
+        {% endblock skyscrapper %}
+    </div>
+</div>
+
+</div>
+{% endblock content %}

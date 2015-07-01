@@ -1,0 +1,360 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block top_menu %}
+    <div id="menu" class="rozwiniete">
+        <div>
+            <ul>
+                <li><a tabindex="1" href="/" %} title="Start"><span>Start</span></a></li>
+                <li><a tabindex="1" href="/news/" title="{% trans 'Wiadomosci' %}"><span>{% trans 'Wiadomosci' %}</span></a>
+                </li>
+                <li class="aktywny">
+                    <a tabindex="1" href="/{% trans 'Mecze URL' %}/"
+                       title="{% trans 'Mecze' %}"><span>{% trans 'Mecze' %}</span></a>
+                    <ul>
+                        <li class="aktywny"><a tabindex="1" href="/news/24" title="24h"><span>24h</span></a></li>
+                    </ul>
+                </li>
+                <li><a tabindex="1" href="/{% trans 'Typer URL' %}/"
+                       title="{% trans 'Typowanie' %}"><span>{% trans 'Typowanie' %}</span></a></li>
+                {% comment %}
+                    <li><a tabindex="1" href="/communities/" title="Społeczność"><span>Społeczność</span></a>
+                    </li>{% endcomment %}
+                <li><a tabindex="1" href="/uzytkownicy/"
+                       title="{% trans 'Uzytkownicy' %}"><span>{% trans 'Uzytkownicy' %}</span></a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+
+    <h1>{{ team.name_pl }}</h1>
+
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <td style="width: 600px;">
+                <div class="modul">
+                    <ul class="zakladki">
+                        <li class="aktywny" id="last5_overall_tab">
+                            <a onclick="
+						$('last5_home').style.display = 'none'; 
+						$('last5_away').style.display = 'none'; 
+						$('last5_overall').style.display = 'block'; 
+						$('last5_home').className = ''; 
+						$('last5_away').className = ''; 
+						$('last5_overall').className = 'aktywny'; 
+						$('last5_overall_tab').className='aktywny'; 
+						$('last5_home_tab').className=''; 
+						$('last5_away_tab').className=''; 
+						return false;" title="{% trans 'Tabela ligowa' %}">{% trans 'Ostatnie 5' %}</a>
+                        </li>
+                        <li id="last5_home_tab">
+                            <a onclick="
+						$('last5_overall').style.display = 'none'; 
+						$('last5_away').style.display = 'none'; 
+						$('last5_home').style.display = 'block'; 
+						$('last5_overall').className = ''; 
+						$('last5_away').className = ''; 
+						$('last5_home').className = 'aktywny'; 
+						$('last5_overall_tab').className=''; 
+						$('last5_home_tab').className='aktywny'; 
+						$('last5_away_tab').className=''; 
+						return false;" title="{% trans 'Tabela (dom)' %}">{% trans 'Ostatnie 5 (dom)' %}</a>
+                        </li>
+                        <li id="last5_away_tab">
+                            <a onclick="
+						$('last5_overall').style.display = 'none'; 
+						$('last5_home').style.display = 'none'; 
+						$('last5_away').style.display = 'block'; 
+						$('last5_overall').className = ''; 
+						$('last5_home').className = ''; 
+						$('last5_away').className = 'aktywny'; 
+						$('last5_overall_tab').className=''; 
+						$('last5_home_tab').className=''; 
+						$('last5_away_tab').className='aktywny'; 
+						return false;" title="{% trans 'Tabela (wyjazd)' %}">{% trans 'Ostatnie 5 (wyjazd)' %}</a>
+                        </li>
+                    </ul>
+
+                    <div id="last5_overall">
+                        <table border="1" cellspacing="0" cellpadding="5" style="font-size: 12px; width: 400px;">
+                            <tbody>
+                            {% for m in last5_1 %}
+                            <tr class="wiersz1">
+                                <th>{{ forloop.counter }}</th>
+                                {% ifequal m.home_team.id match.home_team.id %}
+                                <td style="font-weight: bold;">
+                                    {% else %}
+                                <td>
+                                    {% endifequal %}
+                                    {% lang m.home_team.name_en m.home_team.name_pl %}</td>
+                                <td>
+                                    <a href="/{% trans 'Mecz URL' %}/{{ m.id }}">{{ m.home_score }}
+                                        - {{ m.away_score }}</a></td>
+                                {% ifequal m.away_team.id match.home_team.id %}
+                                    <td style="font-weight: bold;">
+                                        {% else %}
+                                    <td>
+                                {% endifequal %}
+                                {% lang m.away_team.name_en m.away_team.name_pl %}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="last5_home" style="display: none;">
+                        <table border="1" cellspacing="0" cellpadding="5" style="font-size: 12px; width: 400px;">
+                            {% for m in last5_2 %}
+                                <tr class="wiersz1">
+                                    <th>{{ forloop.counter }}</th>
+                                    <td style="font-weight: bold;">
+                                        {% lang m.home_team.name_en m.home_team.name_pl %}</td>
+                                    <td>
+                                        <a href="/{% trans 'Mecz URL' %}/{{ m.id }}">{{ m.home_score }}
+                                            - {{ m.away_score }}</a></td>
+                                    <td>
+                                        {% lang m.away_team.name_en m.away_team.name_pl %}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="last5_away" style="display: none;">
+                        <table border="1" cellspacing="0" cellpadding="5" style="font-size: 12px; width: 400px;">
+                            {% for m in last5_3 %}
+                                <tr class="wiersz1">
+                                    <th>{{ forloop.counter }}</th>
+                                    <td>
+                                        {% lang m.home_team.name_en m.home_team.name_pl %}</td>
+                                    <td>
+                                        <a href="/{% trans 'Mecz URL' %}/{{ m.id }}">{{ m.home_score }}
+                                            - {{ m.away_score }}</a></td>
+                                    <td style="font-weight: bold;">
+                                        {% lang m.away_team.name_en m.away_team.name_pl %}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h2 class="srodtytul">{% trans 'Tabele' %}</h2>
+
+    <div class="modul">
+        <ul class="zakladki">
+            <li class="aktywny" id="table_overall_tab">
+                <a onclick="
+				$('table_home').style.display = 'none'; 
+				$('table_away').style.display = 'none'; 
+				$('table_overall').style.display = 'block'; 
+				$('table_home').className = ''; 
+				$('table_away').className = ''; 
+				$('table_overall').className = 'aktywny'; 
+				$('table_overall_tab').className='aktywny'; 
+				$('table_home_tab').className=''; 
+				$('table_away_tab').className=''; 
+				return false;" title="{% trans 'Tabela ligowa' %}">{% trans 'Tabela ligowa' %}</a>
+            </li>
+            <li id="table_home_tab">
+                <a onclick="
+				$('table_overall').style.display = 'none'; 
+				$('table_away').style.display = 'none'; 
+				$('table_home').style.display = 'block'; 
+				$('table_overall').className = ''; 
+				$('table_away').className = ''; 
+				$('table_home').className = 'aktywny'; 
+				$('table_overall_tab').className=''; 
+				$('table_home_tab').className='aktywny'; 
+				$('table_away_tab').className=''; 
+				return false;" title="{% trans 'Tabela (dom)' %}">{% trans 'Tabela (dom)' %}</a>
+            </li>
+            <li id="table_away_tab">
+                <a onclick="
+				$('table_overall').style.display = 'none'; 
+				$('table_home').style.display = 'none'; 
+				$('table_away').style.display = 'block'; 
+				$('table_overall').className = ''; 
+				$('table_home').className = ''; 
+				$('table_away').className = 'aktywny'; 
+				$('table_overall_tab').className=''; 
+				$('table_home_tab').className=''; 
+				$('table_away_tab').className='aktywny'; 
+				return false;" title="{% trans 'Tabela (wyjazd)' %}">"{% trans 'Tabela (wyjazd)' %}"</a>
+            </li>
+        </ul>
+
+        <div id="table_overall">
+            <table border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                <tr class="border">
+                    <th>&nbsp;</th>
+                    <th>{% trans 'Druzyna' %}</th>
+                    <th title="{% trans 'Rozegranych spotkan' %}">GP</th>
+                    <th title="{% trans 'Punkty' %}">P</th>
+                    <th title="{% trans 'Wygrane' %}">W</th>
+                    <th title="{% trans 'Remisy' %}">D</th>
+                    <th title="{% trans 'Przegrane' %}">L</th>
+                    <th title="{% trans 'Strzelone bramki' %}">GS</th>
+                    <th title="{% trans 'Stracone bramki' %}">GA</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for t in table_1 %}
+                    <tr class="{% cycle wiersz1,wiersz2 %}">
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ t.team.name_pl }}</td>
+                        <td>{{ t.gp }}</td>
+                        <td>{{ t.points }}</td>
+                        <td>{{ t.w }}</td>
+                        <td>{{ t.d }}</td>
+                        <td>{{ t.l }}</td>
+                        <td>{{ t.gs }}</td>
+                        <td>{{ t.ga }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="table_home" style="display: none;">
+            <table border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                <tr class="border">
+                    <th>&nbsp;</th>
+                    <th>{% trans 'Druzyna' %}</th>
+                    <th title="{% trans 'Rozegranych spotkan' %}">GP</th>
+                    <th title="{% trans 'Punkty' %}">P</th>
+                    <th title="{% trans 'Wygrane' %}">W</th>
+                    <th title="{% trans 'Remisy' %}">D</th>
+                    <th title="{% trans 'Przegrane' %}">L</th>
+                    <th title="{% trans 'Strzelone bramki' %}">GS</th>
+                    <th title="{% trans 'Stracone bramki' %}">GA</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for t in table_2 %}
+                    <tr class="{% cycle wiersz1,wiersz2 %}">
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ t.team.name_pl }}</td>
+                        <td>{{ t.gp }}</td>
+                        <td>{{ t.points }}</td>
+                        <td>{{ t.w }}</td>
+                        <td>{{ t.d }}</td>
+                        <td>{{ t.l }}</td>
+                        <td>{{ t.gs }}</td>
+                        <td>{{ t.ga }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="table_away" style="display: none;">
+            <table border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                <tr class="border">
+                    <th>&nbsp;</th>
+                    <th>{% trans 'Druzyna' %}</th>
+                    <th title="{% trans 'Rozegranych spotkan' %}">GP</th>
+                    <th title="{% trans 'Punkty' %}">P</th>
+                    <th title="{% trans 'Wygrane' %}">W</th>
+                    <th title="{% trans 'Remisy' %}">D</th>
+                    <th title="{% trans 'Przegrane' %}">L</th>
+                    <th title="{% trans 'Strzelone bramki' %}">GS</th>
+                    <th title="{% trans 'Stracone bramki' %}">GA</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for t in table_3 %}
+                    <tr class="{% cycle wiersz1,wiersz2 %}">
+                        <th>{{ forloop.counter }}</th>
+                        <td>{{ t.team.name_pl }}</td>
+                        <td>{{ t.gp }}</td>
+                        <td>{{ t.points }}</td>
+                        <td>{{ t.w }}</td>
+                        <td>{{ t.d }}</td>
+                        <td>{{ t.l }}</td>
+                        <td>{{ t.gs }}</td>
+                        <td>{{ t.ga }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="srodtytul">{% trans 'Zawodnicy' %}</h2>
+
+        <div class="modul">
+            <ul class="zakladki">
+                <li class="aktywny" id="players_tab">
+                    <a onclick="
+					$('injuries').style.display = 'none'; 
+					$('players').style.display = 'block'; 
+					$('injuries').className = ''; 
+					$('players').className = 'aktywny'; 
+					return false;" title="{% trans 'Sklady druzyny' %}">{% trans 'Sklad' %}</a>
+                </li>
+                {% comment %}
+                    <li id="injuries">
+                        <a onclick="
+					$('players').style.display = 'none'; 
+					$('injuries').style.display = 'block'; 
+					$('players').className = '';
+					$('injuries').className = 'aktywny';  
+					return false;" title='Kontuzje'>Zgłaszane kontuzje</a>
+                    </li>
+                {% endcomment %}
+            </ul>
+
+            <div id="players">
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <thead>
+                    <tr class="border">
+                        <th>&nbsp;</th>
+                        <th>Imię</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for p in team.get_squad %}
+                        <tr class="{% cycle wiersz1,wiersz2 %}">
+                            <th>{{ forloop.counter }}</th>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {# <div id="injuries" style="display: none;"> #}
+            {# 			<table border="1" cellspacing="0" cellpadding="5" > #}
+            {# 			    <thead> #}
+            {# 				  <tr class="border"> #}
+            {# 				    <th>&nbsp;</th> #}
+            {# 			      </tr> #}
+            {# 				</thead> #}
+            {# 				<tbody> #}
+            {# 					<td> #}
+            {# 						 #}
+            {# 					</td> #}
+            {# 				</tbody> #}
+            {# 			  </table> #}
+            {# 			</div> #}
+        </div>
+    </div>
+</div>
+<div id="kontent-kolumna1">
+    <div class="adBlok">
+        {% block skyscrapper %}
+            {# {% include "partials/adsense.html" %} #}
+        {% endblock skyscrapper %}
+    </div>
+</div>
+
+</div>
+{% endblock content %}

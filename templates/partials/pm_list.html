@@ -1,0 +1,30 @@
+<div class="modul">
+    <h3 class="tytul">Lista wiadomości</h3>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+        <tr class="border">
+            <th width="10">&nbsp;</th>
+            <th width="120">Od</th>
+            <th>Temat</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for msg in messages %}
+        {% ifequal msg.is_red 1 %}
+        <tr class="{% cycle wiersz1,wiersz2 %} przeczytana">
+            <td><img src="/static/images/ikona_przeczytane.gif" alt="Przeczytana" width="14" height="14"/></td>
+            {% else %}
+        <tr class="{% cycle wiersz1,wiersz2 %} nieprzeczytana">
+            <td><img src="/static/images/ikona_nieprzeczytane.gif" alt="Nieprzeczytana" width="14" height="14"/></td>
+            {% endifequal %}
+
+            <td><a href="/message/{{ msg.id }}/">{{ msg.sender }}</a></td>
+            <td><a href="/message/{{ msg.id }}/">{{ msg.subject }}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p class="więcej">
+        <a href="/messages/" title="więcej wiadomości">więcej wiadomości</a>
+    </p>
+</div>

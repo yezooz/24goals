@@ -1,0 +1,237 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Uzytkownik' %} - {{ show_user }}
+{% endblock %}
+
+{% block jquery %}
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/jquery-1.2.2.js"></script>
+    <script type="text/javascript" src="/static/js/jquery/{% lang 'jcalendar_en' 'jcalendar_pl' %}.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/jquery.select.js"></script>
+    <link href="/static/css/jcalendar.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block extrahead %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (typeof({{selected_date.2}}) == typeof(1)) {
+                $("#day").selectOptions({{selected_date.2}});
+            }
+            if (typeof({{selected_date.1}}) == typeof(1)) {
+                $("#month").selectOptions({{selected_date.1}});
+            }
+            if (typeof({{selected_date.0}}) == typeof(1)) {
+                $("#year").selectOptions({{selected_date.0}});
+            }
+            $('fieldset.jcalendar').jcalendar();
+        });
+    </script>
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Uzytkownicy' %}</a> / {{ show_user }}
+{% endblock path %}
+
+{% block top_left %}
+    {# <div class="modul"> #}
+    {# 	<ul> #}
+    {# 		<li><a href="">Typy</a></li> #}
+    {# 		<li><a href="">Statystyki</a></li> #}
+    {# 		<li><a href="">Wyslane zdjecia</a></li> #}
+    {# 		<li><a href="">Wyslane filmy</a></li> #}
+    {# 		<li>---</li> #}
+    {# 		{% ifequal show_user user %} #}
+    {# 		<li><a href="">Skrzynka</a></li> #}
+    {# 		<li><a href="">Edycja profilu</a></li> #}
+    {# 		{% endifequal %} #}
+    {# 	  </ul> #}
+    {# </div> #}
+{% endblock %}
+
+{% block content %}
+
+<div id="kontent-tresc">
+
+    <div class="modul">
+        {% if show_user %}
+        <h2 class="tytul">{% trans 'Typy' %}</h2>
+
+        <p class="small alignRight">{% trans 'pokaz typy' %}:
+            <a href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/">
+                {% ifequal range 'all' %}
+                <strong>{% trans 'wszystkie' %}</strong>
+                {% else %}
+                {% trans 'wszystkie' %}
+                {% endifequal %}
+            </a> | <a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/{% trans 'Aktualne URL' %}/">
+                {% ifequal range 'pending' %}
+                    <strong>{% trans 'nadchodzace' %}</strong>
+                    {% else %}
+                    {% trans 'nadchodzace' %}
+                {% endifequal %}
+            </a> | <a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/{% trans 'Archiwalne URL' %}/">
+                {% ifequal range 'archive' %}
+                    <strong>{% trans 'zakonczone' %}</strong>
+                    {% else %}
+                    {% trans 'zakonczone' %}
+                {% endifequal %}
+            </a>
+        </p>
+
+        {% if picks %}
+		<span>
+			<table border="1" cellspacing="0" cellpadding="5">
+                <tbody>
+
+                {% for pick in picks %}
+
+                <tr class="{% cycle wiersz1,wiersz2 %}" id="match_box_{{ pick.match_id }}">
+                    <td width="180" class="druzyna1">
+                        {% lang pick.home_team_name_en pick.home_team_name_pl %}
+                    </td>
+                    <td width="50" class="wynik">
+                        {% ifnotequal pick.match_home_score -1 %}{{ pick.match_home_score }}
+                        - {{ pick.match_away_score }}
+                        {% else %}v{% endifnotequal %}
+                    </td>
+                    <td width="180" class="druzyna2">
+                        {% lang pick.away_team_name_en pick.away_team_name_pl %}
+                    </td>
+                    <td width="50" class="typowanie">
+                        {{ pick.home_score }} - {{ pick.away_score }}
+                    </td>
+                    <td width="50" style="text-align: center">
+                        {% ifequal {{ pick.match_minute }} "d" %}
+                            {% ifequal {{ pick.match_minute }} "-1" %}
+                                {% trans 'dogrywka' %}
+                                {% else %}
+                                {% ifequal {{ pick.match_minute }} "-2" %}
+                                    {% trans '2. polowa' %}
+                                    {% else %}
+                                    {% ifequal {{ pick.match_minute }} "-3" %}
+                                        {% trans 'przerwa' %}
+                                        {% else %}
+                                        {% ifequal {{ pick.match_minute }} "-4" %}
+                                            {% trans '1. polowa' %}
+                                            {% else %}
+                                            {{ pick.match_minute }}''
+                                        {% endifequal %}
+                                    {% endifequal %}
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                        {% ifequal pick.match_status "o" %}
+                            {% timezone pick.match_date pick.match_time 1 %}
+                            {{ match_time_zone|date:"d.m H:i" }}
+                        {% endifequal %}
+                        {% ifequal pick.match_status "f" %}
+                            {% ifequal pick.points -1 %}
+                                <span style="color: red">{{ pick.points }} {% trans 'pkt' %}.</span>
+                                {% else %}
+                                {% ifequal pick.points 0 %}
+                                    <span style="color: red">0 {% trans 'pkt' %}.</span>
+                                    {% else %}
+                                    <span style="color: green">{{ pick.points }} {% trans 'pkt' %}.</span>
+                                {% endifequal %}
+                            {% endifequal %}
+                        {% endifequal %}
+                    </td>
+                    <td width="10" class="opcje">
+                        <a href="/{% trans 'Mecz URL' %}/{% lang pick.home_team_name_en_url pick.home_team_name_pl_url %}/{% lang pick.away_team_name_en_url pick.away_team_name_pl_url %}/{{ pick.match_id }}/"
+                           title="{% trans 'Szczegoly meczu' %}">
+                            <img src="/static/images/ikona_info.gif" alt="{% trans 'Szczegoly' %}" width="11"
+                                 height="11"/>
+                        </a>
+                    </td>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+		</span>
+        {% else %}
+        <br/>
+
+        <h1 align="center">{% trans 'Brak typow' %}</h1>
+        {% endif %}
+
+        {% else %}
+        <br/>
+
+        <h1 align="center">{% trans 'Nie ma takiego uzytkownika' %}</h1>
+        {% endif %}
+
+        <br style="clear:both;"/>
+    </div>
+
+</div>
+<div id="kontent-kolumna1">
+    {% user_mini_box show_user %}
+    <div class="modul">
+        <h1 class="tytul">{% trans 'Szukaj wg. daty meczu' %}</h1>
+        <fieldset class="jcalendar">
+            <div class="jcalendar-selects">
+                <select class="jcalendar-select-day" id="day" name="day" style="width: 40px;">
+                    <option value="0"/>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select class="jcalendar-select-month" id="month" name="month" style="width: 70px;">
+                    <option value="0"/>
+                    {% for m in months %}
+                        <option value="{{ forloop.counter }}">{{ m }}</option>
+                    {% endfor %}
+                </select>
+                <select class="jcalendar-select-year" id="year" name="year" style="width: 50px;">
+                    <option value="0"/>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                </select>
+            </div>
+        </fieldset>
+        <div style="text-align: center;">
+            <form action="" method="get" id="search_for_picks"
+                  onclick="$('#search_picks_date')[0].value = $('#year').val() + '-' + $('#month').val() + '-' + $('#day').val(); return true;">
+                <input type="hidden" name="date" value="" id="search_picks_date"/>
+                <input type="submit" value="{% trans 'Szukaj typow' %}" class="button" style="font-size: 11px;"/>
+            </form>
+        </div>
+    </div>
+    {% include "partials/right-column.html" %}
+</div>
+</div>
+{% endblock content %}

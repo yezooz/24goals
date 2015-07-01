@@ -1,0 +1,68 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+            <form action="" method="post">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th wdith="50">NAME_PL</th>
+                        <th wdith="50">NAME_EN</th>
+                        <th width="650">&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for i in multi_count %}
+                        <tr style="background-color: beige;">
+                            <td><input type="text" name="name_pl_{{ i }}" id="name_pl_{{ i }}" value="" size="30"></td>
+                            <td><input type="text" name="name_en_{{ i }}" id="name_en_{{ i }}" value="" size="30"></td>
+                            <td width="120">
+                                &nbsp;
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>
+                            <input type="submit" value="ADD">
+            </form>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}
+

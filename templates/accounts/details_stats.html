@@ -1,0 +1,71 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Uzytkownik' %} - {{ show_user }}
+{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="/static/css/jquery.sorter.css" type="text/css" media="print, projection, screen"/>
+    <script language="javascript" type="text/javascript" src="/static/js/jquery/jquery.tablesorter.pack.js"></script>
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Uzytkownicy' %}</a> / {{ show_user }}
+{% endblock path %}
+
+{% block top_left %}
+    {# <div class="modul"> #}
+    {# 	<ul> #}
+    {# 		<li><a href="">Typy</a></li> #}
+    {# 		<li><a href="">Statystyki</a></li> #}
+    {# 		<li><a href="">Wyslane zdjecia</a></li> #}
+    {# 		<li><a href="">Wyslane filmy</a></li> #}
+    {# 		<li>---</li> #}
+    {# 		{% ifequal show_user user %} #}
+    {# 		<li><a href="">Skrzynka</a></li> #}
+    {# 		<li><a href="">Edycja profilu</a></li> #}
+    {# 		{% endifequal %} #}
+    {# 	  </ul> #}
+    {# </div> #}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+
+        <div class="modul">
+            <h2 class="tytul">{% trans 'Statystyki' %}</h2>
+
+            <p class="small alignRight">{% trans 'pokaz typy' %}:
+                <a href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/">
+                    {% ifequal range 'all' %}
+                        <strong>{% trans 'wszystkie' %}</strong>
+                        {% else %}
+                        {% trans 'wszystkie' %}
+                    {% endifequal %}
+                </a> |
+                </a>
+            </p>
+
+            <p>
+			<span class="username">
+				<a href="/uzytkownik/marek/">marek</a> <span class="activity_points">2373</span> pts.
+			</span>
+            </p>
+
+            <p>
+			<span class="username">
+				<a href="/uzytkownik/marek/">marcin</a> <span class="activity_points">8900</span> pts.
+			</span>
+            </p>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <form action="" method="post">
+                <fieldset>
+                    <legend style="font-size: 20px;">{% trans 'Podaj adres email i zapisz do newslettera' %}</legend>
+                    {{ form.email }}
+                </fieldset>
+                <div class="alignRight">
+                    <input class="button" type="submit" value="Dodaj"/>
+                </div>
+            </form>
+        </div>
+
+        {% block paging %}
+            <ul class="stronicowanie">
+            </ul>
+        {% endblock paging %}
+
+        {% if request.user.is_authenticated %}
+            <div class="adSerwis">
+                {% trans 'Jezeli chcesz byc informowany o nowosciach na stronie podaj swoj adres e-mail na ktory bedziemy wysylac informacje (<i>nie czesciej niz raz w tygodniu</i>)' %}.
+            </div>
+        {% endif %}
+
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+
+    </div>
+{% endblock content %}

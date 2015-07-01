@@ -1,0 +1,129 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'moj profil' %}
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownik URL' %}/{{ user|lower }}/">{{ user }}</a> / {% trans 'Edycja danych' %}
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+
+        <div class="modul">
+            {% flash %}
+                <div><strong>{{ msg }}</strong></div>
+            {% endflash %}
+
+            <h2 class="tytul">{% trans 'Aktualizuj swoj profil' %}</h2>
+
+            <p>
+                <a href="#details">{% trans 'zmiana danych uzytkownika' %}</a> | <a
+                    href="#pass">{% trans 'zmiana hasla' %}</a> | <a href="#av">{% trans 'zmiana awatara' %}</a>
+            </p>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            <form name="profil" action="" method="post">
+                <a name="details"></a>
+                <fieldset>
+                    <legend>{% trans 'Kontakt' %}</legend>
+                    <p>
+                        <label for="im_msn">MSN</label>
+                        <input id="im_msn" name="im_msn" type="text" value="{{ account.msn }}"/>
+                    </p>
+
+                    <p>
+                        <label for="im_skype">Skype</label>
+                        <input id="im_skype" name="im_skype" type="text" value="{{ account.skype }}"/>
+                    </p>
+
+                    <p>
+                        <label for="im_gg">Gadu-Gadu</label>
+                        <input id="im_gg" name="im_gg" type="text" value="{{ account.gg }}"/>
+                    </p>
+
+                    <p>
+                        <label for="im_jabber">Jabber</label>
+                        <input id="im_jabber" name="im_jabber" type="text" value="{{ account.jabber }}"/>
+                    </p>
+
+                    <p>
+                        <label for="im_icq">ICQ</label>
+                        <input id="im_icq" name="im_icq" type="text" value="{{ account.icq }}"/>
+                    </p>
+
+                    <p>
+                        <label for="im_yahoo">yahoo</label>
+                        <input id="im_yahoo" name="im_yahoo" type="text" value="{{ account.yahoo }}"/>
+                    </p>
+
+                    <p>
+                        <label for="www">{% trans 'Strona WWW' %}</label>
+                        <input id="www" name="www" type="text" value="{{ account.www }}"/>
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>{% trans 'O mnie' %}</legend>
+                    <p>
+                        <textarea id="about_me" name="about_me">{{ account.about_me }}</textarea>
+                    </p>
+                </fieldset>
+                <div class="alignRight">
+                    <input type="hidden" name="change_profile" value="1">
+                    <input class="button" type="submit" value="Edycja"/>
+                </div>
+            </form>
+
+            <form name="haslo" action="" method="post">
+                <a name="pass"></a>
+                <fieldset>
+                    <legend>{% trans 'Zmien haslo' %}</legend>
+                    <p>
+                        <label for="old_pass">{% trans 'Stare haslo' %}</label>
+                        <input id="old_pass" name="old_pass" class="text" type="password"/>
+                    </p>
+
+                    <p>
+                        <label for="pass1">{% trans 'Nowe haslo' %}</label>
+                        <input id="pass1" name="pass1" class="password" type="password"/>
+                    </p>
+
+                    <p>
+                        <label for="pass2">{% trans 'Powtorz nowe haslo' %}</label>
+                        <input id="pass2" name="pass2" class="password" type="password"/>
+                    </p>
+                </fieldset>
+                <div class="alignRight">
+                    <input type="hidden" name="change_pass" value="1">
+                    <input class="button" type="submit" value="{% trans 'Zmien haslo' %}"/>
+                </div>
+            </form>
+
+            <form name="avatar" action="" method="post" enctype="multipart/form-data">
+                <a name="av"></a>
+                <fieldset>
+                    <legend>{% trans 'Zmien awatar' %}</legend>
+                    <p>
+                        <label for="avatar">{% trans 'Wyslij swoj' %} <a
+                                href="{% trans 'http://pl.wikipedia.org/wiki/Awatar_%28rzeczywisto%C5%9B%C4%87_wirtualna%29' %}"
+                                title="Wikipedia Entry: Avatar (icon)" target="_blank">{% trans 'awatar' %}</a></label>
+                        <input id="avatar" name="avatar" class="file" type="file"/>
+                        <em>{% trans 'Wyslij plik z Twojego komputera' %}</em>
+                    </p>
+                </fieldset>
+                <div class="alignRight">
+                    <input class="button" type="submit" value="{% trans 'Zmien' %}"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

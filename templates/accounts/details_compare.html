@@ -1,0 +1,120 @@
+{% extends layout_lang %}{% load i18n lang common modules timezones %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Uzytkownik' %} - {{ show_user }}
+{% endblock %}
+
+{% block jquery %}
+    <!--[if IE]><script language="javascript" type="text/javascript" src="/static/js/jquery/flot/excanvas.pack.js"></script><![endif]-->
+    <script type="text/javascript" charset="utf-8" src="/static/js/jquery/jquery-1.2.2.js"></script>
+    <script language="javascript" type="text/javascript" src="/static/js/jquery/flot/jquery.flot.js"></script>
+{% endblock %}
+
+{% block extrahead %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            data = {
+                data: [
+                    {% for s in stats %}
+                        [{{forloop.counter}}, {{s.position}}],
+                    {% endfor %}
+                ],
+                lines: true
+            };
+
+            var options = {
+                lines: {show: true, fill: false},
+                points: {show: true, fill: false},
+                xaxis: {
+                    tickDecimals: 0,
+                },
+                yaxis: {
+                    min: 1,
+                    max: 100,
+                    tickDecimals: 0,
+                }
+            };
+
+            $.plot($("#position-placeholder"), [data], options);
+
+
+            data = {
+                data: [
+                    {% for s in stats %}
+                        [{{forloop.counter}}, {{s.avg}}],
+                    {% endfor %}
+                ],
+                lines: true
+            };
+
+            var options = {
+                lines: {show: true, fill: false},
+                points: {show: true, fill: false},
+                xaxis: {
+                    tickDecimals: 0,
+                },
+                yaxis: {
+                    min: 0,
+                    max: 6,
+                    tickDecimals: 2,
+                }
+            };
+
+            $.plot($("#avg-placeholder"), [data], options);
+        });
+    </script>
+{% endblock %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block path %}
+    <a href="/{% trans 'Uzytkownicy URL' %}/">{% trans 'Uzytkownicy' %}</a> / {{ show_user }}
+{% endblock path %}
+
+{% block top_left %}
+    {# <div class="modul"> #}
+    {# 	<ul> #}
+    {# 		<li><a href="">Typy</a></li> #}
+    {# 		<li><a href="">Statystyki</a></li> #}
+    {# 		<li><a href="">Wyslane zdjecia</a></li> #}
+    {# 		<li><a href="">Wyslane filmy</a></li> #}
+    {# 		<li>---</li> #}
+    {# 		{% ifequal show_user user %} #}
+    {# 		<li><a href="">Skrzynka</a></li> #}
+    {# 		<li><a href="">Edycja profilu</a></li> #}
+    {# 		{% endifequal %} #}
+    {# 	  </ul> #}
+    {# </div> #}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+
+        <div class="modul">
+            <h2 class="tytul">{% trans 'Statystyki' %}</h2>
+
+            <p class="small alignRight">{% trans 'pokaz typy' %}:
+                <a href="/{% trans 'Uzytkownik URL' %}/{{ show_user }}/{% trans 'Typy URL' %}/">
+                    {% ifequal range 'all' %}
+                        <strong>{% trans 'wszystkie' %}</strong>
+                        {% else %}
+                        {% trans 'wszystkie' %}
+                    {% endifequal %}
+                </a> |
+                </a>
+            </p>
+            <br/>
+
+            <div id="position-placeholder" style="width:630px;height:300px"></div>
+            <div id="avg-placeholder" style="width:630px;height:300px"></div>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% user_mini_box show_user %}
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}

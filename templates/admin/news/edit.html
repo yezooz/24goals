@@ -1,0 +1,144 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a href="../../../">{% trans "Home" %}</a> &rsaquo; <a
+            href="../">{% trans "News" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            <form action="" method="post">
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Dodaj wiadomość</th>
+                    </tr>
+                    </thead>
+                    <tbody style="background-color: beige;">
+                    <tr>
+                        <td>
+                            Tytuł:<br/>
+                            <input type="text" name="caption" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ news.caption }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nagłówek:<br/>
+                            <textarea name="short_content" cols="125" rows="10">{{ news.short_content }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Treść:<br/>
+                            <textarea name="content" cols="125" rows="10">{{ news.content|safe }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Źródło:<br/>
+                            <input type="text" name="source" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ news.source }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Język:<br/>
+                            <select name="lang">
+                                <option value="en" {% ifequal news.lang 'en' %}selected="selected"{% endifequal %}>
+                                    Angielski
+                                </option>
+                                <option value="pl" {% ifequal news.lang 'pl' %}selected="selected"{% endifequal %}>
+                                    Polski
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Związany z ligą<br/>
+                            <select name="league_id">
+                                <option value="">---</option>
+                                {% for league in leagues %}
+                                    <option value="{{ league.id }}"
+                                            {% ifequal league.id news.league_id %}selected="selected"{% endifequal %}>{{ league.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Przypisz logo ligi:<br/>
+                            <select name="ass_league_id">
+                                <option value="">---</option>
+                                {% for league in leagues %}
+                                    <option value="{{ league.id }}"
+                                            {% ifequal league.id news.assign_league_logo_id %}selected="selected"{% endifequal %}>{{ league.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Przypisz logo druzyny:<br/>
+                            <select name="ass_team_id">
+                                <option value="">---</option>
+                                {% for team in teams %}
+                                    <option value="{{ team.id }}"
+                                            {% ifequal team.id news.assign_team_logo_id %}selected="selected"{% endifequal %}>{{ team.name_pl }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Data:<br/>
+                            <input type="text" name="published_at" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ news.published_at }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Przeczytano:<br/>
+                            <input type="text" name="view_count" id="source" style="font-size: 16pt;" size="75"
+                                   value="{{ news.view_count }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="is_promoted"
+                                   {% if news.is_promoted %}checked="checked"{% endif %}/> <b>utrzymuj news na
+                            głównej</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="EDIT NEWS">
+            </form>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}

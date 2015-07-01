@@ -1,0 +1,47 @@
+{% extends layout_lang %}{% load common %}
+
+{% block title %}
+    24gole.pl - Zasady
+{% endblock %}
+
+{% block path %}
+    Zasady
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            <h1 class="tytul">Zasady</h1>
+            <br/>
+
+            <h2>Zasady punktowania</h2>
+            <em>Mozesz typowac kazde nierozpoczete spotkanie, ktore prezentujemy na stronach 24gole.pl.<br/>
+                Po zakonczonym meczu punkty są przyznawane automatycznie w zaleznosci od wytypowanego wyniku.</em>
+            <ul style="padding-left: 15px; padding-top: 5px;">
+                <li>&raquo;&nbsp; <strong>6 punktow</strong> - poprawny wynik</strong></li>
+                <li>&raquo;&nbsp; <strong>4 punkty</strong> - poprawnie wytypowana wygrana druzyna i jej liczba
+                    bramek</strong></li>
+                <li>&raquo;&nbsp; <strong>3 punkty</strong> - poprawnie wytypowana wygrana druzyna</strong></li>
+                <li>&raquo;&nbsp; <strong>1 punkt</strong> - poprawny wynik jednej ze stron</strong></li>
+                <li>&raquo;&nbsp; <strong>-1 punkt</strong> - błędny rezultat spotkania i niepoprawna liczba bramek po
+                    obu stronach</strong></li>
+            </ul>
+            <br/>
+
+            <h2>Zasady dotyczace tresci udostepnianych przez uzytkownikow</h2>
+            <em>Serwis 24gole.pl nie odpowiada za tresci udostepniane przez uzytkownikow. Prosimy o nie umieszczanie
+                materialow obietych prawami autorskimi!</em>
+
+        </div>
+
+    </div>
+    <div id="kontent-kolumna1">
+        <div class="adBlok">
+            {% block skyscrapper %}
+                {# {% include "partials/adsense.html" %} #}
+            {% endblock skyscrapper %}
+        </div>
+    </div>
+    </div>
+{% endblock content %}

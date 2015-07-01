@@ -1,0 +1,70 @@
+{% extends "admin/core/base_site.html" %}
+{% load adminmedia admin_list i18n %}
+{% block stylesheet %}{% admin_media_prefix %}css/changelists.css{% endblock %}
+{% block bodyclass %}change-list{% endblock %}
+{% block userlinks %}<a href="../../doc/">{% trans 'Documentation' %}</a> /
+    <a href="../../password_change/">{% trans 'Change password' %}</a> /
+    <a href="../../logout/">{% trans 'Log out' %}</a>{% endblock %}
+{% if not is_popup %}{% block breadcrumbs %}
+    <div class="breadcrumbs"><a
+            href="/admin/">{% trans "Home" %}</a> &rsaquo; {{ matches.opts.verbose_name_plural|capfirst|escape }}</div>
+{% endblock %}{% endif %}
+{% block coltype %}flex{% endblock %}
+{% block content %}
+    <div id="content-main">
+        {% block object-tools %}
+            {% if has_add_permission %}
+                <ul class="object-tools">
+                    <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="addlink">
+                        {% blocktrans with matches.opts.verbose_name|escape as name %}Add
+                            {{ name }}{% endblocktrans %}</a></li>
+                </ul>
+            {% endif %}
+        {% endblock %}
+        <div class="module{% if matches.has_filters %} filtered{% endif %}" id="changelist">
+
+            <script type="text/javascript" src="{% admin_media_prefix %}js/prototype/prototype.js"></script>
+
+            {% if matches.has_filters %}
+                <div id="changelist-filter">
+                    <h2>{% trans 'Filter' %}</h2>
+                    {% for spec in matches.filter_specs %}
+                        {% filter matches spec %}
+                    {% endfor %}</div>{% endif %}
+
+
+            <h1>Staty</h1>
+
+            {% if stats %}
+                <table cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th width="10">&nbsp;</th>
+                        <th width="100">IP</th>
+                        <th width="100">REQUEST</th>
+                        <th width="100">REFERAL</th>
+                        <th width="100">DATE</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for stat in stats %}
+                        <tr style="background-color: beige;">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ stat.ip }}</td>
+                            <td>{{ stat.req }}</td>
+                            <td>{{ stat.ref|slice:"75"}}</td>
+                            <td>{{ stat.datetime }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h2>Nic :(</h2>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
+

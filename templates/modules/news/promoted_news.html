@@ -1,0 +1,37 @@
+{% load i18n lang bbcode %}
+<table border="1" cellspacing="0" cellpadding="10" style="width: 100%;">
+    <tbody>
+    {% for n in news %}
+        <h2><a href="/news/{{ n.id }}/{{ n.url }}/">{{ n.caption }}</a>&nbsp;&nbsp;&nbsp;</h2>
+        <p class="small">
+            <span class="autor username"><a
+                    href="/{% trans 'Uzytkownik URL' %}/{{ n.user|lower }}/">{{ n.user }}</a></span>
+            <a href="/{% trans 'Uzytkownik URL' %}/{{ n.user|lower }}/aktywnosc/"><span
+                    class="activity_points">{{ n.user.get_profile.activity_points }}</span></a>
+            <span class="{% trans 'punkty' %}">({{ n.user.get_profile.points }} {% trans 'pkt' %}.)</span>
+            <span class="data" name="date">{{ n.published_at|date:"Y-m-d H:i"}}</span>
+			<span class="komentarze"><img src="/static/images/ikona_komentarz.gif" alt="{% trans 'Komentarze' %}: "
+                                          width="11" height="11"/>
+				<a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'Szczegoly' %}">
+                    <span style="color: red;">{% trans 'Komentarze' %}: {{ n.get_comments_count }}</span>
+                </a>
+			</span>
+            <img src="/static/images/ikona_videos.jpeg" alt="{% trans 'Filmiki:' %} " width="14" height="14"/>
+            <a href="/news/{{ n.id }}/{{ n.url }}/" title="{% trans 'Szczegoly' %}">
+                <span style="color: red;">Video: {{ n.get_videos_count }}</span>
+            </a>
+        </p>
+        {% if n.assign_team_logo %}
+            <img class="foto" src="/static/images/logos/team_{{ n.assign_team_logo.id }}.gif"/>
+        {% else %}
+            {% if n.assign_league_logo %}
+                <img class="foto" src="/static/images/logos/league_{{ n.assign_league_logo.id }}.gif"/>
+            {% endif %}
+        {% endif %}
+        <p>{% filter bbcode %}{{ n.short_content|safe }}{% endfilter %}</p>
+        <br style="clear:both;"/>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br style="clear: both;"/>

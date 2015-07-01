@@ -1,0 +1,27 @@
+{% extends layout_lang %}{% load i18n lang common modules %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block title %}
+    {% trans 'Pomoc' %}
+{% endblock %}
+
+{% block path %}
+    {% trans 'Pomoc' %}
+{% endblock path %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul">
+            {% block help_content %}{% endblock %}
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+
+{% endblock content %}

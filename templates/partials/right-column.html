@@ -1,0 +1,25 @@
+{% load i18n lang modules %}
+<div class="modul">
+    <h2 class="headlight"><a href="/news/{% trans 'add url' %}/">{% trans 'Dodaj nowy artykul' %}</a></h2>
+
+    <h2 class="headlight"><a href="/{% trans 'filmy' %}/{% trans 'dodaj' %}/">{% trans 'Dodaj nowy film' %}</a></h2>
+</div>
+<div class="modul">
+    <h1 class="tytul">{% trans 'Liga Kibicow' %}</h1>
+    {% top_supporters %}
+</div>
+<div class="modul">
+    <h1 class="tytul">{% trans 'Najlepsi w tym miesiacu' %}</h1>
+    {% top_users_month %}
+</div>
+<div class="modul">
+    <h1 class="tytul">{% trans 'Klasyfikacja generalna' %}</h1>
+    {% top_users %}
+</div>
+<div class="modul">
+    <div class="adBlok">
+        {# {% block skyscrapper %} #}
+        {# {% include "partials/adsense.html" %} #}
+        {# {% endblock skyscrapper %} #}
+    </div>
+</div>

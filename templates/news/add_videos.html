@@ -1,0 +1,46 @@
+{% extends layout_lang %}{% load i18n lang flash common %}
+
+{% block title %}
+    {% trans '24gole.pl' %} - {% trans 'Dodaj filmik do wiadomosci o tytule' %}: {{ news.caption }}
+{% endblock title %}
+
+{% block top_menu %}
+    {{ menu }}
+{% endblock %}
+
+{% block content %}
+
+    <div id="kontent-tresc">
+        <div class="modul meczSzczegol">
+
+            <h1 class="tytul">
+                <span class="floatLeft">{{ news.caption }}</span>
+                <span class="data floatRight">{% trans 'data dodania' %}: <strong
+                        class="black">{{ news.created_at }}</strong></span>
+                <br class="clear"/>
+            </h1>
+
+            <form action="" method="post">
+                <fieldset>
+                    <legend style="font-size: 20px;">{% trans 'Dodaj nowy film' %}</legend>
+                    <label for="caption" style="font-size: 18px;">{% trans 'Tytul' %}:</label>
+                    {{ form.name }}{{ form.name.errors }}
+                    <label for="caption" style="font-size: 18px;">{% trans 'Link' %}:</label>
+                    {{ form.link }}{{ form.link.errors }}
+                    <label for="caption" style="font-size: 18px;">{% trans 'Opis' %}:</label>
+                    {{ form.description }}{{ form.description.errors }}
+                </fieldset>
+                <div class="alignRight">
+                    <input class="button" type="submit" value="{% trans 'Dodaj link' %}"/>
+                </div>
+            </form>
+            <h2>
+                <a href="/news/{{ news.id }}/{{ news.url }}/">&laquo; {% trans 'powrot do listy wiadomosci' %}</a>
+            </h2>
+        </div>
+    </div>
+    <div id="kontent-kolumna1">
+        {% include "partials/right-column.html" %}
+    </div>
+    </div>
+{% endblock content %}
